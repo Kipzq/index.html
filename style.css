@@ -8,6 +8,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* ADDED */
 }
 
 body {
@@ -376,3 +377,5 @@ footer {
         height: 30px !important;
     }
 }
+
+/* Favicon fallback (Just in case) */
