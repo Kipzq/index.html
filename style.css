@@ -260,12 +260,12 @@ footer {
 /* WhatsApp Floating Button - FORCED SIZING */
 .whatsapp-float {
     position: fixed !important;
-    width: 60px !important;
-    height: 60px !important;
-    bottom: 30px !important;
-    right: 30px !important;
+    width: 20px !important;
+    height: 20px !important;
+    bottom: 10px !important;
+    right: 10px !important;
     background-color: #25d366 !important;
-    border-radius: 50px !important;
+    border-radius: 200px !important;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.3) !important;
     z-index: 1000 !important;
     display: flex !important;
