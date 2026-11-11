@@ -311,3 +311,68 @@ footer {
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    
+    /* Make the header stack the logo and menu vertically */
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        margin-top: 15px;
+        text-align: center;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 8px 0;
+        width: 100%;
+    }
+
+    .btn-nav {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Make the hero text smaller */
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    /* Make the service cards stack on top of each other */
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Make the calculator and form full width */
+    .calc-container, .contact-form {
+        width: 95%;
+        padding: 15px;
+    }
+
+    /* Make the map smaller */
+    .map-container iframe {
+        height: 200px;
+    }
+
+    /* Adjust the WhatsApp button so it doesn't cover content */
+    .whatsapp-float {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 20px !important;
+        right: 20px !important;
+    }
+
+    .whatsapp-float img {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
