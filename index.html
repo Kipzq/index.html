@@ -15,6 +15,7 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#contact" class="btn-nav">Join Now</a></li>
             </ul>
@@ -48,6 +49,30 @@
                 <p>Quick access to funds when life throws unexpected challenges your way. Fast approval and disbursement.</p>
             </div>
 
+        </div>
+    </section>
+
+    <!-- Loan Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <h2>Loan Calculator</h2>
+        <p>Estimate your monthly repayments before you apply.</p>
+        
+        <div class="calc-container">
+            <div class="form-group">
+                <label for="loanAmount">Loan Amount (KES)</label>
+                <input type="number" id="loanAmount" placeholder="e.g., 50000">
+            </div>
+            
+            <div class="form-group">
+                <label for="loanTerm">Repayment Period (Months)</label>
+                <input type="number" id="loanTerm" placeholder="e.g., 12">
+            </div>
+
+            <button onclick="calculateLoan()" class="btn-primary" style="width: 100%;">Calculate</button>
+            
+            <div id="result" class="calc-result">
+                <!-- The result will show up here -->
+            </div>
         </div>
     </section>
 
@@ -88,11 +113,12 @@
         <p>Contact us: kipztito11@gmail.com | +254 727 111 633</p>
     </footer>
 
-    <!-- Link to JavaScript -->
     <!-- WhatsApp Floating Button -->
-<a href="https://wa.me/254727111633?text=Hello%20SmartLife%20SACCO,%20I%20am%20interested%20in%20joining." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
+    <a href="https://wa.me/254727111633?text=Hello%20SmartLife%20SACCO,%20I%20am%20interested%20in%20joining." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Link to JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
