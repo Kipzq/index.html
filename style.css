@@ -289,3 +289,25 @@ footer {
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+/* Location Info & Map */
+.location-info {
+    margin: 20px auto;
+    font-size: 1.1rem;
+    background: white;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-left: 5px solid #d4af37;
+}
+
+.location-info p {
+    margin: 5px 0;
+}
+
+.map-container {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
