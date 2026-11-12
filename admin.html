@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Marakwet Teachers SACCO</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Admin Specific Styles */
+        body { background-color: #f4f7f6; }
+        .admin-header {
+            background-color: #062d24; color: white; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .admin-container { padding: 40px 5%; }
+        .admin-table {
+            width: 100%; border-collapse: collapse; background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;
+        }
+        .admin-table th, .admin-table td {
+            padding: 15px; text-align: left; border-bottom: 1px solid #ddd;
+        }
+        .admin-table th { background-color: #0a4d3c; color: white; }
+        .status-pending { color: #d4af37; font-weight: bold; }
+        .status-approved { color: #25d366; font-weight: bold; }
+        .status-declined { color: #e74c3c; font-weight: bold; }
+        .action-btn {
+            padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer;
+            font-weight: bold; margin-right: 5px; color: white;
+        }
+        .btn-approve { background-color: #25d366; }
+        .btn-decline { background-color: #e74c3c; }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <div class="logo">Marakwet Teachers <span>SACCO</span> - Admin</div>
+        <a href="index.html" style="color: white; text-decoration: none;">← Back to Website</a>
+    </header>
+
+    <div class="admin-container">
+        <h2 style="color: #0a4d3c; margin-bottom: 20px;">Loan Applications Dashboard</h2>
+        
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Member Name</th>
+                    <th>Phone</th>
+                    <th>Amount (KES)</th>
+                    <th>Months</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="loanTableBody">
+                <!-- Data will be loaded here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
