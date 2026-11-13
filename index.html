@@ -34,18 +34,17 @@
     </section>
 
     <!-- DOWNLOAD BLANK FORM SECTION -->
-    <section style="text-align: center; padding: 40px 5%; background: #e6f7ff; border-bottom: 2px solid #00AEEF;">
+    <section style="text-align: center; padding: 40px 5%; background: #e6f7ff; border-bottom: 2px solid #00AEEF;" class="animate-on-scroll">
         <h2 style="color: #1a2b5e; margin-bottom: 10px;">Prefer to Apply Offline?</h2>
         <p style="margin-bottom: 20px; color: #555; font-size: 1.1rem;">Download the official blank BOSA Loan Application form, fill it out by hand, and drop it at our offices.</p>
         
-        <!-- Opens the blank form to be saved as PDF -->
         <a href="blank_form.html" target="_blank" class="btn-primary" style="background-color: #1a2b5e; text-decoration: none; display: inline-block; padding: 15px 30px; font-size: 1.1rem;">
             📄 Download Blank BOSA Form
         </a>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
+    <section id="services" class="services animate-on-scroll">
         <h2>Our Loan Products</h2>
         <div class="service-grid">
             <a href="loan.html" class="card">
@@ -64,7 +63,7 @@
     </section>
 
     <!-- Loan Calculator Section -->
-    <section id="calculator" class="calculator-section">
+    <section id="calculator" class="calculator-section animate-on-scroll">
         <h2>Loan Calculator</h2>
         <p>Estimate your monthly repayments before you apply.</p>
         <div class="calc-container">
@@ -82,7 +81,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about animate-on-scroll">
         <h2>About SmartLife SACCO</h2>
         <p>We are a member-owned financial cooperative dedicated to improving the economic well-being of our community. By pooling our resources, we provide affordable financial services to our members, ensuring shared prosperity and financial independence.</p>
         <div class="location-info">
@@ -103,7 +102,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
-    <!-- JAVASCRIPT -->
+    <!-- ALL JAVASCRIPT INCLUDING ANIMATIONS -->
     <script>
         // 1. Check Login Status on Page Load
         document.addEventListener("DOMContentLoaded", () => {
@@ -127,26 +126,66 @@
             window.location.reload();
         }
 
-        // 3. Loan Calculator Function
+        // 3. Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // 4. Number Count-Up Animation for Calculator
+        function animateValue(obj, start, end, duration, prefix = "KES ") {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = prefix + current.toLocaleString('en-KE');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // 5. Loan Calculator Function (Animated)
         function calculateLoan() {
             const amount = document.getElementById('loanAmount').value;
             const months = document.getElementById('loanTerm').value;
             const resultDiv = document.getElementById('result');
+            
             if (amount === "" || months === "" || amount <= 0 || months <= 0) {
                 alert("Please enter valid numbers.");
                 return;
             }
+            
             const monthlyRate = 0.01; 
             const totalInterest = amount * monthlyRate * months;
             const totalRepayment = parseFloat(amount) + totalInterest;
             const monthlyPayment = totalRepayment / months;
-            const formatKES = (num) => "KES " + num.toLocaleString('en-KE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
             resultDiv.style.display = "block";
             resultDiv.innerHTML = `
-                Monthly Repayment: <br><span style="font-size: 1.5rem; color: #F58220;">${formatKES(monthlyPayment)}</span><br><br>
-                Total Repayment: ${formatKES(totalRepayment)}<br>
-                <span style="font-size: 0.9rem; color: #666; font-weight: normal;">(Includes 1% monthly interest)</span>
+                <div style="color: #1a2b5e; font-weight: bold; margin-bottom: 5px;">Monthly Repayment:</div>
+                <div id="animatedMonthly" style="font-size: 1.8rem; color: #F58220; font-weight: bold;"></div>
+                <br>
+                <div style="color: #1a2b5e; font-weight: bold; margin-bottom: 5px;">Total Repayment:</div>
+                <div id="animatedTotal" style="font-size: 1.4rem; color: #25d366; font-weight: bold;"></div>
+                <br>
+                <span style="font-size: 0.85rem; color: #666;">(Includes 1% monthly interest)</span>
             `;
+
+            // Animate the numbers
+            animateValue(document.getElementById('animatedMonthly'), 0, monthlyPayment, 1000);
+            setTimeout(() => {
+                animateValue(document.getElementById('animatedTotal'), 0, totalRepayment, 1200);
+            }, 200);
         }
     </script>
 </body>
