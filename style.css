@@ -8,7 +8,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* ADDED */
+    scroll-padding-top: 90px;
 }
 
 body {
@@ -19,24 +19,20 @@ body {
 
 /* Navigation Bar */
 header {
-    background-color: #0a4d3c;
-    color: white;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 0.5rem 5%;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.logo span {
-    color: #d4af37;
+.logo img {
+    height: 70px; /* Adjust if logo is too big */
+    width: auto;
 }
 
 nav ul {
@@ -50,22 +46,30 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: #1a2b5e; /* Dark Blue text */
     text-decoration: none;
-    font-weight: 500;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #00AEEF; /* Light Blue on hover */
 }
 
 .btn-nav {
-    background-color: #d4af37;
-    padding: 8px 15px;
+    background-color: #F58220; /* Orange */
+    padding: 10px 20px;
     border-radius: 5px;
-    color: #0a4d3c !important;
-    font-weight: bold;
+    color: white !important;
+}
+
+.btn-nav:hover {
+    background-color: #d96e15;
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(10, 77, 60, 0.8), rgba(10, 77, 60, 0.8)), url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80') center/cover;
+    background: linear-gradient(rgba(26, 43, 94, 0.85), rgba(26, 43, 94, 0.85)), url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
     color: white;
     text-align: center;
     padding: 100px 20px;
@@ -85,8 +89,8 @@ nav ul li a {
 }
 
 .btn-primary {
-    background-color: #d4af37;
-    color: #0a4d3c;
+    background-color: #F58220;
+    color: white;
     padding: 12px 30px;
     text-decoration: none;
     font-weight: bold;
@@ -99,7 +103,7 @@ nav ul li a {
 }
 
 .btn-primary:hover {
-    background-color: #f1c40f;
+    background-color: #d96e15;
 }
 
 /* Services Section */
@@ -110,7 +114,7 @@ nav ul li a {
 }
 
 .services h2 {
-    color: #0a4d3c;
+    color: #1a2b5e;
     margin-bottom: 40px;
     font-size: 2rem;
 }
@@ -122,20 +126,25 @@ nav ul li a {
 }
 
 .card {
+    display: block;
+    text-decoration: none;
+    color: #333;
     background: #f9f9f9;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-top: 5px solid #d4af37;
-    transition: transform 0.3s ease;
+    border-top: 5px solid #00AEEF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .card h3 {
-    color: #0a4d3c;
+    color: #1a2b5e;
     margin-bottom: 15px;
 }
 
@@ -147,7 +156,7 @@ nav ul li a {
 }
 
 .calculator-section h2 {
-    color: #0a4d3c;
+    color: #1a2b5e;
     margin-bottom: 10px;
 }
 
@@ -159,17 +168,18 @@ nav ul li a {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     text-align: left;
+    border-top: 5px solid #F58220;
 }
 
 .calc-result {
     margin-top: 20px;
     font-size: 1.2rem;
     font-weight: bold;
-    color: #0a4d3c;
+    color: #1a2b5e;
     text-align: center;
     display: none;
     padding: 15px;
-    background-color: #e8f4f1;
+    background-color: #e6f7ff;
     border-radius: 5px;
 }
 
@@ -177,11 +187,11 @@ nav ul li a {
 .about {
     padding: 60px 5%;
     text-align: center;
-    background-color: #e8f4f1;
+    background-color: #e6f7ff;
 }
 
 .about h2 {
-    color: #0a4d3c;
+    color: #1a2b5e;
     margin-bottom: 20px;
 }
 
@@ -191,16 +201,40 @@ nav ul li a {
     font-size: 1.1rem;
 }
 
+/* Location Info & Map */
+.location-info {
+    margin: 20px auto;
+    font-size: 1.1rem;
+    background: white;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-left: 5px solid #F58220;
+    text-align: left;
+}
+
+.location-info p {
+    margin: 5px 0;
+}
+
+.map-container {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 /* Contact Form Section */
 .contact-section {
     padding: 60px 5%;
-    background-color: #0a4d3c;
+    background-color: #1a2b5e;
     color: white;
     text-align: center;
 }
 
 .contact-section h2 {
-    color: #d4af37;
+    color: #00AEEF;
     margin-bottom: 10px;
     font-size: 2rem;
 }
@@ -230,7 +264,7 @@ nav ul li a {
     margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group input, .form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -238,10 +272,10 @@ nav ul li a {
     font-size: 1rem;
 }
 
-.form-group input:focus {
+.form-group input:focus, .form-group select:focus {
     outline: none;
-    border-color: #0a4d3c;
-    box-shadow: 0 0 5px rgba(10, 77, 60, 0.5);
+    border-color: #00AEEF;
+    box-shadow: 0 0 5px rgba(0, 174, 239, 0.5);
 }
 
 .contact-form .btn-primary {
@@ -251,22 +285,22 @@ nav ul li a {
 
 /* Footer */
 footer {
-    background-color: #062d24;
+    background-color: #0d162e;
     color: white;
     text-align: center;
     padding: 20px;
     font-size: 0.9rem;
 }
 
-/* WhatsApp Floating Button - FORCED SIZING */
+/* WhatsApp Floating Button */
 .whatsapp-float {
     position: fixed !important;
-    width: 20px !important;
-    height: 20px !important;
-    bottom: 10px !important;
-    right: 10px !important;
+    width: 60px !important;
+    height: 60px !important;
+    bottom: 30px !important;
+    right: 30px !important;
     background-color: #25d366 !important;
-    border-radius: 200px !important;
+    border-radius: 50px !important;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.3) !important;
     z-index: 1000 !important;
     display: flex !important;
@@ -283,39 +317,9 @@ footer {
     width: 35px !important;
     height: 35px !important;
 }
-/* Map Container */
-.map-container {
-    margin-top: 40px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-/* Location Info & Map */
-.location-info {
-    margin: 20px auto;
-    font-size: 1.1rem;
-    background: white;
-    display: inline-block;
-    padding: 15px 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-left: 5px solid #d4af37;
-}
 
-.location-info p {
-    margin: 5px 0;
-}
-
-.map-container {
-    margin-top: 30px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
 /* Mobile Responsiveness */
 @media screen and (max-width: 768px) {
-    
-    /* Make the header stack the logo and menu vertically */
     header {
         flex-direction: column;
         padding: 15px;
@@ -339,7 +343,6 @@ footer {
         margin-top: 10px;
     }
 
-    /* Make the hero text smaller */
     .hero h1 {
         font-size: 1.8rem;
     }
@@ -348,23 +351,19 @@ footer {
         font-size: 1rem;
     }
 
-    /* Make the service cards stack on top of each other */
     .service-grid {
         grid-template-columns: 1fr;
     }
 
-    /* Make the calculator and form full width */
     .calc-container, .contact-form {
         width: 95%;
         padding: 15px;
     }
 
-    /* Make the map smaller */
     .map-container iframe {
         height: 200px;
     }
 
-    /* Adjust the WhatsApp button so it doesn't cover content */
     .whatsapp-float {
         width: 50px !important;
         height: 50px !important;
@@ -377,5 +376,43 @@ footer {
         height: 30px !important;
     }
 }
+/* --- PRINT STYLES --- */
+@media print {
+    /* Hide navigation, buttons, and footers */
+    header, nav, footer, .whatsapp-float, .btn-primary, .close-btn, .admin-header, .action-btn {
+        display: none !important;
+    }
 
-/* Favicon fallback (Just in case) */
+    /* Reset body for printing */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+    }
+
+    /* Make forms take full width */
+    .form-container, .modal-content {
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Ensure inputs and tables have solid black borders */
+    input, select, .official-table th, .official-table td {
+        border: 1px solid black !important;
+        background: transparent !important;
+    }
+
+    /* Remove dotted lines for a cleaner print */
+    .dotted-input {
+        border-bottom: 1px solid black !important;
+    }
+
+    /* Prevent page breaks inside sections */
+    .section-title, table, .form-group {
+        page-break-inside: avoid;
+    }
+}

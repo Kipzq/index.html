@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartLife SACCO - Blank BOSA Form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Times New Roman', serif; padding: 20px; color: #000; background: white; }
+        .header { text-align: center; border-bottom: 2px solid #1a2b5e; padding-bottom: 10px; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; text-transform: uppercase; margin: 0; }
+        .header p { font-size: 0.9rem; margin: 5px 0; }
+        .header h2 { font-size: 1.1rem; background: #e6f7ff; padding: 5px; margin-top: 10px; text-transform: uppercase; }
+        
+        .section-title { font-weight: bold; background: #f4f7f6; padding: 5px; margin: 20px 0 10px 0; border-left: 3px solid #F58220; text-transform: uppercase; font-size: 0.9rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 10px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 10px; }
+        .form-line { border-bottom: 1px dotted #000; height: 25px; margin-bottom: 15px; position: relative; }
+        .form-line label { font-weight: bold; font-size: 0.9rem; position: absolute; top: -15px; left: 0; font-size: 0.75rem; color: #555; }
+        
+        .checkbox-group { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.9rem; }
+        .checkbox-group label { display: flex; align-items: center; gap: 5px; font-weight: bold; }
+        .box { width: 15px; height: 15px; border: 1px solid #000; display: inline-block; }
+
+        .declaration { font-size: 0.8rem; text-align: justify; margin-bottom: 20px; line-height: 1.5; }
+        
+        .guarantor-box { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body onload="window.print()">
+    
+    <!-- PRINT BUTTON -->
+    <div class="no-print" style="text-align: center; margin-bottom: 20px; padding: 10px; background: #e6f7ff;">
+        <h3>Save this page as a PDF:</h3>
+        <p>Click the button below, choose <strong>"Save as PDF"</strong> as the destination, and save it to your phone.</p>
+        <button onclick="window.print()" style="padding: 10px 20px; font-size: 1.1rem; background: #1a2b5e; color: white; border: none; border-radius: 5px; cursor: pointer;">🖨️ Save as PDF</button>
+    </div>
+
+    <!-- BLANK FORM CONTENT -->
+    <div class="header">
+        <h1>SMARTLIFE SACCO SOCIETY LTD</h1>
+        <p>Marakwet Teachers Plaza P.O. Box 118 - 30705, Kapsowar</p>
+        <p>info@smartlifesacco.co.ke | www.smartlifesacco.co.ke</p>
+        <h2>BOSA LOAN APPLICATION AND AGREEMENT FORM</h2>
+    </div>
+
+    <div class="grid-2">
+        <div class="form-line"><label>Date issued:</label></div>
+        <div class="form-line"><label>Loan Serial No:</label></div>
+    </div>
+
+    <div class="section-title">PART A: APPLICANT'S BIO-DATA</div>
+    <div class="grid-2">
+        <div class="form-line"><label>Full Name:</label></div>
+        <div class="form-line"><label>Account No:</label></div>
+    </div>
+    <div class="grid-2">
+        <div class="form-line"><label>Employer:</label></div>
+        <div class="form-line"><label>Current Station:</label></div>
+    </div>
+    <div class="grid-2">
+        <div class="form-line"><label>Payroll No:</label></div>
+        <div class="form-line"><label>ID Number:</label></div>
+    </div>
+    <div class="grid-2">
+        <div class="form-line"><label>Address:</label></div>
+        <div class="form-line"><label>Phone Number:</label></div>
+    </div>
+    <div class="grid-2">
+        <div class="form-line"><label>Email Address:</label></div>
+        <div class="form-line"><label>Terms of Service:</label></div>
+    </div>
+    <div class="grid-3">
+        <div class="form-line"><label>Age:</label></div>
+        <div class="form-line"><label>Outstanding Loan? Y/N:</label></div>
+        <div class="form-line"><label>If Yes, Amount:</label></div>
+    </div>
+    <div class="form-line"><label>Position in the Sacco (Member/Delegate/Board/Staff):</label></div>
+
+    <div class="section-title">PART B: LOAN APPLICATION STATEMENT</div>
+    <div class="form-line"><label>I (Name):</label></div>
+    <p style="font-size: 0.9rem; margin-bottom: 10px;">Hereby apply for a loan of KShs. __________ for a period of __________ Months at a Principal rate per month.</p>
+    <div class="grid-2">
+        <div class="form-line"><label>Amount Applied (KShs):</label></div>
+        <div class="form-line"><label>Period (Months):</label></div>
+    </div>
+
+    <div class="section-title">PART C & D: LOAN TYPE & PURPOSE</div>
+    <div class="form-line"><label>Type of Loan (e.g., Emergency, School Fees, Development):</label></div>
+    <div class="form-line"><label>Purpose of Loan (e.g., Medical, Education, Housing):</label></div>
+
+    <div class="section-title">PART E: GUARANTORS' DETAILS</div>
+    <div class="guarantor-box">
+        <h4 style="margin-bottom: 10px; font-size: 0.9rem;">Guarantor 1</h4>
+        <div class="grid-2">
+            <div class="form-line"><label>Name:</label></div>
+            <div class="form-line"><label>Payroll No:</label></div>
+        </div>
+        <div class="grid-2">
+            <div class="form-line"><label>Phone No:</label></div>
+            <div class="form-line"><label>Amount Guaranteed:</label></div>
+        </div>
+    </div>
+    <div class="guarantor-box">
+        <h4 style="margin-bottom: 10px; font-size: 0.9rem;">Guarantor 2</h4>
+        <div class="grid-2">
+            <div class="form-line"><label>Name:</label></div>
+            <div class="form-line"><label>Payroll No:</label></div>
+        </div>
+        <div class="grid-2">
+            <div class="form-line"><label>Phone No:</label></div>
+            <div class="form-line"><label>Amount Guaranteed:</label></div>
+        </div>
+    </div>
+
+    <div class="section-title">PART F: APPLICANT'S DECLARATION</div>
+    <div class="declaration">
+        I hereby declare that the foregoing particulars are true to the best of my knowledge and belief and I agree to abide by the by-laws of the society, the credit policy and variations by management in respect to this loan application. I authorize necessary deductions from my salary for repayment.
+    </div>
+    <div class="grid-2">
+        <div class="form-line"><label>Applicant's Signature:</label></div>
+        <div class="form-line"><label>Date:</label></div>
+    </div>
+
+    <div class="section-title">PART G: APPLICANT'S DISCLOSURE STATEMENT</div>
+    <div class="declaration">
+        I understand that in the event that I default in servicing the loan amount herein, the society reserves the right to share the credit information with other financial institutions, public authorities and licensed credit reference bureaus, subject to any applicable law.
+    </div>
+    <div class="grid-2">
+        <div class="form-line"><label>Signature:</label></div>
+        <div class="form-line"><label>Date:</label></div>
+    </div>
+
+    <div class="section-title">PART H: LOAN FACILITY TERMS AND CONDITIONS</div>
+    <div class="declaration" style="font-size: 0.7rem;">
+        1. A member should be 3 months old in the society...<br>
+        2. Loan forms that are not properly filled...<br>
+        3. A member should attach current pay slip...<br>
+        ... (Standard Terms Apply)
+    </div>
+    <div class="grid-2">
+        <div class="form-line"><label>Signature:</label></div>
+        <div class="form-line"><label>Date:</label></div>
+    </div>
+
+    <div class="section-title">PART I: APPLICANT'S ACCEPTANCE OF OFFER</div>
+    <div class="declaration">
+        I hereby accept the offer and I have read and understood the terms and Conditions governing the loan so applied.
+    </div>
+    <div class="grid-2">
+        <div class="form-line"><label>Signature:</label></div>
+        <div class="form-line"><label>Date:</label></div>
+    </div>
+
+</body>
+</html>

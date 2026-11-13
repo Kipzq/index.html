@@ -1,75 +1,117 @@
 document.addEventListener("DOMContentLoaded", function() {
     fetchLoans();
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelectorAll('input[type="date"]').forEach(el => el.value = today);
 });
 
-// 1. Fetch loans from the database and display them
+let allLoans = []; 
+
 function fetchLoans() {
-    const tableBody = document.getElementById('loanTableBody');
-    
-    fetch('http://localhost:3000/api/loans')
-        .then(response => response.json())
-        .then(loans => {
-            tableBody.innerHTML = ''; // Clear existing rows
-            
-            if (loans.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="7" style="text-align:center;">No loan applications yet.</td></tr>';
-                return;
-            }
-
-            loans.forEach(loan => {
-                const date = new Date(loan.date).toLocaleDateString();
-                const statusClass = `status-${loan.status.toLowerCase()}`;
-                
-                let actionButtons = '';
-                if (loan.status === 'Pending') {
-                    actionButtons = `
-                        <button class="action-btn btn-approve" onclick="updateStatus('${loan._id}', 'Approved')">Approve</button>
-                        <button class="action-btn btn-decline" onclick="updateStatus('${loan._id}', 'Declined')">Decline</button>
-                    `;
-                } else {
-                    actionButtons = `<span style="font-size:0.8rem; color:#666;">Processed</span>`;
-                }
-
-                const row = `
-                    <tr>
-                        <td>${date}</td>
-                        <td>${loan.memberName}</td>
-                        <td>${loan.phone}</td>
-                        <td>${loan.amount.toLocaleString()}</td>
-                        <td>${loan.months}</td>
-                        <td class="${statusClass}">${loan.status}</td>
-                        <td>${actionButtons}</td>
-                    </tr>
+    fetch('/api/loans').then(res => res.json()).then(loans => {
+        allLoans = loans;
+        const tableBody = document.getElementById('loanTableBody');
+        tableBody.innerHTML = loans.length === 0 ? '<tr><td colspan="6" style="text-align:center;">No applications yet.</td></tr>' : '';
+        
+        loans.forEach(loan => {
+            const statusClass = `status-${loan.status.toLowerCase()}`;
+            let btns = `<button class="action-btn" style="background:#1a2b5e;" onclick="appraise('${loan._id}')">Appraise & Print</button>`;
+            if (loan.status === 'Pending') {
+                btns += `
+                    <button class="action-btn btn-approve" onclick="updateLoanStatus('${loan._id}', 'Approved')">Approve</button>
+                    <button class="action-btn btn-decline" onclick="updateLoanStatus('${loan._id}', 'Declined')">Decline</button>
                 `;
-                tableBody.innerHTML += row;
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching loans:', error);
-            tableBody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:red;">Error loading data. Is the server running?</td></tr>';
+            }
+            tableBody.innerHTML += `<tr>
+                <td>${new Date(loan.date).toLocaleDateString()}</td>
+                <td>${loan.fullName || 'Unknown'} <br><small>${loan.phone || ''}</small></td>
+                <td>${loan.loanType || 'N/A'}</td>
+                <td>KES ${loan.amountRequested?.toLocaleString() || '0'}</td>
+                <td class="${statusClass}">${loan.status}</td>
+                <td style="display: flex; gap: 5px; flex-wrap: wrap;">${btns}</td>
+            </tr>`;
         });
+    });
 }
 
-// 2. Function to update the status (Approve/Decline)
-function updateStatus(loanId, newStatus) {
-    if (!confirm(`Are you sure you want to mark this loan as ${newStatus}?`)) return;
+function recalculate() {
+    const basic = parseFloat(document.getElementById('editBasic').value) || 0;
+    const shares = parseFloat(document.getElementById('editShares').value) || 0;
 
-    fetch(`http://localhost:3000/api/loans/${loanId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert(`Loan successfully ${newStatus}!`);
-            fetchLoans(); // Refresh the table
-        } else {
-            alert("Failed to update status.");
+    const thirdBasic = basic / 3;
+    const ability = basic - thirdBasic;
+    const shareLimit = shares * 3;
+    const recommended = Math.min(ability, shareLimit);
+
+    document.getElementById('editThird').value = thirdBasic.toLocaleString(undefined, {maximumFractionDigits: 2});
+    document.getElementById('editAbility').value = ability.toLocaleString(undefined, {maximumFractionDigits: 2});
+    document.getElementById('editShareLimit').value = shareLimit.toLocaleString(undefined, {maximumFractionDigits: 2});
+
+    document.getElementById('amountApproved').value = recommended;
+    document.getElementById('committeeAmount').value = recommended;
+}
+
+async function appraise(loanId) {
+    const loan = allLoans.find(l => l._id === loanId);
+    if (!loan) return alert("Loan not found");
+    if (!loan.userId) return alert("No user linked to this loan.");
+
+    const res = await fetch(`/api/appraise/${loan.userId}`);
+    const data = await res.json();
+    
+    if (res.ok) {
+        // 1. Fill Member's Form (Top)
+        document.getElementById('replicaPartA').innerHTML = `
+            <div class="replica-item"><strong>Full Name:</strong> ${loan.fullName || 'N/A'}</div>
+            <div class="replica-item"><strong>Account No:</strong> ${loan.accountNo || 'N/A'}</div>
+            <div class="replica-item"><strong>Employer:</strong> ${loan.employer || 'N/A'}</div>
+            <div class="replica-item"><strong>Station:</strong> ${loan.station || 'N/A'}</div>
+            <div class="replica-item"><strong>Payroll No:</strong> ${loan.payrollNo || 'N/A'}</div>
+            <div class="replica-item"><strong>ID No:</strong> ${loan.idNo || 'N/A'}</div>
+            <div class="replica-item"><strong>Phone:</strong> ${loan.phone || 'N/A'}</div>
+            <div class="replica-item"><strong>Email:</strong> ${loan.email || 'N/A'}</div>
+        `;
+
+        document.getElementById('replicaPartB').innerHTML = `
+            I <strong>${loan.fullName}</strong> hereby apply for a loan of <strong>KShs. ${loan.amountRequested?.toLocaleString()}</strong> 
+            for a period of <strong>${loan.periodMonths} Months</strong>.
+        `;
+
+        document.getElementById('replicaPartCD').innerHTML = `
+            <div class="replica-item"><strong>Loan Type:</strong> ${loan.loanType || 'N/A'}</div>
+            <div class="replica-item"><strong>Purpose:</strong> ${loan.purpose || 'N/A'}</div>
+        `;
+
+        // Populate all 10 Guarantors
+        let guarantorHTML = '';
+        for (let i = 1; i <= 10; i++) {
+            if (loan[`guarantor${i}Name`]) {
+                guarantorHTML += `
+                    <div class="replica-item">
+                        <strong>Guarantor ${i}:</strong> ${loan[`guarantor${i}Name`]} (Payroll: ${loan[`guarantor${i}Payroll`]}) - KES ${loan[`guarantor${i}Amount`]?.toLocaleString()}
+                    </div>
+                `;
+            }
         }
-    })
-    .catch(error => {
-        console.error('Error updating status:', error);
-        alert("Network error. Please check your server.");
-    });
+        document.getElementById('replicaPartE').innerHTML = guarantorHTML || '<p>No guarantors provided.</p>';
+
+        document.getElementById('replicaSignature').innerText = loan.applicantSignature;
+        document.getElementById('replicaDate').innerText = loan.dateSigned;
+
+        // 2. Pre-fill the Financial Inputs (Bottom)
+        document.getElementById('editBasic').value = data.basicSalary || 0;
+        document.getElementById('editShares').value = data.shares || 0;
+        document.getElementById('recoverableMonths').value = loan.periodMonths || 48;
+        
+        // 3. Run the calculation
+        recalculate();
+        document.getElementById('appraisalModal').style.display = 'flex';
+    } else { 
+        alert(data.error); 
+    }
+}
+
+function updateLoanStatus(id, status) {
+    if (!confirm(`Mark as ${status}?`)) return;
+    fetch(`/api/loans/${id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status }) })
+        .then(() => { alert(`Loan ${status}`); fetchLoans(); });
 }

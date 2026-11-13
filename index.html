@@ -3,52 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartLife SACCO - Empowering Your Future</title>
+    <title>SmartLife SACCO - Together We Prosper</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <!-- Navigation Bar -->
     <header>
-        <div class="logo">SmartLife <span>SACCO</span></div>
+        <div class="logo">
+            <img src="logo.png" alt="SmartLife SACCO Logo">
+        </div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li><a href="#contact" class="btn-nav">Join Now</a></li>
+                <li><a href="loan.html" class="btn-nav">Apply Loan</a></li>
+                <li><a href="withdrawal.html" style="color: #F58220;">Withdraw</a></li>
+                <li id="navLoginBtn"><a href="login.html" style="color: #1a2b5e;">Login</a></li>
+                <li id="navLogoutBtn" style="display: none;"><a href="#" onclick="logoutUser()" style="color: red;">Logout</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <h1>Secure Your Financial Future with SmartLife SACCO</h1>
-        <p>Access affordable loans, grow your savings, and achieve your dreams with a community that cares.</p>
-        <a href="#contact" class="btn-primary">Become a Member Today</a>
+        <h1>Empowering Your Financial Future</h1>
+        <p>Join SmartLife SACCO to access affordable loans, grow your savings, and achieve your financial goals with a community that cares.</p>
+        <a href="loan.html" class="btn-primary">Apply for a Loan Online</a>
+    </section>
+
+    <!-- DOWNLOAD BLANK FORM SECTION -->
+    <section style="text-align: center; padding: 40px 5%; background: #e6f7ff; border-bottom: 2px solid #00AEEF;">
+        <h2 style="color: #1a2b5e; margin-bottom: 10px;">Prefer to Apply Offline?</h2>
+        <p style="margin-bottom: 20px; color: #555; font-size: 1.1rem;">Download the official blank BOSA Loan Application form, fill it out by hand, and drop it at our offices.</p>
+        
+        <!-- Opens the blank form to be saved as PDF -->
+        <a href="blank_form.html" target="_blank" class="btn-primary" style="background-color: #1a2b5e; text-decoration: none; display: inline-block; padding: 15px 30px; font-size: 1.1rem;">
+            📄 Download Blank BOSA Form
+        </a>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="services">
-        <h2>Our Core Services</h2>
+        <h2>Our Loan Products</h2>
         <div class="service-grid">
-            
-            <div class="card">
-                <h3>Development Loans</h3>
-                <p>Low-interest loans designed to help you build your home, start a business, or advance your education.</p>
-            </div>
-
-            <div class="card">
-                <h3>Smart Savings</h3>
-                <p>Earn competitive interest rates on your deposits. Save for a rainy day or a long-term goal.</p>
-            </div>
-
-            <div class="card">
-                <h3>Emergency Loans</h3>
-                <p>Quick access to funds when life throws unexpected challenges your way. Fast approval and disbursement.</p>
-            </div>
-
+            <a href="loan.html" class="card">
+                <h3>Super Smart Loan</h3>
+                <p>Our flagship loan product designed for maximum financial flexibility and quick disbursement.</p>
+            </a>
+            <a href="loan.html" class="card">
+                <h3>Institutional Staff Loan</h3>
+                <p>Tailored specifically for employees of partner institutions with flexible repayment plans.</p>
+            </a>
+            <a href="loan.html" class="card">
+                <h3>School Fees Loan</h3>
+                <p>Quick and accessible financing to cover primary and secondary school fees on time.</p>
+            </a>
         </div>
     </section>
 
@@ -56,79 +67,87 @@
     <section id="calculator" class="calculator-section">
         <h2>Loan Calculator</h2>
         <p>Estimate your monthly repayments before you apply.</p>
-        
         <div class="calc-container">
             <div class="form-group">
                 <label for="loanAmount">Loan Amount (KES)</label>
                 <input type="number" id="loanAmount" placeholder="e.g., 50000">
             </div>
-            
             <div class="form-group">
                 <label for="loanTerm">Repayment Period (Months)</label>
                 <input type="number" id="loanTerm" placeholder="e.g., 12">
             </div>
-
             <button onclick="calculateLoan()" class="btn-primary" style="width: 100%;">Calculate</button>
-            
-            <div id="result" class="calc-result">
-                <!-- The result will show up here -->
-            </div>
+            <div id="result" class="calc-result"></div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <h2>About SmartLife SACCO</h2>
-        <p>We are a member-owned financial cooperative dedicated to improving the economic well-being of our community. By pooling resources, we provide affordable financial services to our members, ensuring shared prosperity and financial independence.</p>
-        
+        <p>We are a member-owned financial cooperative dedicated to improving the economic well-being of our community. By pooling our resources, we provide affordable financial services to our members, ensuring shared prosperity and financial independence.</p>
         <div class="location-info">
             <p><strong>Visit Us:</strong> Kapsowar Town, Elgeyo-Marakwet County</p>
             <p><strong>P.O. Box:</strong> 118-30705, Kapsowar</p>
         </div>
-
-        <!-- Google Map centered on Kapsowar -->
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.949168133623!2d35.633333!3d0.983333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1781e5c73a1c5d9f%3A0x6b7a3e7f3b8a2c1a!2sKapsowar!5e0!3m2!1sen!2ske!4v1610000000000!5m2!1sen!2ske" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </section>
-
-    <!-- Registration / Contact Form Section -->
-    <section id="contact" class="contact-section">
-        <h2>Join SmartLife SACCO Today</h2>
-        <p>Fill out the form below and our team will reach out to you.</p>
-        
-        <form class="contact-form" id="sacco-form" action="https://formspree.io/f/xppdarvo" method="POST">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="e.g., 0712345678" required>
-            </div>
-
-            <button type="submit" class="btn-primary">Submit Application</button>
-        </form>
     </section>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 SmartLife SACCO. All rights reserved.</p>
         <p>P.O. Box 118-30705, Kapsowar | Email: kipztito11@gmail.com | Phone: +254 727 111 633</p>
+        <p style="color: #00AEEF; font-weight: bold; margin-top: 10px;">"Together We Prosper"</p>
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/254727111633?text=Hello%20SmartLife%20SACCO,%20I%20am%20interested%20in%20joining." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/254727111633" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
-    <!-- Link to JavaScript -->
-    <script src="script.js"></script>
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Check Login Status on Page Load
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const navLoginBtn = document.getElementById('navLoginBtn');
+            const navLogoutBtn = document.getElementById('navLogoutBtn');
+
+            if (user) {
+                navLoginBtn.style.display = 'none';
+                navLogoutBtn.style.display = 'block';
+            } else {
+                navLoginBtn.style.display = 'block';
+                navLogoutBtn.style.display = 'none';
+            }
+        });
+
+        // 2. Logout Function
+        function logoutUser() {
+            localStorage.clear();
+            alert("You have been logged out.");
+            window.location.reload();
+        }
+
+        // 3. Loan Calculator Function
+        function calculateLoan() {
+            const amount = document.getElementById('loanAmount').value;
+            const months = document.getElementById('loanTerm').value;
+            const resultDiv = document.getElementById('result');
+            if (amount === "" || months === "" || amount <= 0 || months <= 0) {
+                alert("Please enter valid numbers.");
+                return;
+            }
+            const monthlyRate = 0.01; 
+            const totalInterest = amount * monthlyRate * months;
+            const totalRepayment = parseFloat(amount) + totalInterest;
+            const monthlyPayment = totalRepayment / months;
+            const formatKES = (num) => "KES " + num.toLocaleString('en-KE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = `
+                Monthly Repayment: <br><span style="font-size: 1.5rem; color: #F58220;">${formatKES(monthlyPayment)}</span><br><br>
+                Total Repayment: ${formatKES(totalRepayment)}<br>
+                <span style="font-size: 0.9rem; color: #666; font-weight: normal;">(Includes 1% monthly interest)</span>
+            `;
+        }
+    </script>
 </body>
 </html>

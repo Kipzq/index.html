@@ -3,61 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Marakwet Teachers SACCO</title>
+    <title>Admin - SmartLife SACCO</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Admin Specific Styles */
-        body { background-color: #f4f7f6; }
-        .admin-header {
-            background-color: #062d24; color: white; padding: 20px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .admin-header { background-color: #1a2b5e; color: white; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
         .admin-container { padding: 40px 5%; }
-        .admin-table {
-            width: 100%; border-collapse: collapse; background: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;
+        .admin-table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 40px; }
+        .admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        .admin-table th { background-color: #00AEEF; color: white; }
+        .action-btn { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-right: 5px; color: white; font-size: 0.85rem; }
+        .btn-approve { background-color: #25d366; } .btn-decline { background-color: #e74c3c; }
+        
+        /* Modal Styles */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: flex-start; overflow-y: auto; padding: 20px; }
+        .modal-content { background: white; width: 100%; max-width: 900px; padding: 40px; border-radius: 8px; position: relative; font-family: 'Times New Roman', serif; }
+        .close-btn { position: absolute; top: 15px; right: 15px; background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-family: sans-serif; }
+        
+        /* Form Replica Styles */
+        .official-header { text-align: center; background: #5cace2; color: white; padding: 15px; font-size: 1.5rem; font-weight: bold; border-radius: 5px; margin-bottom: 20px; letter-spacing: 2px; }
+        .section-title { font-weight: bold; margin: 20px 0 10px 0; font-size: 1.1rem; text-transform: uppercase; background: #f4f7f6; padding: 5px; border-left: 3px solid #F58220; }
+        
+        /* Member Form Replica */
+        .member-form-header { text-align: center; border-bottom: 2px solid #1a2b5e; padding-bottom: 20px; margin-bottom: 20px; }
+        .member-form-header img { height: 80px; margin-bottom: 10px; }
+        .member-form-header h1 { color: #1a2b5e; font-size: 1.5rem; text-transform: uppercase; }
+        .member-form-header h2 { color: #00AEEF; font-size: 1rem; background: #e6f7ff; padding: 10px; margin-top: 10px; }
+        .replica-section { font-weight: bold; background: #f4f7f6; padding: 5px; margin: 20px 0 10px 0; border-left: 3px solid #F58220; font-size: 0.9rem; text-transform: uppercase; }
+        .replica-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem; margin-bottom: 15px; }
+        .replica-item { border-bottom: 1px dotted #333; padding: 3px 0; }
+        .replica-item strong { color: #1a2b5e; }
+        .replica-text { font-size: 0.8rem; background: #f9f9f9; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px; text-align: justify; }
+
+        .official-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+        .official-table th, .official-table td { border: 1px solid #333; padding: 8px; text-align: left; }
+        .official-table th { background: #f4f4f4; text-align: center; width: 50px; }
+        .form-line { display: flex; align-items: center; margin-bottom: 15px; font-size: 0.9rem; flex-wrap: wrap; gap: 10px; }
+        .form-line label { font-weight: bold; }
+        .dotted-input { border: none; border-bottom: 1px dotted #333; background: transparent; font-family: 'Courier New', Courier, monospace; font-size: 1rem; padding: 2px 5px; outline: none; }
+        .dotted-input:focus { border-bottom: 1px solid #00AEEF; }
+
+        /* Print CSS */
+        @media print {
+            body * { visibility: hidden; }
+            .admin-header, .admin-container, .close-btn, .btn-primary { display: none !important; }
+            #appraisalModal, #appraisalModal * { visibility: visible; }
+            #appraisalModal { position: absolute; left: 0; top: 0; width: 100%; height: auto; background: transparent; padding: 0; margin: 0; overflow: visible; }
+            .modal-content { box-shadow: none; border: none; padding: 0; max-width: 100%; }
+            body { font-size: 10pt; }
+            .replica-text { font-size: 8pt; }
+            .section-title, .replica-section { font-size: 9pt; }
+            .official-header { page-break-before: always; margin-top: 0; }
+            .form-line, .replica-grid, .official-table { page-break-inside: avoid; }
         }
-        .admin-table th, .admin-table td {
-            padding: 15px; text-align: left; border-bottom: 1px solid #ddd;
-        }
-        .admin-table th { background-color: #0a4d3c; color: white; }
-        .status-pending { color: #d4af37; font-weight: bold; }
-        .status-approved { color: #25d366; font-weight: bold; }
-        .status-declined { color: #e74c3c; font-weight: bold; }
-        .action-btn {
-            padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer;
-            font-weight: bold; margin-right: 5px; color: white;
-        }
-        .btn-approve { background-color: #25d366; }
-        .btn-decline { background-color: #e74c3c; }
     </style>
 </head>
 <body>
-
     <header class="admin-header">
-        <div class="logo">Marakwet Teachers <span>SACCO</span> - Admin</div>
-        <a href="index.html" style="color: white; text-decoration: none;">← Back to Website</a>
+        <div class="logo">SmartLife <span>SACCO</span> - Admin</div>
+        <a href="index.html" style="color: white;">← Back to Website</a>
     </header>
 
     <div class="admin-container">
-        <h2 style="color: #0a4d3c; margin-bottom: 20px;">Loan Applications Dashboard</h2>
-        
+        <h2 style="color: #1a2b5e;">Loan Applications Dashboard</h2>
         <table class="admin-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Member Name</th>
-                    <th>Phone</th>
-                    <th>Amount (KES)</th>
-                    <th>Months</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="loanTableBody">
-                <!-- Data will be loaded here by JavaScript -->
-            </tbody>
+            <thead><tr><th>Date</th><th>Member</th><th>Loan Type</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="loanTableBody"></tbody>
         </table>
+    </div>
+
+    <!-- FULL APPRAISAL & APPLICATION MODAL -->
+    <div id="appraisalModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('appraisalModal').style.display='none'">✖ Close</button>
+            
+            <!-- MEMBER'S FULL APPLICATION -->
+            <div class="member-form-replica">
+                <div class="member-form-header">
+                    <img src="logo.png" alt="SmartLife SACCO Logo">
+                    <h1>SMARTLIFE SACCO SOCIETY LTD</h1>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Marakwet Teachers Plaza P.O. Box 118 - 30705, Kapsowar</p>
+                    <p style="font-size: 0.8rem;">info@smartlifesacco.co.ke | www.smartlifesacco.co.ke</p>
+                    <h2>BOSA LOAN APPLICATION AND AGREEMENT FORM</h2>
+                </div>
+
+                <div class="replica-section">PART A: APPLICANT'S BIO-DATA</div>
+                <div class="replica-grid" id="replicaPartA"></div>
+
+                <div class="replica-section">PART B: LOAN APPLICATION STATEMENT</div>
+                <div class="replica-text" id="replicaPartB"></div>
+
+                <div class="replica-section">PART C & D: LOAN TYPE & PURPOSE</div>
+                <div class="replica-grid" id="replicaPartCD"></div>
+
+                <div class="replica-section">PART E: GUARANTORS' DETAILS</div>
+                <div class="replica-grid" id="replicaPartE"></div>
+
+                <div class="replica-section">PART F: APPLICANT'S DECLARATION</div>
+                <div class="replica-text">
+                    I hereby declare that the foregoing particulars are true to the best of my knowledge and belief and I agree to abide by the by-laws of the society, the credit policy and variations by management in respect to this loan application.<br><br>
+                    I hereby authorize necessary deductions, including monthly interest to be made from my salary as repayment for this loan. I declare that I am not indebted to any other credit society, Bank or loan agency except as listed herein either as a borrower or endorser.<br><br>
+                    I also give my employer irrevocable authority to recover from my salary, Monthly repayments and remit the same to Smartlife Sacco Society Ltd. In case of any default, I authorize you to recover from my surety/guarantor and my property.<br><br>
+                    I further pledge my future earnings as additional source of income and security for the loans so approved. Additionally, I hereby accept to make cash repayments in the event that the deductions are not effected immediately.
+                </div>
+                <div class="replica-grid">
+                    <div class="replica-item"><strong>Applicant's Signature:</strong> <span style="font-family: cursive;" id="replicaSignature"></span></div>
+                    <div class="replica-item"><strong>Date:</strong> <span id="replicaDate"></span></div>
+                </div>
+            </div>
+
+            <!-- OFFICIAL USE ONLY (EDITABLE) -->
+            <div class="official-header">OFFICIAL USE ONLY</div>
+            
+            <div class="section-title">PART J: CHECKLIST</div>
+            <table class="official-table">
+                <tr><th>YES</th><th>NO</th><th>N/A</th><th style="width: auto; text-align: left;"></th></tr>
+                <tr><td><input type="checkbox" checked></td><td></td><td></td><td>a) Has the information session been completed by the member?</td></tr>
+                <tr><td><input type="checkbox" checked></td><td></td><td></td><td>b) Has the loan application been signed by the member?</td></tr>
+                <tr><td><input type="checkbox" checked></td><td></td><td></td><td>c) Has the member submitted the copy of ID and other relevant documents?</td></tr>
+                <tr><td><input type="checkbox" checked></td><td></td><td></td><td>d) Has the guarantor details and address been provided?</td></tr>
+                <tr><td><input type="checkbox" checked></td><td></td><td></td><td>e) Has the member met the conditions of the loan?</td></tr>
+                <tr><td><input type="checkbox" checked></td><td></td><td></td><td>f) Has the loan agreement been completed?</td></tr>
+            </table>
+            <div class="form-line">
+                <label>Checkers' Name:</label> <input type="text" class="dotted-input" id="checkerName" style="width: 200px;">
+                <label>Signature:</label> <input type="text" class="dotted-input" id="checkerSig" style="width: 150px; font-family: cursive;">
+                <label>Date:</label> <input type="date" class="dotted-input" id="checkerDate">
+            </div>
+
+            <div class="section-title">PART K: LOAN APPRAISAL</div>
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">I have checked the particulars on this loan application and hereby confirm the same to be Correct <input type="checkbox" checked> or Incorrect <input type="checkbox">.</p>
+            <div class="form-line">
+                <label>Officers' Name:</label> <input type="text" class="dotted-input" id="officerName" style="width: 200px;">
+                <label>Signature:</label> <input type="text" class="dotted-input" id="officerSig" style="width: 150px; font-family: cursive;">
+                <label>Date:</label> <input type="date" class="dotted-input" id="officerDate">
+            </div>
+
+            <div class="section-title">PART L: LOAN APPROVAL AND DISBURSEMENTS</div>
+            <!-- Editable fields for calculation -->
+            <div class="form-line">
+                <label>Basic Salary:</label> 
+                <input type="number" class="dotted-input" id="editBasic" oninput="recalculate()" style="width: 100px; background: #fff;">
+                <label>a third of Basic salary:</label> 
+                <input type="text" class="dotted-input" id="editThird" style="width: 100px; background: #eee;" readonly>
+                <label>Ability:</label> 
+                <input type="text" class="dotted-input" id="editAbility" style="width: 100px; background: #eee;" readonly>
+            </div>
+            <div class="form-line">
+                <label>Shares:</label> 
+                <input type="number" class="dotted-input" id="editShares" oninput="recalculate()" style="width: 100px; background: #fff;">
+                <label>ability by shares as applicable:</label> 
+                <input type="text" class="dotted-input" id="editShareLimit" style="width: 100px; background: #eee;" readonly>
+            </div>
+            <div class="form-line">
+                <label>Amount Approved:</label> 
+                <input type="number" class="dotted-input" id="amountApproved" style="width: 120px; font-weight: bold; color: #1a2b5e;">
+                <label>Recoverable in:</label> 
+                <input type="number" class="dotted-input" id="recoverableMonths" style="width: 50px;">
+                <label>at the rate of:</label> 
+                <input type="number" class="dotted-input" id="rateOf" style="width: 80px;">
+            </div>
+            <div class="form-line">
+                <label>Approved By:</label> <input type="text" class="dotted-input" id="approvedBy" style="width: 200px;">
+                <label>sign and stamp:</label> <input type="text" class="dotted-input" id="approverSig" style="width: 150px; font-family: cursive;">
+                <label>Date:</label> <input type="date" class="dotted-input" id="approverDate">
+            </div>
+            <div class="form-line">
+                <label>Disbursed By:</label> <input type="text" class="dotted-input" id="disbursedBy" style="width: 200px;">
+                <label>Sign:</label> <input type="text" class="dotted-input" id="disburserSig" style="width: 150px; font-family: cursive;">
+                <label>Date:</label> <input type="date" class="dotted-input" id="disburserDate">
+            </div>
+
+            <div class="section-title">PART N: CREDIT COMMITTEE</div>
+            <div class="form-line">
+                <label>1. Loan approved is Kshs.</label> <input type="number" class="dotted-input" id="committeeAmount" style="width: 120px;">
+                <label>recoverable in</label> <input type="number" class="dotted-input" id="committeeMonths" style="width: 50px;">
+                <label>Months</label>
+            </div>
+            <div class="form-line">
+                <label>Chairman:</label> <input type="text" class="dotted-input" style="width: 150px; font-family: cursive;">
+                <label>Secretary:</label> <input type="text" class="dotted-input" style="width: 150px; font-family: cursive;">
+                <label>Member:</label> <input type="text" class="dotted-input" style="width: 150px; font-family: cursive;">
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                <button class="btn-primary" onclick="document.getElementById('appraisalModal').style.display='none'" style="flex: 1; font-family: sans-serif; background: #e74c3c;">Close</button>
+                <button class="btn-primary" onclick="window.print()" style="flex: 1; font-family: sans-serif; background: #1a2b5e;">🖨️ Print Full Form</button>
+            </div>
+        </div>
     </div>
 
     <script src="admin.js"></script>
