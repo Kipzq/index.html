@@ -5,104 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartLife SACCO - Together We Prosper</title>
     <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <header>
-        <div class="logo">
+
+    <!-- 1. TOP ORANGE BAR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span>Together We Prosper!</span>
+            <span><i class="fas fa-envelope"></i> info@smartlifesacco.co.ke</span>
+        </div>
+        <div class="top-bar-right">
+            <span><i class="fas fa-phone"></i> 020 7606429 or 020 760 6432</span>
+            <span><i class="fas fa-map-marker-alt"></i> Marakwet Teachers Plaza, Kapsowar.</span>
+        </div>
+    </div>
+
+    <!-- 2. MAIN BLUE NAVIGATION -->
+    <header class="main-header">
+        <div class="logo-container">
             <img src="logo.png" alt="SmartLife SACCO Logo">
         </div>
-        <nav>
+        
+        <nav class="main-nav">
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Products & Services</a></li>
+                <li><a href="loan.html">Apply Loan</a></li>
                 <li><a href="#calculator">Calculator</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="loan.html" class="btn-nav">Apply Loan</a></li>
-                <li><a href="withdrawal.html" style="color: #F58220;">Withdraw</a></li>
-                <li id="navLoginBtn"><a href="login.html" style="color: #1a2b5e;">Login</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li id="navLoginBtn"><a href="login.html" style="color: #F58220;">Login</a></li>
                 <li id="navLogoutBtn" style="display: none;"><a href="#" onclick="logoutUser()" style="color: red;">Logout</a></li>
             </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Empowering Your Financial Future</h1>
-        <p>Join SmartLife SACCO to access affordable loans, grow your savings, and achieve your financial goals with a community that cares.</p>
-        <a href="loan.html" class="btn-primary">Apply for a Loan Online</a>
+    <!-- 3. SPLIT HERO SECTION -->
+    <section class="hero-split" id="home">
+        <!-- Left Side (Dark Blue Text) -->
+        <div class="hero-text">
+            <div class="subtitle">Welcome to SmartLife SACCO</div>
+            <h1>Strong Heritage.<br><span class="highlight">Smart Future.</span></h1>
+            <p>We transform our member's lives through provision of affordable innovative and accessible Financial Services.</p>
+            <a href="loan.html" class="apply-btn">Apply Loan Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Right Side (Image) -->
+        <div class="hero-image">
+            <!-- Arrows -->
+            <button class="slider-arrow arrow-left"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow arrow-right"><i class="fas fa-chevron-right"></i></button>
+        </div>
     </section>
+
+    <!-- ========================================== -->
+    <!-- REST OF THE WEBSITE REMAINS THE SAME       -->
+    <!-- ========================================== -->
 
     <!-- DOWNLOAD BLANK FORM SECTION -->
     <section style="text-align: center; padding: 40px 5%; background: #e6f7ff; border-bottom: 2px solid #00AEEF;" class="animate-on-scroll">
         <h2 style="color: #1a2b5e; margin-bottom: 10px;">Prefer to Apply Offline?</h2>
         <p style="margin-bottom: 20px; color: #555; font-size: 1.1rem;">Download the official blank BOSA Loan Application form, fill it out by hand, and drop it at our offices.</p>
-        
         <a href="blank_form.html" target="_blank" class="btn-primary" style="background-color: #1a2b5e; text-decoration: none; display: inline-block; padding: 15px 30px; font-size: 1.1rem;">
             📄 Download Blank BOSA Form
         </a>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services animate-on-scroll">
-        <h2>Our Loan Products</h2>
-        <div class="service-grid">
-            <a href="loan.html" class="card">
-                <h3>Super Smart Loan</h3>
+    <section id="services" class="services animate-on-scroll" style="padding: 60px 5%; text-align: center;">
+        <h2 style="color: #1a2b5e; font-size: 2rem; margin-bottom: 40px;">Our Loan Products</h2>
+        <div class="service-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <a href="loan.html" class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF; transition: transform 0.3s ease;">
+                <h3 style="color: #1a2b5e; margin-bottom: 15px;">Super Smart Loan</h3>
                 <p>Our flagship loan product designed for maximum financial flexibility and quick disbursement.</p>
             </a>
-            <a href="loan.html" class="card">
-                <h3>Institutional Staff Loan</h3>
+            <a href="loan.html" class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF; transition: transform 0.3s ease;">
+                <h3 style="color: #1a2b5e; margin-bottom: 15px;">Institutional Staff Loan</h3>
                 <p>Tailored specifically for employees of partner institutions with flexible repayment plans.</p>
             </a>
-            <a href="loan.html" class="card">
-                <h3>School Fees Loan</h3>
+            <a href="loan.html" class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF; transition: transform 0.3s ease;">
+                <h3 style="color: #1a2b5e; margin-bottom: 15px;">School Fees Loan</h3>
                 <p>Quick and accessible financing to cover primary and secondary school fees on time.</p>
             </a>
         </div>
     </section>
 
     <!-- Loan Calculator Section -->
-    <section id="calculator" class="calculator-section animate-on-scroll">
-        <h2>Loan Calculator</h2>
-        <p>Estimate your monthly repayments before you apply.</p>
-        <div class="calc-container">
-            <div class="form-group">
-                <label for="loanAmount">Loan Amount (KES)</label>
-                <input type="number" id="loanAmount" placeholder="e.g., 50000">
+    <section id="calculator" class="calculator-section animate-on-scroll" style="padding: 60px 5%; background: #f4f7f6; text-align: center;">
+        <h2 style="color: #1a2b5e; margin-bottom: 10px;">Loan Calculator</h2>
+        <p style="margin-bottom: 30px;">Estimate your monthly repayments before you apply.</p>
+        <div class="calc-container" style="max-width: 400px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: left; border-top: 5px solid #F58220;">
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label style="font-weight: bold;">Loan Amount (KES)</label>
+                <input type="number" id="loanAmount" placeholder="e.g., 50000" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
-            <div class="form-group">
-                <label for="loanTerm">Repayment Period (Months)</label>
-                <input type="number" id="loanTerm" placeholder="e.g., 12">
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label style="font-weight: bold;">Repayment Period (Months)</label>
+                <input type="number" id="loanTerm" placeholder="e.g., 12" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
-            <button onclick="calculateLoan()" class="btn-primary" style="width: 100%;">Calculate</button>
-            <div id="result" class="calc-result"></div>
+            <button onclick="calculateLoan()" class="btn-primary" style="width: 100%; padding: 12px; background: #F58220; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 1rem;">Calculate</button>
+            <div id="result" class="calc-result" style="margin-top: 20px; display: none; padding: 15px; background: #e6f7ff; border-radius: 5px;"></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about animate-on-scroll">
-        <h2>About SmartLife SACCO</h2>
-        <p>We are a member-owned financial cooperative dedicated to improving the economic well-being of our community. By pooling our resources, we provide affordable financial services to our members, ensuring shared prosperity and financial independence.</p>
-        <div class="location-info">
-            <p><strong>Visit Us:</strong> Kapsowar Town, Elgeyo-Marakwet County</p>
-            <p><strong>P.O. Box:</strong> 118-30705, Kapsowar</p>
+    <section id="about" class="about animate-on-scroll" style="padding: 60px 5%; text-align: center; background: #fff;">
+        <h2 style="color: #1a2b5e; margin-bottom: 20px;">About SmartLife SACCO</h2>
+        <p style="max-width: 800px; margin: 0 auto 30px auto; font-size: 1.1rem; line-height: 1.6;">We are a member-owned financial cooperative dedicated to improving the economic well-being of our community. By pooling our resources, we provide affordable financial services to our members, ensuring shared prosperity and financial independence.</p>
+        <div class="location-info" style="margin: 20px auto; font-size: 1.1rem; background: #f9f9f9; display: inline-block; padding: 15px 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-left: 5px solid #F58220; text-align: left;">
+            <p style="margin: 5px 0;"><strong>Visit Us:</strong> Kapsowar Town, Elgeyo-Marakwet County</p>
+            <p style="margin: 5px 0;"><strong>P.O. Box:</strong> 118-30705, Kapsowar</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer style="background-color: #0d1b3e; color: white; text-align: center; padding: 20px; font-size: 0.9rem;">
         <p>&copy; 2024 SmartLife SACCO. All rights reserved.</p>
-        <p>P.O. Box 118-30705, Kapsowar | Email: kipztito11@gmail.com | Phone: +254 727 111 633</p>
+        <p style="margin: 5px 0;">P.O. Box 118-30705, Kapsowar | Email: kipztito11@gmail.com | Phone: +254 727 111 633</p>
         <p style="color: #00AEEF; font-weight: bold; margin-top: 10px;">"Together We Prosper"</p>
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/254727111633" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <a href="https://wa.me/254727111633" class="whatsapp-float" target="_blank" rel="noopener noreferrer" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 35px;">
     </a>
 
-    <!-- ALL JAVASCRIPT INCLUDING ANIMATIONS -->
+    <!-- JAVASCRIPT -->
     <script>
         // 1. Check Login Status on Page Load
         document.addEventListener("DOMContentLoaded", () => {
@@ -139,7 +175,7 @@
             observer.observe(el);
         });
 
-        // 4. Number Count-Up Animation for Calculator
+        // 4. Number Count-Up Animation
         function animateValue(obj, start, end, duration, prefix = "KES ") {
             let startTimestamp = null;
             const step = (timestamp) => {
@@ -154,7 +190,7 @@
             window.requestAnimationFrame(step);
         }
 
-        // 5. Loan Calculator Function (Animated)
+        // 5. Loan Calculator Function
         function calculateLoan() {
             const amount = document.getElementById('loanAmount').value;
             const months = document.getElementById('loanTerm').value;
@@ -181,7 +217,6 @@
                 <span style="font-size: 0.85rem; color: #666;">(Includes 1% monthly interest)</span>
             `;
 
-            // Animate the numbers
             animateValue(document.getElementById('animatedMonthly'), 0, monthlyPayment, 1000);
             setTimeout(() => {
                 animateValue(document.getElementById('animatedTotal'), 0, totalRepayment, 1200);

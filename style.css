@@ -489,3 +489,185 @@ footer {
     opacity: 0;
     animation: slideInLeft 1s ease-out 0.6s forwards;
 }
+/* --- NEW PROFESSIONAL LAYOUT STYLES --- */
+
+/* Reset and Fonts */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #f8f9fa; color: #333; }
+
+/* 1. Top Orange Bar */
+.top-bar {
+    background-color: #F58220;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 5%;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.top-bar-left, .top-bar-right { display: flex; gap: 20px; align-items: center; }
+.top-bar i { margin-right: 5px; }
+
+/* 2. Main Blue Navigation Bar */
+.main-header {
+    background-color: #00AEEF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    position: relative;
+    z-index: 100;
+}
+
+/* Logo overlapping the bars */
+.logo-container {
+    position: absolute;
+    top: -30px; /* Pulls logo up into the orange bar */
+    left: 5%;
+    z-index: 101;
+}
+.logo-container img {
+    height: 140px; /* Large logo like the image */
+    width: auto;
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.2));
+}
+
+/* Navigation Links */
+.main-nav {
+    margin-left: 150px; /* Space for the logo */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+.main-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+.main-nav ul li a:hover { color: #F58220; }
+
+/* Social Icons */
+.social-icons a {
+    color: white;
+    border: 1px solid white;
+    padding: 5px 8px;
+    border-radius: 3px;
+    margin-left: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+.social-icons a:hover { background: white; color: #00AEEF; }
+
+/* 3. Split Hero Section */
+.hero-split {
+    display: flex;
+    height: 75vh;
+    min-height: 500px;
+    background-color: #0d1b3e; /* Dark blue left side */
+    position: relative;
+}
+
+/* Left Side (Text) */
+.hero-text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    color: white;
+}
+.hero-text .subtitle {
+    color: #00AEEF;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.hero-text .subtitle::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 15px;
+    background-color: #F58220;
+}
+.hero-text h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+.hero-text h1 .highlight { color: #00AEEF; }
+.hero-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #d1d5db;
+}
+.hero-text .apply-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+}
+.hero-text .apply-btn:hover { color: #F58220; }
+
+/* Right Side (Image) */
+.hero-image {
+    width: 50%;
+    background: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80') center/cover;
+    position: relative;
+}
+
+/* Arrows */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+.slider-arrow:hover { background: #00AEEF; }
+.arrow-left { left: 0; }
+.arrow-right { right: 0; }
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .top-bar { display: none; }
+    .main-header { flex-direction: column; padding: 15px; }
+    .logo-container { position: relative; top: 0; left: 0; margin-bottom: 10px; }
+    .logo-container img { height: 80px; }
+    .main-nav { margin-left: 0; flex-direction: column; gap: 15px; }
+    .main-nav ul { flex-direction: column; text-align: center; gap: 10px; }
+    .hero-split { flex-direction: column; height: auto; }
+    .hero-text { width: 100%; padding: 50px 5%; text-align: center; }
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-image { width: 100%; height: 300px; }
+    .slider-arrow { display: none; }
+}
