@@ -3,251 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOSA Loan Application - SmartLife SACCO</title>
+    <title>SmartLife SACCO - Together We Prosper</title>
     <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #f4f7f6; }
-        .form-container { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .form-header { text-align: center; border-bottom: 2px solid #1a2b5e; padding-bottom: 20px; margin-bottom: 20px; }
-        .form-header img { height: 100px; width: auto; margin-bottom: 10px; }
-        .form-header h1 { color: #1a2b5e; font-size: 1.8rem; margin-bottom: 5px; text-transform: uppercase; font-family: 'Times New Roman', serif; }
-        .form-header p { font-size: 0.9rem; color: #333; margin-bottom: 3px; font-weight: bold; }
-        .form-header h2 { color: #00AEEF; font-size: 1.2rem; background: #e6f7ff; padding: 10px; border-radius: 5px; margin-top: 20px; text-transform: uppercase; }
-        .section-title { background: #f4f7f6; padding: 10px; font-weight: bold; color: #1a2b5e; margin: 30px 0 15px 0; border-left: 4px solid #F58220; text-transform: uppercase; font-size: 0.9rem; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
-        .text-block { font-size: 0.85rem; background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 5px; margin: 15px 0; line-height: 1.6; text-align: justify; }
-        .guarantor-box { border: 1px solid #ccc; padding: 20px; border-radius: 5px; margin-bottom: 20px; background: #fafafa; }
+        /* General Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; }
+        a { text-decoration: none; }
+
+        /* 1. Top Orange Bar */
+        .top-bar { background-color: #F58220; color: white; display: flex; justify-content: space-between; align-items: center; padding: 8px 5%; font-size: 0.85rem; font-weight: 500; }
+        .top-bar-left, .top-bar-right { display: flex; gap: 20px; align-items: center; }
+        .top-bar i { margin-right: 5px; }
+
+        /* 2. Main Blue Navigation */
+        .main-header { background-color: #00AEEF; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; position: relative; z-index: 100; }
+        .logo-container { position: absolute; top: -30px; left: 5%; z-index: 101; }
+        .logo-container img { height: 140px; width: auto; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.2)); }
+        .main-nav { margin-left: 150px; display: flex; align-items: center; width: 100%; justify-content: space-between; }
+        .main-nav ul { list-style: none; display: flex; gap: 25px; }
+        .main-nav ul li a { color: white; font-weight: 600; font-size: 1rem; transition: color 0.3s; }
+        .main-nav ul li a:hover { color: #F58220; }
+        .social-icons a { color: white; border: 1px solid white; padding: 5px 8px; border-radius: 3px; margin-left: 5px; font-size: 0.9rem; transition: background 0.3s; }
+        .social-icons a:hover { background: white; color: #00AEEF; }
+
+        /* 3. Hero Slider */
+        .hero-split { display: flex; height: 70vh; min-height: 500px; background-color: #0d1b3e; position: relative; }
+        .hero-text { width: 50%; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; color: white; }
+        .hero-text .subtitle { color: #00AEEF; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .hero-text .subtitle::before { content: ""; display: inline-block; width: 4px; height: 15px; background-color: #F58220; }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
+        .hero-text h1 .highlight { color: #00AEEF; }
+        .hero-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; color: #d1d5db; }
+        
+        .hero-buttons { display: flex; gap: 15px; }
+        .btn-outline { border: 2px solid white; color: white; padding: 12px 30px; font-weight: bold; transition: 0.3s; }
+        .btn-outline:hover { background: white; color: #0d1b3e; }
+        .btn-solid { background: #F58220; color: white; padding: 12px 30px; font-weight: bold; border: 2px solid #F58220; transition: 0.3s; }
+        .btn-solid:hover { background: #d96e15; border-color: #d96e15; }
+
+        .hero-image { width: 50%; background-size: cover; background-position: center; transition: background-image 0.5s ease-in-out; }
+        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+        .slider-arrow:hover { background: #00AEEF; }
+        .arrow-left { left: 0; }
+        .arrow-right { right: 0; }
+
+        /* 4. About Section */
+        .about-section { display: flex; padding: 80px 5%; background: white; align-items: center; gap: 50px; }
+        .about-image { width: 50%; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .about-image img { width: 100%; height: auto; display: block; }
+        .about-text { width: 50%; }
+        .about-text h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+        .about-text h2 { color: #0d1b3e; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
+        .about-text p { color: #555; line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; }
+
+        /* 5. Products Section */
+        .products-section { padding: 80px 5%; background: #f4f7f6; text-align: center; }
+        .products-section h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+        .products-section h2 { color: #0d1b3e; font-size: 2.5rem; margin-bottom: 50px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .product-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left; transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-10px); }
+        .product-card img { width: 100%; height: 200px; object-fit: cover; }
+        .product-card-content { padding: 30px; position: relative; }
+        .product-icon { position: absolute; top: -25px; right: 30px; background: #00AEEF; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 3px solid white; }
+        .product-card h3 { color: #0d1b3e; font-size: 1.3rem; margin-bottom: 10px; }
+        .product-card p { color: #666; line-height: 1.6; font-size: 0.95rem; }
+
+        /* 6. Commitment Section */
+        .commitment-section { display: flex; background: #0d1b3e; color: white; padding: 80px 5%; gap: 50px; }
+        .commitment-text { width: 50%; display: flex; flex-direction: column; justify-content: center; }
+        .commitment-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .commitment-text p { font-size: 1.1rem; margin-bottom: 40px; color: #d1d5db; line-height: 1.6; }
+        .commitment-item { margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 20px; }
+        .commitment-item h3 { color: #00AEEF; font-size: 1.3rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .commitment-item p { margin-bottom: 0; font-size: 1rem; }
+        .commitment-image { width: 50%; border-radius: 10px; overflow: hidden; }
+        .commitment-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 7. Loan Services Grid */
+        .loan-services { padding: 80px 5%; background: white; text-align: center; }
+        .loan-services h2 { color: #0d1b3e; font-size: 2.5rem; margin-bottom: 50px; }
+        .loan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .loan-item { position: relative; border-radius: 8px; overflow: hidden; height: 250px; cursor: pointer; }
+        .loan-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .loan-item:hover img { transform: scale(1.1); }
+        .loan-item-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 27, 62, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; }
+        .loan-item-overlay i { font-size: 1.5rem; margin-bottom: 10px; }
+        .loan-item-overlay h3 { font-size: 1.2rem; }
+
+        /* 8. Testimonial Section */
+        .testimonial-section { padding: 80px 5%; background: #00AEEF; text-align: center; color: white; }
+        .testimonial-section h4 { text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+        .testimonial-section h2 { font-size: 2.5rem; margin-bottom: 50px; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .testimonial-card { background: transparent; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .testimonial-card.dark { background: #0d1b3e; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transform: scale(1.05); }
+        .testimonial-card i.fa-quote-left { font-size: 2.5rem; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+        .testimonial-card p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px; }
+        .testimonial-avatar { width: 80px; height: 80px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #0d1b3e; margin-bottom: 15px; }
+        .testimonial-card h4 { font-size: 1.2rem; margin-bottom: 5px; }
+        .testimonial-card span { font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px; display: block; }
+        .stars { color: #FFD700; }
+
+        /* 9. News Section */
+        .news-section { padding: 80px 5%; background: white; }
+        .news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+        .news-header h4 { color: #00AEEF; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 5px; }
+        .news-header h2 { color: #0d1b3e; font-size: 2.5rem; }
+        .news-header p { color: #666; max-width: 500px; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .news-card { border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: transform 0.3s; }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .news-card img { width: 100%; height: 200px; object-fit: cover; }
+        .news-content { padding: 25px; }
+        .news-content h3 { color: #0d1b3e; font-size: 1.2rem; margin-bottom: 10px; }
+        .news-content h3 a { color: inherit; text-decoration: none; }
+        .news-content h3 a:hover { color: #00AEEF; }
+        .news-content .meta { font-size: 0.85rem; color: #888; margin-bottom: 15px; }
+        .news-content p { color: #555; font-size: 0.95rem; line-height: 1.6; }
+
+        /* 10. Footer */
+        .main-footer { background: #0d1b3e; color: white; padding: 60px 5% 20px 5%; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 40px; }
+        .footer-col h3 { font-size: 1.2rem; margin-bottom: 20px; color: white; }
+        .footer-col p, .footer-col a { color: #a0aec0; font-size: 0.9rem; line-height: 1.8; display: block; margin-bottom: 10px; }
+        .footer-col a:hover { color: #00AEEF; }
+        .footer-col .contact-item { display: flex; gap: 10px; margin-bottom: 15px; color: #a0aec0; font-size: 0.9rem; }
+        .footer-col .contact-item i { color: #00AEEF; margin-top: 5px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #a0aec0; }
+        .footer-social a { color: #a0aec0; margin-left: 15px; font-size: 1.1rem; }
+        .footer-social a:hover { color: #00AEEF; }
+
+        /* WhatsApp Float */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; }
+        .whatsapp-float img { width: 35px; }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .top-bar { display: none; }
+            .main-header { flex-direction: column; padding: 15px; }
+            .logo-container { position: relative; top: 0; left: 0; margin-bottom: 10px; }
+            .logo-container img { height: 80px; }
+            .main-nav { margin-left: 0; flex-direction: column; gap: 15px; }
+            .main-nav ul { flex-direction: column; text-align: center; gap: 10px; }
+            .hero-split { flex-direction: column; height: auto; }
+            .hero-text { width: 100%; padding: 50px 5%; text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-buttons { justify-content: center; }
+            .hero-image { width: 100%; height: 300px; }
+            .slider-arrow { display: none; }
+            .about-section { flex-direction: column; }
+            .about-image, .about-text { width: 100%; }
+            .commitment-section { flex-direction: column; }
+            .commitment-text, .commitment-image { width: 100%; }
+            .loan-grid { grid-template-columns: 1fr; }
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
+            .news-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        }
     </style>
 </head>
 <body>
-    <header style="background: white; border-bottom: 1px solid #ddd; padding: 10px 5%;">
-        <div class="logo"><img src="logo.png" alt="SmartLife SACCO Logo" style="height: 60px;"></div>
-        <nav><ul><li><a href="index.html">← Back to Home</a></li></ul></nav>
-    </header>
 
-    <div class="form-container">
-        <div class="form-header">
-            <img src="logo.png" alt="SmartLife SACCO Logo">
-            <h1>SMARTLIFE SACCO SOCIETY LTD</h1>
-            <p>Marakwet Teachers Plaza P.O. Box 118 - 30705, Kapsowar</p>
-            <p>info@smartlifesacco.co.ke | www.smartlifesacco.co.ke</p>
-            <h2>BOSA LOAN APPLICATION AND AGREEMENT FORM</h2>
+    <!-- 1. TOP ORANGE BAR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span>Together We Prosper!</span>
+            <span><i class="fas fa-envelope"></i> info@smartlifesacco.co.ke</span>
         </div>
-
-        <form id="loanForm">
-            <!-- PART A -->
-            <div class="section-title">PART A: APPLICANT'S BIO-DATA</div>
-            <div class="grid-2">
-                <div class="form-group"><label>Full Name</label><input type="text" id="lFullName" required></div>
-                <div class="form-group"><label>Account No</label><input type="text" id="lAccountNo" required></div>
-            </div>
-            <div class="grid-2">
-                <div class="form-group"><label>Employer</label><input type="text" id="lEmployer" required></div>
-                <div class="form-group"><label>Current Station</label><input type="text" id="lStation" required></div>
-            </div>
-            <div class="grid-2">
-                <div class="form-group"><label>Payroll No</label><input type="text" id="lPayrollNo" required></div>
-                <div class="form-group"><label>ID Number</label><input type="text" id="lIdNo" required></div>
-            </div>
-            <div class="grid-2">
-                <div class="form-group"><label>Address</label><input type="text" id="lAddress" required></div>
-                <div class="form-group"><label>Phone Number</label><input type="tel" id="lPhone" required></div>
-            </div>
-            <div class="grid-2">
-                <div class="form-group"><label>Email Address</label><input type="email" id="lEmail" required></div>
-                <div class="form-group"><label>Terms of Service</label><input type="text" id="lTerms" placeholder="e.g. P&P" required></div>
-            </div>
-            <div class="grid-3">
-                <div class="form-group"><label>Age</label><input type="number" id="lAge" required></div>
-                <div class="form-group">
-                    <label>Outstanding Loan?</label>
-                    <select id="lHasLoan">
-                        <option value="No">No</option>
-                        <option value="Yes">Yes</option>
-                    </select>
-                </div>
-                <div class="form-group"><label>If Yes, Amount</label><input type="number" id="lOutstandingAmount" placeholder="0"></div>
-            </div>
-            <div class="form-group">
-                <label>Position in the Sacco</label>
-                <select id="lPosition">
-                    <option value="Member">Member</option>
-                    <option value="Delegate">Delegate</option>
-                    <option value="Board">Board</option>
-                    <option value="Staff">Staff</option>
-                </select>
-            </div>
-
-            <!-- PART B -->
-            <div class="section-title">PART B: LOAN APPLICATION STATEMENT</div>
-            <div class="form-group">
-                <label>I (Name)</label>
-                <input type="text" id="lStatementName" required>
-            </div>
-            <p style="font-size: 0.9rem; margin-bottom: 15px;">Hereby apply for a loan of KShs. (Amount below) for a period of (Months below) at a Principal rate per month (Exclusive applicable Interest on reducing balance).</p>
-            <div class="grid-2">
-                <div class="form-group"><label>Amount Applied (KShs)</label><input type="number" id="lAmount" required></div>
-                <div class="form-group"><label>Period (Months)</label><input type="number" id="lPeriod" required></div>
-            </div>
-
-            <!-- PART C -->
-            <div class="section-title">PART C: TYPE OF LOAN PARTICULARS</div>
-            <div class="form-group">
-                <select id="lLoanType">
-                    <option value="Emergency Loan (12 months)">Emergency Loan (12 months)</option>
-                    <option value="Farm Input (24 Months)">Farm Input (24 Months)</option>
-                    <option value="School Fees (36 Months)">School Fees (36 Months)</option>
-                    <option value="Institutional Staff (36 Months)">Institutional Staff (36 Months)</option>
-                    <option value="College/University (48 Months)">College/University (48 Months)</option>
-                    <option value="Development Loan (60 Months)">Development Loan (60 Months)</option>
-                    <option value="Super Smart Loan (72 Months)">Super Smart Loan (72 Months)</option>
-                    <option value="Smart Vision Loan (84 Months)">Smart Vision Loan (84 Months)</option>
-                    <option value="Others">Others (Specify below)</option>
-                </select>
-            </div>
-            <div class="form-group"><input type="text" id="lLoanTypeOther" placeholder="If Others, specify here"></div>
-
-            <!-- PART D -->
-            <div class="section-title">PART D: PURPOSE OF THE LOAN</div>
-            <div class="form-group">
-                <select id="lPurpose">
-                    <option value="Medical">Medical</option>
-                    <option value="Agriculture">Agriculture</option>
-                    <option value="Land/Housing">Land/Housing</option>
-                    <option value="Education">Education</option>
-                    <option value="Trade & Investment">Trade & Investment</option>
-                    <option value="Social Services">Social Services</option>
-                    <option value="Others">Others (Specify below)</option>
-                </select>
-            </div>
-            <div class="form-group"><input type="text" id="lPurposeOther" placeholder="If Others, specify here"></div>
-
-            <!-- PART E (10 GUARANTORS) -->
-            <div class="section-title">PART E: GUARANTORS' DETAILS AND CONSENT STATEMENT</div>
-            <p style="font-size: 0.85rem; margin-bottom: 15px;">In consideration of granting the above loans, the undersigned accept jointly and severally liability for its repayment in the event of the borrower's default.</p>
-            
-            <div id="guarantorsContainer">
-                <!-- Guarantors 1 to 10 will be generated here by JavaScript -->
-            </div>
-
-            <!-- PART F -->
-            <div class="section-title">PART F: APPLICANT'S DECLARATION</div>
-            <div class="text-block">
-                I hereby declare that the foregoing particulars are true to the best of my knowledge and belief and I agree to abide by the by-laws of the society, the credit policy and variations by management in respect to this loan application.<br><br>
-                I hereby authorize necessary deductions, including monthly interest to be made from my salary as repayment for this loan. I declare that I am not indebted to any other credit society, Bank or loan agency except as listed herein either as a borrower or endorser.<br><br>
-                I also give my employer irrevocable authority to recover from my salary, Monthly repayments and remit the same to Smartlife Sacco Society Ltd. In case of any default, I authorize you to recover from my surety/guarantor and my property.<br><br>
-                I further pledge my future earnings as additional source of income and security for the loans so approved. Additionally, I hereby accept to make cash repayments in the event that the deductions are not effected immediately.
-            </div>
-            
-            <div class="grid-2">
-                <div class="form-group">
-                    <label>Applicant's Signature (Type Full Name)</label>
-                    <input type="text" id="lSignature" required style="font-family: cursive; font-size: 1.3rem; border-bottom: 2px solid #1a2b5e;">
-                </div>
-                <div class="form-group">
-                    <label>Date</label>
-                    <input type="date" id="lDate" required>
-                </div>
-            </div>
-
-            <!-- SUBMIT BUTTON ONLY -->
-            <div style="margin-top: 30px;">
-                <button type="submit" class="btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem;">Submit BOSA Loan Application</button>
-            </div>
-        </form>
+        <div class="top-bar-right">
+            <span><i class="fas fa-phone"></i> 020 7606429 or 020 760 6432</span>
+            <span><i class="fas fa-map-marker-alt"></i> Marakwet Teachers Plaza, Kapsowar.</span>
+        </div>
     </div>
 
-    <script>
-        // Generate 10 Guarantor Boxes dynamically
-        const guarantorContainer = document.getElementById('guarantorsContainer');
-        for (let i = 1; i <= 10; i++) {
-            guarantorContainer.innerHTML += `
-                <div class="guarantor-box">
-                    <h4 style="color: #1a2b5e; margin-bottom: 10px;">Guarantor ${i} ${i > 2 ? '(Optional)' : ''}</h4>
-                    <div class="grid-2">
-                        <div class="form-group"><label>Name</label><input type="text" id="g${i}Name" ${i <= 2 ? 'required' : ''}></div>
-                        <div class="form-group"><label>Payroll No</label><input type="text" id="g${i}Payroll" ${i <= 2 ? 'required' : ''}></div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="form-group"><label>Phone No</label><input type="tel" id="g${i}Phone" ${i <= 2 ? 'required' : ''}></div>
-                        <div class="form-group"><label>Amount Guaranteed (KShs)</label><input type="number" id="g${i}Amount" ${i <= 2 ? 'required' : ''}></div>
-                    </div>
+    <!-- 2. MAIN BLUE NAVIGATION -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="logo.png" alt="SmartLife SACCO Logo">
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products & Services</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="loan.html">Apply Loan</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#" style="font-size: 1.1rem;"><i class="fas fa-search"></i></a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 3. HERO SLIDER -->
+    <section class="hero-split" id="home">
+        <div class="hero-text">
+            <div class="subtitle">Welcome to SmartLife SACCO</div>
+            <h1 id="heroTitle">Strong Heritage.<br><span class="highlight">Smart Future.</span></h1>
+            <p id="heroDesc">We transform our member's lives through provision of affordable innovative and accessible Financial Services.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn-outline">About Us</a>
+                <a href="#contact" class="btn-solid">Contact Us!</a>
+            </div>
+        </div>
+        <div class="hero-image" id="heroImage" style="background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80');">
+            <button class="slider-arrow arrow-left" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow arrow-right" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- 4. ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="About SmartLife">
+        </div>
+        <div class="about-text">
+            <h4>About Us</h4>
+            <h2>Building, Managing And Preserving Your Wealth</h2>
+            <p>Smartlife Sacco Society Ltd (formerly Marakwet Teachers SACCO) was incorporated and licensed to transact business in 1995 with one branch in Kapsowar which also acts as headquarters. From a humble beginning, the SACCO has grown from strength to strength and has established the first branch in Kapcherop to serve members in the Kapcherop Division and its environs.</p>
+            <p>The Sacco will expand its operation to including opening of new branches. This growth has as a result of clear vision by the founders and management of the SACCO who are committed to bringing efficient financial services closer to the members especially within the county and beyond.</p>
+        </div>
+    </section>
+
+    <!-- 5. PRODUCTS SECTION -->
+    <section class="products-section" id="products">
+        <h4>Working With Excellent</h4>
+        <h2>Our Products & Services</h2>
+        <div class="product-grid">
+            <!-- FOSA CARD -->
+            <a href="FOSA-LOAN-FORM.pdf" target="_blank" class="product-card" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="FOSA">
+                <div class="product-card-content">
+                    <div class="product-icon"><i class="fas fa-database"></i></div>
+                    <h3>FOSA Products</h3>
+                    <p>FOSA is our banking arm that provides basic and affordable banking services to meet members' needs.</p>
                 </div>
-            `;
+            </a>
+            <!-- BOSA CARD -->
+            <a href="loan.html" class="product-card" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1565514020179-026b92b84bb6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="BOSA">
+                <div class="product-card-content">
+                    <div class="product-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>BOSA Products</h3>
+                    <p>We have a wide range of BOSA products. Check on our BOSA products page for various loan products.</p>
+                </div>
+            </a>
+            <!-- MOBILE BANKING CARD -->
+            <a href="mobile.html" class="product-card" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Mobile Banking">
+                <div class="product-card-content">
+                    <div class="product-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile Banking</h3>
+                    <p>Enables our FOSA members to transact through their mobile phones at the comfort of their work places/homes.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 6. COMMITMENT SECTION -->
+    <section class="commitment-section">
+        <div class="commitment-text">
+            <h2>OUR COMMITMENT</h2>
+            <p>WE ARE COMMITTED TO OFFER EXCELLENT SERVICE TO ALL OUR CUSTOMERS AND STAKEHOLDERS.</p>
+            <div class="commitment-item">
+                <h3><i class="fas fa-binoculars"></i> OUR VISION</h3>
+                <p>To be the ultimate choice in offering first class financial services to our customers.</p>
+            </div>
+            <div class="commitment-item">
+                <h3><i class="fas fa-book"></i> MISSION STATEMENT</h3>
+                <p>To empower our members through provision of diversified products and services at the right time.</p>
+            </div>
+        </div>
+        <div class="commitment-image">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Commitment">
+        </div>
+    </section>
+
+    <!-- 7. LOAN SERVICES GRID -->
+    <section class="loan-services">
+        <h2>Our Loan Services</h2>
+        <div class="loan-grid">
+            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="School Fees Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>School Fees Loan</h3></div>
+            </a>
+            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="College Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>College/University Loan</h3></div>
+            </a>
+            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Farm Input">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Farm Input Loan</h3></div>
+            </a>
+            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Salary Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Salary Loan</h3></div>
+            </a>
+            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Development Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Development Loan</h3></div>
+            </a>
+            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+                <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Emergency Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Emergency Loan</h3></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 8. TESTIMONIAL SECTION -->
+    <section class="testimonial-section">
+        <h4>Testimonial</h4>
+        <h2>What Our Clients Saying?</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>Smartlife Sacco has always been at hand to give support for my financial needs in the form of instant and long-term loans. Thanks for the support.</p>
+                <h4>john rutto</h4>
+                <span>Site Manager</span>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testimonial-card dark">
+                <div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+                <p>Thank you Smartlife Sacco for providing my family with permanent shelter. Through the society's development loan, i am now a proud home-owner. Kudos!</p>
+                <h4>jane cheboi</h4>
+                <span>Site Engineer</span>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>My project was renovation of my school and adding more rooms. Thank you so much Smartlife Sacco for financial support and making this possible.</p>
+                <h4>ken kwambai</h4>
+                <span>Principal</span>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. NEWS SECTION -->
+    <section class="news-section">
+        <div class="news-header">
+            <div>
+                <h4>Working With Excellent</h4>
+                <h2>Read Our Latest News</h2>
+            </div>
+            <p>Get the latest news and updates relevant to Savings and credit Cooperatives.</p>
+        </div>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-content" style="padding-top: 50px;">
+                    <h3><a href="tenders.html">Tenders advert for 2027</a></h3>
+                    <div class="meta"><i class="fas fa-user"></i> Smartlife</div>
+                    <p>Smartlife SACCO invites sealed tenders from eligible and qualified bidders for the projects outlin...</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="News 1">
+                <div class="news-content">
+                    <h3><a href="news1.html">Opportunities why Sacco's should further be digitized</a></h3>
+                    <div class="meta"><i class="fas fa-user"></i> Smartlife</div>
+                    <p>Though many SACCOs have initiated work...</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="News 2">
+                <div class="news-content">
+                    <h3><a href="news2.html">Economic impact of covid-19 pandemic to Sacco's</a></h3>
+                    <div class="meta"><i class="fas fa-user"></i> Smartlife</div>
+                    <p>As the world grapples with the Covid-19...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer class="main-footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="logo.png" alt="Logo" style="height: 80px; margin-bottom: 20px;">
+                <p style="color: #00AEEF; font-weight: bold;">Together We Prosper</p>
+            </div>
+            <div class="footer-col">
+                <h3>Get In Touch</h3>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <span>Head office-Kapsowar,<br>Marakwet Teachers Plaza,<br>P.O BOX 118-30705.</span></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> <span>info@smartlifesacco.co.ke</span></div>
+                <div class="contact-item"><i class="fas fa-phone"></i> <span>Phone: 020 7606429<br>Support: 020 760 6432</span></div>
+            </div>
+            <div class="footer-col">
+                <h3>Useful Links</h3>
+                <a href="loan.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> BOSA</a>
+                <a href="FOSA-LOAN-FORM.pdf" target="_blank"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FOSA Form</a>
+                <a href="mobile.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Mobile Banking</a>
+                <a href="#"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FAQ</a>
+                <a href="blank_form.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Downloads</a>
+            </div>
+            <div class="footer-col">
+                <h3>Recent Posts</h3>
+                <a href="tenders.html" style="margin-bottom: 10px; display: block;">Tenders advert for 2027</a>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+                    <a href="news1.html" style="font-size: 0.85rem; line-height: 1.4;">Opportunities why Sacco's should further be digitized</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 Smartlife Savings and Credit All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254727111633" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- JAVASCRIPT FOR HERO SLIDER -->
+    <script>
+        const slides = [
+            {
+                image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80",
+                title: "Strong Heritage.<br><span class='highlight'>Smart Future.</span>",
+                desc: "We transform our member's lives through provision of affordable innovative and accessible Financial Services."
+            },
+            {
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80",
+                title: "We Care For<br><span class='highlight'>Your Future</span>",
+                desc: "Its our role to empower our members through provision of diversified products and services at the right time."
+            }
+        ];
+        let currentSlide = 0;
+
+        function updateSlide() {
+            document.getElementById('heroImage').style.backgroundImage = `url('${slides[currentSlide].image}')`;
+            document.getElementById('heroTitle').innerHTML = slides[currentSlide].title;
+            document.getElementById('heroDesc').innerText = slides[currentSlide].desc;
         }
 
-        // Set today's date automatically on load (but don't auto-fill user details)
-        document.addEventListener("DOMContentLoaded", () => {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('lDate').value = today;
-        });
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide();
+        }
 
-        document.getElementById('loanForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const user = JSON.parse(localStorage.getItem('user'));
-            
-            if (!user) {
-                alert("You must be logged in to apply for a loan.");
-                window.location.href = "login.html";
-                return;
-            }
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlide();
+        }
 
-            let finalLoanType = document.getElementById('lLoanType').value;
-            if (finalLoanType === 'Others') finalLoanType = document.getElementById('lLoanTypeOther').value || 'Others';
-
-            let finalPurpose = document.getElementById('lPurpose').value;
-            if (finalPurpose === 'Others') finalPurpose = document.getElementById('lPurposeOther').value || 'Others';
-
-            const data = {
-                userId: user.id,
-                fullName: document.getElementById('lFullName').value,
-                accountNo: document.getElementById('lAccountNo').value,
-                employer: document.getElementById('lEmployer').value,
-                station: document.getElementById('lStation').value,
-                payrollNo: document.getElementById('lPayrollNo').value,
-                idNo: document.getElementById('lIdNo').value,
-                address: document.getElementById('lAddress').value,
-                phone: document.getElementById('lPhone').value,
-                email: document.getElementById('lEmail').value,
-                termsOfService: document.getElementById('lTerms').value,
-                age: document.getElementById('lAge').value,
-                hasOutstandingLoan: document.getElementById('lHasLoan').value,
-                outstandingAmount: document.getElementById('lOutstandingAmount').value,
-                positionInSacco: document.getElementById('lPosition').value,
-                amountRequested: document.getElementById('lAmount').value,
-                periodMonths: document.getElementById('lPeriod').value,
-                loanType: finalLoanType,
-                purpose: finalPurpose,
-                applicantSignature: document.getElementById('lSignature').value,
-                dateSigned: document.getElementById('lDate').value
-            };
-
-            // Add Guarantors 1 to 10 to data object
-            for (let i = 1; i <= 10; i++) {
-                data[`guarantor${i}Name`] = document.getElementById(`g${i}Name`).value;
-                data[`guarantor${i}Payroll`] = document.getElementById(`g${i}Payroll`).value;
-                data[`guarantor${i}Phone`] = document.getElementById(`g${i}Phone`).value;
-                data[`guarantor${i}Amount`] = document.getElementById(`g${i}Amount`).value;
-            }
-
-            try {
-                const res = await fetch('/api/apply-loan', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                const result = await res.json();
-                if (res.ok) {
-                    alert("Application submitted successfully!");
-                    window.location.href = "index.html";
-                } else {
-                    alert(result.error);
-                }
-            } catch (err) {
-                alert("Network error. Check if the server is running.");
-            }
-        });
+        // Auto-rotate every 5 seconds
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
