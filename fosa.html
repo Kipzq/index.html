@@ -12,24 +12,34 @@
         .page-header h1 { font-size: 3rem; margin-bottom: 10px; }
         .page-header p { color: #00AEEF; font-size: 1.2rem; }
         .content-container { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .content-container h2 { color: #0d1b3e; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #00AEEF; padding-bottom: 5px; }
-        .content-container p, .content-container li { line-height: 1.8; color: #444; margin-bottom: 10px; }
+        .content-container h2 { color: #0d1b3e; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #00AEEF; padding-bottom: 5px; text-transform: uppercase; font-size: 1.2rem; }
+        .content-container h3 { color: #00AEEF; margin-top: 20px; margin-bottom: 10px; text-transform: uppercase; font-size: 1rem; }
+        .content-container p, .content-container li { line-height: 1.8; color: #444; margin-bottom: 10px; font-size: 0.95rem; }
         .content-container ul { margin-left: 20px; }
-        .back-btn { display: inline-block; margin-top: 30px; background: #F58220; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        
+        /* Apply Button Section */
+        .apply-section { text-align: center; margin-top: 40px; padding: 30px; background: #e6f7ff; border-radius: 10px; border: 1px solid #00AEEF; }
+        .apply-section h3 { color: #0d1b3e; margin-bottom: 10px; font-size: 1.3rem; }
+        .apply-section p { margin-bottom: 20px; }
+        .btn-apply { display: inline-block; background: #00AEEF; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: background 0.3s; }
+        .btn-apply:hover { background: #0088cc; }
+        .back-btn { display: inline-block; margin-top: 30px; background: #0d1b3e; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
-    <!-- Reuse your header/nav here (Simplified for this example) -->
+    <!-- Header Navigation -->
     <header style="background: #00AEEF; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;">
         <img src="logo.png" alt="Logo" style="height: 60px;">
         <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Home</a>
     </header>
 
+    <!-- Page Header -->
     <div class="page-header">
         <h1>FOSA</h1>
         <p>Front Office Service Activity</p>
     </div>
 
+    <!-- Main Content -->
     <div class="content-container">
         <h2>Introduction</h2>
         <p>As our Society has continued to grow, there has been an urge to provide a one stop shop for all our members’ financial needs. Towards this end, the Sacco operates a FOSA to meet members’ banking needs hitherto provided by banks. The FOSA also extends additional financial products and services to complement those offered by the back office.</p>
@@ -81,10 +91,14 @@
         </ul>
 
         <h3>E. CHEQUE ADVANCE</h3>
-        <p>Payment on cheque deposits before maturity</p>
+        <ul>
+            <li>Payment on cheque deposits before maturity</li>
+        </ul>
 
         <h2>Eligibility</h2>
-        <p>The FOSA services are for all members of the Society.</p>
+        <ul>
+            <li>The FOSA services are for all members of the Society.</li>
+        </ul>
 
         <h2>Requirements for FOSA Account Opening</h2>
         <ul>
@@ -93,6 +107,17 @@
             <li>Copy of National ID / passport</li>
             <li>Birth certificate for Jewel account holders</li>
         </ul>
+
+        <!-- APPLY SECTION (DOWNLOADS PDF) -->
+        <div class="apply-section">
+            <h3>Ready to Apply?</h3>
+            <p>Click the button below to download the FOSA Application Form. Fill it out and submit it at our offices.</p>
+            
+            <!-- THIS IS THE BUTTON THAT AUTO-DOWNLOADS THE PDF -->
+            <a href="FOSA-LOAN-FORM.pdf" download="SmartLife_FOSA_Application_Form.pdf" class="btn-apply">
+                📥 Apply FOSA Loan (Download Form)
+            </a>
+        </div>
 
         <a href="index.html" class="back-btn">← Back to Home</a>
     </div>
