@@ -4,9 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartLife SACCO - Together We Prosper</title>
-    <link rel="stylesheet" href="style.css">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* General Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; }
+        a { text-decoration: none; }
+
+        /* 1. Top Orange Bar */
+        .top-bar { background-color: #F58220; color: white; display: flex; justify-content: space-between; align-items: center; padding: 8px 5%; font-size: 0.85rem; font-weight: 500; }
+        .top-bar-left, .top-bar-right { display: flex; gap: 20px; align-items: center; }
+        .top-bar i { margin-right: 5px; }
+
+        /* 2. Main Blue Navigation */
+        .main-header { background-color: #00AEEF; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; position: relative; z-index: 100; }
+        .logo-container { position: absolute; top: -30px; left: 5%; z-index: 101; }
+        .logo-container img { height: 140px; width: auto; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.2)); }
+        .main-nav { margin-left: 150px; display: flex; align-items: center; width: 100%; justify-content: space-between; }
+        .main-nav ul { list-style: none; display: flex; gap: 25px; }
+        .main-nav ul li a { color: white; font-weight: 600; font-size: 1rem; transition: color 0.3s; }
+        .main-nav ul li a:hover { color: #F58220; }
+        .social-icons a { color: white; border: 1px solid white; padding: 5px 8px; border-radius: 3px; margin-left: 5px; font-size: 0.9rem; transition: background 0.3s; }
+        .social-icons a:hover { background: white; color: #00AEEF; }
+
+        /* 3. Hero Slider */
+        .hero-split { display: flex; height: 70vh; min-height: 500px; background-color: #0d1b3e; position: relative; }
+        .hero-text { width: 50%; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; color: white; }
+        .hero-text .subtitle { color: #00AEEF; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .hero-text .subtitle::before { content: ""; display: inline-block; width: 4px; height: 15px; background-color: #F58220; }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
+        .hero-text h1 .highlight { color: #00AEEF; }
+        .hero-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; color: #d1d5db; }
+        
+        .hero-buttons { display: flex; gap: 15px; }
+        .btn-outline { border: 2px solid white; color: white; padding: 12px 30px; font-weight: bold; transition: 0.3s; }
+        .btn-outline:hover { background: white; color: #0d1b3e; }
+        .btn-solid { background: #F58220; color: white; padding: 12px 30px; font-weight: bold; border: 2px solid #F58220; transition: 0.3s; }
+        .btn-solid:hover { background: #d96e15; border-color: #d96e15; }
+
+        .hero-image { width: 50%; background-size: cover; background-position: center; transition: background-image 0.5s ease-in-out; }
+        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+        .slider-arrow:hover { background: #00AEEF; }
+        .arrow-left { left: 0; }
+        .arrow-right { right: 0; }
+
+        /* 4. About Section */
+        .about-section { display: flex; padding: 80px 5%; background: white; align-items: center; gap: 50px; }
+        .about-image { width: 50%; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .about-image img { width: 100%; height: auto; display: block; }
+        .about-text { width: 50%; }
+        .about-text h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+        .about-text h2 { color: #0d1b3e; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
+        .about-text p { color: #555; line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; }
+
+        /* 5. Products Section */
+        .products-section { padding: 80px 5%; background: #f4f7f6; text-align: center; }
+        .products-section h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+        .products-section h2 { color: #0d1b3e; font-size: 2.5rem; margin-bottom: 50px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .product-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left; transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-10px); }
+        .product-card img { width: 100%; height: 200px; object-fit: cover; }
+        .product-card-content { padding: 30px; position: relative; }
+        .product-icon { position: absolute; top: -25px; right: 30px; background: #00AEEF; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 3px solid white; }
+        .product-card h3 { color: #0d1b3e; font-size: 1.3rem; margin-bottom: 10px; }
+        .product-card p { color: #666; line-height: 1.6; font-size: 0.95rem; }
+
+        /* 6. Commitment Section */
+        .commitment-section { display: flex; background: #0d1b3e; color: white; padding: 80px 5%; gap: 50px; }
+        .commitment-text { width: 50%; display: flex; flex-direction: column; justify-content: center; }
+        .commitment-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .commitment-text p { font-size: 1.1rem; margin-bottom: 40px; color: #d1d5db; line-height: 1.6; }
+        .commitment-item { margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 20px; }
+        .commitment-item h3 { color: #00AEEF; font-size: 1.3rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .commitment-item p { margin-bottom: 0; font-size: 1rem; }
+        .commitment-image { width: 50%; border-radius: 10px; overflow: hidden; }
+        .commitment-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 7. Loan Services Grid */
+        .loan-services { padding: 80px 5%; background: white; text-align: center; }
+        .loan-services h2 { color: #0d1b3e; font-size: 2.5rem; margin-bottom: 50px; }
+        .loan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .loan-item { position: relative; border-radius: 8px; overflow: hidden; height: 250px; cursor: pointer; }
+        .loan-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .loan-item:hover img { transform: scale(1.1); }
+        .loan-item-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 27, 62, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; }
+        .loan-item-overlay i { font-size: 1.5rem; margin-bottom: 10px; }
+        .loan-item-overlay h3 { font-size: 1.2rem; }
+
+        /* 8. Testimonial Section */
+        .testimonial-section { padding: 80px 5%; background: #00AEEF; text-align: center; color: white; }
+        .testimonial-section h4 { text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+        .testimonial-section h2 { font-size: 2.5rem; margin-bottom: 50px; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .testimonial-card { background: transparent; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .testimonial-card.dark { background: #0d1b3e; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transform: scale(1.05); }
+        .testimonial-card i.fa-quote-left { font-size: 2.5rem; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+        .testimonial-card p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 20px; }
+        .testimonial-avatar { width: 80px; height: 80px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #0d1b3e; margin-bottom: 15px; }
+        .testimonial-card h4 { font-size: 1.2rem; margin-bottom: 5px; }
+        .testimonial-card span { font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px; display: block; }
+        .stars { color: #FFD700; }
+
+        /* 9. News Section */
+        .news-section { padding: 80px 5%; background: white; }
+        .news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+        .news-header h4 { color: #00AEEF; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 5px; }
+        .news-header h2 { color: #0d1b3e; font-size: 2.5rem; }
+        .news-header p { color: #666; max-width: 500px; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .news-card { border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: transform 0.3s; }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .news-card img { width: 100%; height: 200px; object-fit: cover; }
+        .news-content { padding: 25px; }
+        .news-content h3 { color: #0d1b3e; font-size: 1.2rem; margin-bottom: 10px; }
+        .news-content .meta { font-size: 0.85rem; color: #888; margin-bottom: 15px; }
+        .news-content p { color: #555; font-size: 0.95rem; line-height: 1.6; }
+
+        /* 10. Footer */
+        .main-footer { background: #0d1b3e; color: white; padding: 60px 5% 20px 5%; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 40px; }
+        .footer-col h3 { font-size: 1.2rem; margin-bottom: 20px; color: white; }
+        .footer-col p, .footer-col a { color: #a0aec0; font-size: 0.9rem; line-height: 1.8; display: block; margin-bottom: 10px; }
+        .footer-col a:hover { color: #00AEEF; }
+        .footer-col .contact-item { display: flex; gap: 10px; margin-bottom: 15px; color: #a0aec0; font-size: 0.9rem; }
+        .footer-col .contact-item i { color: #00AEEF; margin-top: 5px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #a0aec0; }
+        .footer-social a { color: #a0aec0; margin-left: 15px; font-size: 1.1rem; }
+        .footer-social a:hover { color: #00AEEF; }
+
+        /* WhatsApp Float */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; }
+        .whatsapp-float img { width: 35px; }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .top-bar { display: none; }
+            .main-header { flex-direction: column; padding: 15px; }
+            .logo-container { position: relative; top: 0; left: 0; margin-bottom: 10px; }
+            .logo-container img { height: 80px; }
+            .main-nav { margin-left: 0; flex-direction: column; gap: 15px; }
+            .main-nav ul { flex-direction: column; text-align: center; gap: 10px; }
+            .hero-split { flex-direction: column; height: auto; }
+            .hero-text { width: 100%; padding: 50px 5%; text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-buttons { justify-content: center; }
+            .hero-image { width: 100%; height: 300px; }
+            .slider-arrow { display: none; }
+            .about-section { flex-direction: column; }
+            .about-image, .about-text { width: 100%; }
+            .commitment-section { flex-direction: column; }
+            .commitment-text, .commitment-image { width: 100%; }
+            .loan-grid { grid-template-columns: 1fr; }
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
+            .news-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
 </head>
 <body>
 
@@ -27,16 +184,16 @@
         <div class="logo-container">
             <img src="logo.png" alt="SmartLife SACCO Logo">
         </div>
-        
         <nav class="main-nav">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#services">Products & Services</a></li>
-                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#products">Products & Services</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="loan.html">Apply Loan</a></li>
+                <li><a href="#">FAQ</a></li>
                 <li><a href="#contact">Contact Us</a></li>
-                <li id="navLoginBtn"><a href="login.html" style="color: #F58220;">Login</a></li>
-                <li id="navLogoutBtn" style="display: none;"><a href="#" onclick="logoutUser()" style="color: red;">Logout</a></li>
+                <li><a href="#" style="font-size: 1.1rem;"><i class="fas fa-search"></i></a></li>
             </ul>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -47,189 +204,263 @@
         </nav>
     </header>
 
-    <!-- 3. SPLIT HERO SECTION -->
+    <!-- 3. HERO SLIDER -->
     <section class="hero-split" id="home">
-        <!-- Left Side (Dark Blue Text) -->
         <div class="hero-text">
             <div class="subtitle">Welcome to SmartLife SACCO</div>
-            <h1>Strong Heritage.<br><span class="highlight">Smart Future.</span></h1>
-            <p>We transform our member's lives through provision of affordable innovative and accessible Financial Services.</p>
-            <!-- Apply button removed as requested -->
-        </div>
-
-        <!-- Right Side (Image) -->
-        <div class="hero-image">
-            <!-- Arrows -->
-            <button class="slider-arrow arrow-left"><i class="fas fa-chevron-left"></i></button>
-            <button class="slider-arrow arrow-right"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </section>
-
-    <!-- 4. VIDEO SHOWCASE SECTION -->
-    <section class="video-section animate-on-scroll" style="padding: 60px 5%; background: white; text-align: center;">
-        <h2 style="color: #1a2b5e; font-size: 2rem; margin-bottom: 10px;">Why Choose SmartLife SACCO?</h2>
-        <p style="color: #555; margin-bottom: 30px; font-size: 1.1rem;">Watch how we are transforming our members' lives.</p>
-        
-        <div style="max-width: 800px; margin: 0 auto; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-            <video width="100%" height="auto" controls poster="logo.png" style="display: block; outline: none;">
-                <source src="intro.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </section>
-
-    <!-- DOWNLOAD BLANK FORM SECTION -->
-    <section style="text-align: center; padding: 40px 5%; background: #e6f7ff; border-bottom: 2px solid #00AEEF;" class="animate-on-scroll">
-        <h2 style="color: #1a2b5e; margin-bottom: 10px;">Prefer to Apply Offline?</h2>
-        <p style="margin-bottom: 20px; color: #555; font-size: 1.1rem;">Download the official blank BOSA Loan Application form, fill it out by hand, and drop it at our offices.</p>
-        <a href="blank_form.html" target="_blank" class="btn-primary" style="background-color: #1a2b5e; text-decoration: none; display: inline-block; padding: 15px 30px; font-size: 1.1rem; color: white;">
-            📄 Download Blank BOSA Form
-        </a>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services animate-on-scroll" style="padding: 60px 5%; text-align: center;">
-        <h2 style="color: #1a2b5e; font-size: 2rem; margin-bottom: 40px;">Our Loan Products</h2>
-        <div class="service-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-            <div class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF;">
-                <h3 style="color: #1a2b5e; margin-bottom: 15px;">Super Smart Loan</h3>
-                <p>Our flagship loan product designed for maximum financial flexibility and quick disbursement.</p>
-            </div>
-            <div class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF;">
-                <h3 style="color: #1a2b5e; margin-bottom: 15px;">Institutional Staff Loan</h3>
-                <p>Tailored specifically for employees of partner institutions with flexible repayment plans.</p>
-            </div>
-            <div class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF;">
-                <h3 style="color: #1a2b5e; margin-bottom: 15px;">School Fees Loan</h3>
-                <p>Quick and accessible financing to cover primary and secondary school fees on time.</p>
+            <h1 id="heroTitle">Strong Heritage.<br><span class="highlight">Smart Future.</span></h1>
+            <p id="heroDesc">We transform our member's lives through provision of affordable innovative and accessible Financial Services.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn-outline">About Us</a>
+                <a href="#contact" class="btn-solid">Contact Us!</a>
             </div>
         </div>
-    </section>
-
-    <!-- Loan Calculator Section -->
-    <section id="calculator" class="calculator-section animate-on-scroll" style="padding: 60px 5%; background: #f4f7f6; text-align: center;">
-        <h2 style="color: #1a2b5e; margin-bottom: 10px;">Loan Calculator</h2>
-        <p style="margin-bottom: 30px;">Estimate your monthly repayments before you apply.</p>
-        <div class="calc-container" style="max-width: 400px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: left; border-top: 5px solid #F58220;">
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label style="font-weight: bold;">Loan Amount (KES)</label>
-                <input type="number" id="loanAmount" placeholder="e.g., 50000" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label style="font-weight: bold;">Repayment Period (Months)</label>
-                <input type="number" id="loanTerm" placeholder="e.g., 12" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-            <button onclick="calculateLoan()" class="btn-primary" style="width: 100%; padding: 12px; background: #F58220; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 1rem;">Calculate</button>
-            <div id="result" class="calc-result" style="margin-top: 20px; display: none; padding: 15px; background: #e6f7ff; border-radius: 5px;"></div>
+        <div class="hero-image" id="heroImage" style="background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80');">
+            <button class="slider-arrow arrow-left" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow arrow-right" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about animate-on-scroll" style="padding: 60px 5%; text-align: center; background: #fff;">
-        <h2 style="color: #1a2b5e; margin-bottom: 20px;">About SmartLife SACCO</h2>
-        <p style="max-width: 800px; margin: 0 auto 30px auto; font-size: 1.1rem; line-height: 1.6;">We are a member-owned financial cooperative dedicated to improving the economic well-being of our community. By pooling our resources, we provide affordable financial services to our members, ensuring shared prosperity and financial independence.</p>
-        <div class="location-info" style="margin: 20px auto; font-size: 1.1rem; background: #f9f9f9; display: inline-block; padding: 15px 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-left: 5px solid #F58220; text-align: left;">
-            <p style="margin: 5px 0;"><strong>Visit Us:</strong> Kapsowar Town, Elgeyo-Marakwet County</p>
-            <p style="margin: 5px 0;"><strong>P.O. Box:</strong> 118-30705, Kapsowar</p>
+    <!-- 4. ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="About SmartLife">
+        </div>
+        <div class="about-text">
+            <h4>About Us</h4>
+            <h2>Building, Managing And Preserving Your Wealth</h2>
+            <p>Smartlife Sacco Society Ltd (formerly Marakwet Teachers SACCO) was incorporated and licensed to transact business in 1995 with one branch in Kapsowar which also acts as headquarters. From a humble beginning, the SACCO has grown from strength to strength and has established the first branch in Kapcherop to serve members in the Kapcherop Division and its environs.</p>
+            <p>The Sacco will expand its operation to including opening of new branches. This growth has as a result of clear vision by the founders and management of the SACCO who are committed to bringing efficient financial services closer to the members especially within the county and beyond.</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" style="background-color: #0d1b3e; color: white; text-align: center; padding: 20px; font-size: 0.9rem;">
-        <p>&copy; 2024 SmartLife SACCO. All rights reserved.</p>
-        <p style="margin: 5px 0;">P.O. Box 118-30705, Kapsowar | Email: kipztito11@gmail.com | Phone: +254 727 111 633</p>
-        <p style="color: #00AEEF; font-weight: bold; margin-top: 10px;">"Together We Prosper"</p>
+    <!-- 5. PRODUCTS SECTION -->
+    <section class="products-section" id="products">
+        <h4>Working With Excellent</h4>
+        <h2>Our Products & Services</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="FOSA">
+                <div class="product-card-content">
+                    <div class="product-icon"><i class="fas fa-database"></i></div>
+                    <h3>FOSA Products</h3>
+                    <p>FOSA is our banking arm that provides basic and affordable banking services to meet members' needs.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1565514020179-026b92b84bb6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="BOSA">
+                <div class="product-card-content">
+                    <div class="product-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>BOSA Products</h3>
+                    <p>We have a wide range of BOSA products. Check on our BOSA products page for various loan products.</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Mobile Banking">
+                <div class="product-card-content">
+                    <div class="product-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile Banking</h3>
+                    <p>Enables our FOSA members to transact through their mobile phones at the comfort of their work places/homes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. COMMITMENT SECTION -->
+    <section class="commitment-section">
+        <div class="commitment-text">
+            <h2>OUR COMMITMENT</h2>
+            <p>WE ARE COMMITTED TO OFFER EXCELLENT SERVICE TO ALL OUR CUSTOMERS AND STAKEHOLDERS.</p>
+            <div class="commitment-item">
+                <h3><i class="fas fa-binoculars"></i> OUR VISION</h3>
+                <p>To be the ultimate choice in offering first class financial services to our customers.</p>
+            </div>
+            <div class="commitment-item">
+                <h3><i class="fas fa-book"></i> MISSION STATEMENT</h3>
+                <p>To empower our members through provision of diversified products and services at the right time.</p>
+            </div>
+        </div>
+        <div class="commitment-image">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Commitment">
+        </div>
+    </section>
+
+    <!-- 7. LOAN SERVICES GRID -->
+    <section class="loan-services">
+        <h2>Our Loan Services</h2>
+        <div class="loan-grid">
+            <div class="loan-item">
+                <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="School Fees Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>School Fees Loan</h3></div>
+            </div>
+            <div class="loan-item">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="College Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>College/University Loan</h3></div>
+            </div>
+            <div class="loan-item">
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Farm Input">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Farm Input Loan</h3></div>
+            </div>
+            <div class="loan-item">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Salary Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Salary Loan</h3></div>
+            </div>
+            <div class="loan-item">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Development Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Development Loan</h3></div>
+            </div>
+            <div class="loan-item">
+                <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Emergency Loan">
+                <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Emergency Loan</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. TESTIMONIAL SECTION -->
+    <section class="testimonial-section">
+        <h4>Testimonial</h4>
+        <h2>What Our Clients Saying?</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>Smartlife Sacco has always been at hand to give support for my financial needs in the form of instant and long-term loans. Thanks for the support.</p>
+                <h4>john rutto</h4>
+                <span>Site Manager</span>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testimonial-card dark">
+                <div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+                <p>Thank you Smartlife Sacco for providing my family with permanent shelter. Through the society's development loan, i am now a proud home-owner. Kudos!</p>
+                <h4>jane cheboi</h4>
+                <span>Site Engineer</span>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>My project was renovation of my school and adding more rooms. Thank you so much Smartlife Sacco for financial support and making this possible.</p>
+                <h4>ken kwambai</h4>
+                <span>Principal</span>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. NEWS SECTION -->
+    <section class="news-section">
+        <div class="news-header">
+            <div>
+                <h4>Working With Excellent</h4>
+                <h2>Read Our Latest News</h2>
+            </div>
+            <p>Get the latest news and updates relevant to Savings and credit Cooperatives.</p>
+        </div>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-content" style="padding-top: 50px;">
+                    <h3>Tenders advert for 2027</h3>
+                    <div class="meta"><i class="fas fa-user"></i> Smartlife</div>
+                    <p>Smartlife SACCO invites sealed tenders from eligible and qualified bidders for the projects outlin...</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="News 1">
+                <div class="news-content">
+                    <h3>Opportunities why Sacco's should further be digitized</h3>
+                    <div class="meta"><i class="fas fa-user"></i> Smartlife</div>
+                    <p>Though many SACCOs have initiated work...</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="News 2">
+                <div class="news-content">
+                    <h3>Economic impact of covid-19 pandemic to Sacco's</h3>
+                    <div class="meta"><i class="fas fa-user"></i> Smartlife</div>
+                    <p>As the world grapples with the Covid-19...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer class="main-footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="logo.png" alt="Logo" style="height: 80px; margin-bottom: 20px;">
+                <p style="color: #00AEEF; font-weight: bold;">Together We Prosper</p>
+            </div>
+            <div class="footer-col">
+                <h3>Get In Touch</h3>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <span>Head office-Kapsowar,<br>Marakwet Teachers Plaza,<br>P.O BOX 118-30705.</span></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> <span>info@smartlifesacco.co.ke</span></div>
+                <div class="contact-item"><i class="fas fa-phone"></i> <span>Phone: 020 7606429<br>Support: 020 760 6432</span></div>
+            </div>
+            <div class="footer-col">
+                <h3>Useful Links</h3>
+                <a href="#"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> BOSA</a>
+                <a href="#"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FOSA</a>
+                <a href="#"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Mobile Banking</a>
+                <a href="#"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FAQ</a>
+                <a href="#"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Downloads</a>
+            </div>
+            <div class="footer-col">
+                <h3>Recent Posts</h3>
+                <p style="margin-bottom: 10px;">Tenders advert for 2027</p>
+                <div style="display: flex; gap: 10px;">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+                    <p style="font-size: 0.85rem;">Opportunities why Sacco's should further be digitized</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 Smartlife Savings and Credit All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/254727111633" class="whatsapp-float" target="_blank" rel="noopener noreferrer" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 35px;">
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254727111633" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT FOR HERO SLIDER -->
     <script>
-        // 1. Check Login Status on Page Load
-        document.addEventListener("DOMContentLoaded", () => {
-            const user = JSON.parse(localStorage.getItem('user'));
-            const navLoginBtn = document.getElementById('navLoginBtn');
-            const navLogoutBtn = document.getElementById('navLogoutBtn');
-
-            if (user) {
-                navLoginBtn.style.display = 'none';
-                navLogoutBtn.style.display = 'block';
-            } else {
-                navLoginBtn.style.display = 'block';
-                navLogoutBtn.style.display = 'none';
+        const slides = [
+            {
+                image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80",
+                title: "Strong Heritage.<br><span class='highlight'>Smart Future.</span>",
+                desc: "We transform our member's lives through provision of affordable innovative and accessible Financial Services."
+            },
+            {
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80",
+                title: "We Care For<br><span class='highlight'>Your Future</span>",
+                desc: "Its our role to empower our members through provision of diversified products and services at the right time."
             }
-        });
+        ];
+        let currentSlide = 0;
 
-        // 2. Logout Function
-        function logoutUser() {
-            localStorage.clear();
-            alert("You have been logged out.");
-            window.location.reload();
+        function updateSlide() {
+            document.getElementById('heroImage').style.backgroundImage = `url('${slides[currentSlide].image}')`;
+            document.getElementById('heroTitle').innerHTML = slides[currentSlide].title;
+            document.getElementById('heroDesc').innerText = slides[currentSlide].desc;
         }
 
-        // 3. Scroll Reveal Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-            observer.observe(el);
-        });
-
-        // 4. Number Count-Up Animation
-        function animateValue(obj, start, end, duration, prefix = "KES ") {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const current = Math.floor(progress * (end - start) + start);
-                obj.innerHTML = prefix + current.toLocaleString('en-KE');
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide();
         }
 
-        // 5. Loan Calculator Function
-        function calculateLoan() {
-            const amount = document.getElementById('loanAmount').value;
-            const months = document.getElementById('loanTerm').value;
-            const resultDiv = document.getElementById('result');
-            
-            if (amount === "" || months === "" || amount <= 0 || months <= 0) {
-                alert("Please enter valid numbers.");
-                return;
-            }
-            
-            const monthlyRate = 0.01; 
-            const totalInterest = amount * monthlyRate * months;
-            const totalRepayment = parseFloat(amount) + totalInterest;
-            const monthlyPayment = totalRepayment / months;
-
-            resultDiv.style.display = "block";
-            resultDiv.innerHTML = `
-                <div style="color: #1a2b5e; font-weight: bold; margin-bottom: 5px;">Monthly Repayment:</div>
-                <div id="animatedMonthly" style="font-size: 1.8rem; color: #F58220; font-weight: bold;"></div>
-                <br>
-                <div style="color: #1a2b5e; font-weight: bold; margin-bottom: 5px;">Total Repayment:</div>
-                <div id="animatedTotal" style="font-size: 1.4rem; color: #25d366; font-weight: bold;"></div>
-                <br>
-                <span style="font-size: 0.85rem; color: #666;">(Includes 1% monthly interest)</span>
-            `;
-
-            animateValue(document.getElementById('animatedMonthly'), 0, monthlyPayment, 1000);
-            setTimeout(() => {
-                animateValue(document.getElementById('animatedTotal'), 0, totalRepayment, 1200);
-            }, 200);
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlide();
         }
+
+        // Auto-rotate every 5 seconds
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
