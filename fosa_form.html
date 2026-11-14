@@ -3,112 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOSA - SmartLife SACCO</title>
+    <title>FOSA Application - SmartLife SACCO</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; margin: 0; }
-        .page-header { background: #0d1b3e; color: white; padding: 60px 5%; text-align: center; }
-        .page-header h1 { font-size: 3rem; margin-bottom: 10px; }
-        .page-header p { color: #00AEEF; font-size: 1.2rem; }
-        .content-container { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .content-container h2 { color: #0d1b3e; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #00AEEF; padding-bottom: 5px; }
-        .content-container h3 { color: #00AEEF; margin-top: 20px; margin-bottom: 10px; }
-        .content-container p, .content-container li { line-height: 1.8; color: #444; margin-bottom: 10px; }
-        .content-container ul { margin-left: 20px; }
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', sans-serif; margin: 0; }
         
-        .download-section { text-align: center; margin-top: 40px; padding: 30px; background: #e6f7ff; border-radius: 10px; border: 1px solid #00AEEF; }
-        .download-section h3 { color: #0d1b3e; margin-bottom: 10px; }
-        .download-section p { margin-bottom: 20px; }
-        .btn-download { display: inline-block; background: #F58220; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: background 0.3s; }
-        .btn-download:hover { background: #d96e15; }
-        .back-btn { display: inline-block; margin-top: 30px; background: #0d1b3e; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        /* Header Navigation */
+        .page-header { background: #00AEEF; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .page-header img { height: 60px; }
+        .page-header a { color: white; text-decoration: none; font-weight: bold; }
+        
+        /* Main Form Container */
+        .form-container { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Form Header */
+        .form-header { text-align: center; border-bottom: 2px solid #1a2b5e; padding-bottom: 20px; margin-bottom: 20px; }
+        .form-header img { height: 100px; margin-bottom: 10px; }
+        .form-header h1 { color: #1a2b5e; font-size: 1.8rem; margin-bottom: 5px; text-transform: uppercase; font-family: 'Times New Roman', serif; }
+        .form-header p { font-size: 0.9rem; color: #333; margin-bottom: 3px; font-weight: bold; }
+        .form-header h2 { color: #00AEEF; font-size: 1.2rem; background: #e6f7ff; padding: 10px; border-radius: 5px; margin-top: 20px; text-transform: uppercase; }
+        
+        /* Form Sections */
+        .section-title { background: #f4f7f6; padding: 10px; font-weight: bold; color: #1a2b5e; margin: 30px 0 15px 0; border-left: 4px solid #F58220; text-transform: uppercase; font-size: 0.9rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .text-block { font-size: 0.85rem; background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 5px; margin: 15px 0; line-height: 1.6; text-align: justify; }
+        
+        /* Table for Guarantors */
+        .guarantor-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .guarantor-table th, .guarantor-table td { border: 1px solid #ccc; padding: 10px; text-align: left; font-size: 0.9rem; }
+        .guarantor-table th { background: #f4f7f6; color: #1a2b5e; }
+        .guarantor-table input { width: 100%; border: none; outline: none; font-size: 0.9rem; }
+        
+        /* Download Button */
+        .download-pdf-btn { display: inline-block; background: #F58220; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-bottom: 20px; transition: background 0.3s; }
+        .download-pdf-btn:hover { background: #d96e15; }
     </style>
 </head>
 <body>
-    <header style="background: #00AEEF; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;">
-        <img src="logo.png" alt="Logo" style="height: 60px;">
-        <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">← Back to Home</a>
+    <!-- Header Navigation -->
+    <header class="page-header">
+        <img src="logo.png" alt="SmartLife SACCO Logo">
+        <a href="fosa.html">← Back to FOSA</a>
     </header>
 
-    <div class="page-header">
-        <h1>FOSA</h1>
-        <p>Front Office Service Activity</p>
-    </div>
-
-    <div class="content-container">
-        <h2>Introduction</h2>
-        <p>As our Society has continued to grow, there has been an urge to provide a one stop shop for all our members’ financial needs. Towards this end, the Sacco operates a FOSA to meet members’ banking needs hitherto provided by banks. The FOSA also extends additional financial products and services to complement those offered by the back office.</p>
-
-        <h2>Objectives</h2>
-        <ul>
-            <li>Provision of saving facility to members</li>
-            <li>Enable processing of members’ salaries and dividend payments</li>
-            <li>Provide short and long term credit at competitive interest rates.</li>
-            <li>Provide ATM services (through Sacco Link Card), thus easy access to funds</li>
-            <li>Encashment of Cheques</li>
-            <li>Sale of bankers cheques</li>
-            <li>Offering standing orders to account holders</li>
-            <li>Enable Sacco payments to members through their FOSA accounts</li>
-        </ul>
-
-        <h2>FOSA Loan Products</h2>
-        
-        <h3>A. SMART LOAN</h3>
-        <ul>
-            <li>Given at 3 times of a member’s deposit</li>
-            <li>Interest rate of 2% per month on reducing balance</li>
-            <li>Maximum repayment period of 24 months.</li>
-            <li>A member must channel salary through FOSA</li>
-        </ul>
-
-        <h3>B. DIAMOND ADVANCE</h3>
-        <ul>
-            <li>Maximum repayment period of 3 months.</li>
-            <li>A member must channel salary through FOSA section</li>
-        </ul>
-
-        <h3>C. SALARY ADVANCE</h3>
-        <ul>
-            <li>Maximum repayment period of 1 month.</li>
-            <li>A member must channel salary through FOSA</li>
-            <li>You only qualify for half your net salary</li>
-            <li>Available after 15th of every month</li>
-            <li>10% of the amount taken repayable on salary receivable</li>
-        </ul>
-
-        <h3>D. SALARY IN ADVANCE</h3>
-        <ul>
-            <li>Maximum repayment period of 1 month.</li>
-            <li>A member must channel salary through FOSA</li>
-            <li>You only qualify for half your net salary</li>
-            <li>Available from 6th to 15th of every month</li>
-            <li>One can still qualify for a salary advance if your payslip allows</li>
-        </ul>
-
-        <h3>E. CHEQUE ADVANCE</h3>
-        <p>Payment on cheque deposits before maturity</p>
-
-        <h2>Eligibility</h2>
-        <p>The FOSA services are for all members of the Society.</p>
-
-        <h2>Requirements for FOSA Account Opening</h2>
-        <ul>
-            <li>FOSA account application form</li>
-            <li>Passport size photo</li>
-            <li>Copy of National ID / passport</li>
-            <li>Birth certificate for Jewel account holders</li>
-        </ul>
-
-        <!-- DOWNLOAD / APPLY SECTION -->
-        <div class="download-section">
-            <h3>Ready to Open a FOSA Account?</h3>
-            <p>Click the button below to fill out the online FOSA application form.</p>
-            <!-- Link to the online form -->
-            <a href="fosa_form.html" class="btn-download">📝 Apply Online for FOSA Facility</a>
+    <div class="form-container">
+        <!-- DOWNLOAD LINK (Optional for users who want paper) -->
+        <div style="text-align: right;">
+            <a href="FOSA-LOAN-FORM.pdf" download class="download-pdf-btn">
+                <i class="fas fa-download"></i> Download PDF Version
+            </a>
         </div>
 
-        <a href="index.html" class="back-btn">← Back to Home</a>
+        <div class="form-header">
+            <img src="logo.png" alt="SmartLife SACCO Logo">
+            <h1>SMARTLIFE SACCO SOCIETY LTD</h1>
+            <p>P.O. BOX 118-30705, KAPSOWAR</p>
+            <p>smartlifesacco@gmail.com | Tel No: 0771 946 422</p>
+            <h2>FOSA FACILITY APPLICATION AND AGREEMENT FORM</h2>
+        </div>
+
+        <form id="fosaForm">
+            <!-- PART A -->
+            <div class="section-title">PART A: PERSONAL INFORMATION</div>
+            <div class="grid-2">
+                <div class="form-group"><label>Full Name</label><input type="text" id="fFullName" required></div>
+                <div class="form-group"><label>ID No.</label><input type="text" id="fIdNo" required></div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group"><label>TSC/Personal No.</label><input type="text" id="fTscNo" required></div>
+                <div class="form-group"><label>Mobile No.</label><input type="tel" id="fMobile" required></div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group"><label>Email Address</label><input type="email" id="fEmail" required></div>
+                <div class="form-group"><label>Postal Address</label><input type="text" id="fAddress" required></div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group"><label>Membership No.</label><input type="text" id="fMemberNo" required></div>
+                <div class="form-group"><label>Account No.</label><input type="text" id="fAccountNo" required></div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group"><label>Amount to Withdraw (KShs)</label><input type="number" id="fAmount" required></div>
+                <div class="form-group">
+                    <label>Facility Type</label>
+                    <select id="fFacilityType">
+                        <option value="SMART LOAN">SMART LOAN</option>
+                        <option value="DIAMOND ADVANCE">DIAMOND ADVANCE</option>
+                        <option value="SALARY ADVANCE">SALARY ADVANCE</option>
+                        <option value="SALARY IN ADVANCE">SALARY IN ADVANCE</option>
+                        <option value="CHEQUE ADVANCE">CHEQUE ADVANCE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Reason for Withdrawal / Purpose</label>
+                <input type="text" id="fReason" required>
+            </div>
+
+            <!-- PART E (Guarantors) -->
+            <div class="section-title">PART E: GUARANTORS' DETAILS</div>
+            <p style="font-size: 0.85rem; margin-bottom: 15px;">We understand that the amount in default may be recovered by an offset against our deposits in the society or by attachment of our property or salary.</p>
+            
+            <table class="guarantor-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>TSC/P/No</th>
+                        <th>Amount</th>
+                        <th>Mob No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="g1Name" required></td>
+                        <td><input type="text" id="g1Tsc" required></td>
+                        <td><input type="number" id="g1Amount" required></td>
+                        <td><input type="tel" id="g1Mobile" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="g2Name"></td>
+                        <td><input type="text" id="g2Tsc"></td>
+                        <td><input type="number" id="g2Amount"></td>
+                        <td><input type="tel" id="g2Mobile"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- PART E ACCEPTANCE -->
+            <div class="section-title">PART E: ACCEPTANCE OF OFFER</div>
+            <div class="text-block">
+                I hereby accept the offer and I have read and understood the Smartlife Sacco Society Ltd terms and Conditions. I hereby authorize the society to recover my loan balance and other charges from my deposits and other properties in case I fail to pay as per the policy requirement.<br><br>
+                I further pledge my future earnings as additional source of income and security for the loans so approved. Additionally, I hereby accept to make cash repayments in the event that the deductions are not effected immediately.
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Applicant's Name</label>
+                    <input type="text" id="fApplicantName" required>
+                </div>
+                <div class="form-group">
+                    <label>Applicant's Signature</label>
+                    <input type="text" id="fApplicantSig" required style="font-family: cursive; font-size: 1.3rem; border-bottom: 2px solid #1a2b5e;">
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="fDate" required>
+                </div>
+            </div>
+
+            <!-- PART H: TERMS AND CONDITIONS -->
+            <div class="section-title">PART H: TERMS AND CONDITIONS</div>
+            <div class="text-block" style="font-size: 0.75rem;">
+                1. ALL FOSA Facilities are granted in accordance with society's credit policy basic requirements.<br>
+                2. FOSA Facilities are only available to members who channel their salaries through FOSA for a period of at least 2 months.<br>
+                3. Salary in Advance is available between 5th and 15th of every month while Salary Advance is available from 16th to 31st of every month.<br>
+                4. Institutional staff loans are available to members of institution as determined by management.<br>
+                5. All loans shall be charged transactions fee determined by the management upon processing.<br>
+                6. FOSA Facilities attract interest at a rate as reviewed by the management from time to time.
+            </div>
+            
+            <button type="submit" class="btn-primary" style="width: 100%; padding: 15px; font-size: 1.1rem; margin-top: 20px;">Submit FOSA Application</button>
+        </form>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('fDate').value = today;
+
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                document.getElementById('fFullName').value = user.name;
+                document.getElementById('fEmail').value = user.email;
+                document.getElementById('fMobile').value = user.phone;
+            }
+        });
+
+        document.getElementById('fosaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const user = JSON.parse(localStorage.getItem('user'));
+            
+            if (!user) {
+                alert("You must be logged in to apply.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const data = {
+                userId: user.id,
+                fullName: document.getElementById('fFullName').value,
+                idNo: document.getElementById('fIdNo').value,
+                tscNo: document.getElementById('fTscNo').value,
+                mobileNo: document.getElementById('fMobile').value,
+                email: document.getElementById('fEmail').value,
+                postalAddress: document.getElementById('fAddress').value,
+                membershipNo: document.getElementById('fMemberNo').value,
+                accountNo: document.getElementById('fAccountNo').value,
+                amount: document.getElementById('fAmount').value,
+                facilityType: document.getElementById('fFacilityType').value,
+                reason: document.getElementById('fReason').value,
+                guarantor1Name: document.getElementById('g1Name').value,
+                guarantor1Tsc: document.getElementById('g1Tsc').value,
+                guarantor1Amount: document.getElementById('g1Amount').value,
+                guarantor1Mobile: document.getElementById('g1Mobile').value,
+                guarantor2Name: document.getElementById('g2Name').value,
+                guarantor2Tsc: document.getElementById('g2Tsc').value,
+                guarantor2Amount: document.getElementById('g2Amount').value,
+                guarantor2Mobile: document.getElementById('g2Mobile').value,
+                applicantSignature: document.getElementById('fApplicantSig').value,
+                dateSigned: document.getElementById('fDate').value
+            };
+
+            try {
+                const res = await fetch('/api/apply-fosa', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (res.ok) {
+                    alert("FOSA Application submitted successfully!");
+                    window.location.href = "index.html";
+                } else {
+                    alert(result.error);
+                }
+            } catch (err) {
+                alert("Network error. Check if the server is running.");
+            }
+        });
+    </script>
 </body>
 </html>
