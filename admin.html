@@ -69,9 +69,15 @@
             <thead><tr><th>Date</th><th>Member</th><th>Loan Type</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
             <tbody id="loanTableBody"></tbody>
         </table>
+
+        <h2 style="color: #1a2b5e; margin-top: 40px;">FOSA Applications</h2>
+        <table class="admin-table">
+            <thead><tr><th>Date</th><th>Member</th><th>Facility Type</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody id="fosaTableBody"></tbody>
+        </table>
     </div>
 
-    <!-- FULL APPRAISAL & APPLICATION MODAL -->
+    <!-- OFFICIAL APPRAISAL FORM MODAL -->
     <div id="appraisalModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="document.getElementById('appraisalModal').style.display='none'">✖ Close</button>
@@ -139,7 +145,6 @@
             </div>
 
             <div class="section-title">PART L: LOAN APPROVAL AND DISBURSEMENTS</div>
-            <!-- Editable fields for calculation -->
             <div class="form-line">
                 <label>Basic Salary:</label> 
                 <input type="number" class="dotted-input" id="editBasic" oninput="recalculate()" style="width: 100px; background: #fff;">

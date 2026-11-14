@@ -52,6 +52,20 @@ const LoanSchema = new mongoose.Schema({
 });
 const Loan = mongoose.model('Loan', LoanSchema);
 
+// --- FOSA MODEL ---
+const FosaSchema = new mongoose.Schema({
+    userId: String,
+    fullName: String, idNo: String, tscNo: String, mobileNo: String,
+    email: String, postalAddress: String, membershipNo: String, accountNo: String,
+    amount: Number, facilityType: String, reason: String,
+    guarantor1Name: String, guarantor1Tsc: String, guarantor1Amount: Number, guarantor1Mobile: String,
+    guarantor2Name: String, guarantor2Tsc: String, guarantor2Amount: Number, guarantor2Mobile: String,
+    applicantSignature: String, dateSigned: String,
+    status: { type: String, default: 'Pending' },
+    date: { type: Date, default: Date.now }
+});
+const Fosa = mongoose.model('Fosa', FosaSchema);
+
 // --- APPRAISAL ROUTES ---
 app.get('/api/appraise/:userId', async (req, res) => {
     try {
@@ -142,6 +156,27 @@ app.post('/api/apply-loan', async (req, res) => {
 app.put('/api/loans/:id', async (req, res) => {
     try { const updated = await Loan.findByIdAndUpdate(req.params.id, { status: req.body.status }, { new: true }); res.json({ success: true, loan: updated }); } 
     catch (error) { res.status(500).json({ error: "Failed to update" }); }
+});
+
+// --- FOSA ROUTES ---
+app.post('/api/apply-fosa', async (req, res) => {
+    try {
+        const newFosa = new Fosa(req.body);
+        await newFosa.save();
+        res.status(201).json({ message: "FOSA Application received!" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to submit FOSA application" });
+    }
+});
+
+app.get('/api/fosa', async (req, res) => {
+    try {
+        const fosaList = await Fosa.find().sort({ date: -1 });
+        res.json(fosaList);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch FOSA applications" });
+    }
 });
 
 const PORT = process.env.PORT || 3000;

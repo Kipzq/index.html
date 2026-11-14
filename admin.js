@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     fetchLoans();
+    fetchFosa();
+    
+    // Set today's date on the forms automatically
     const today = new Date().toISOString().split('T')[0];
     document.querySelectorAll('input[type="date"]').forEach(el => el.value = today);
 });
@@ -14,7 +17,9 @@ function fetchLoans() {
         
         loans.forEach(loan => {
             const statusClass = `status-${loan.status.toLowerCase()}`;
-            let btns = `<button class="action-btn" style="background:#1a2b5e;" onclick="appraise('${loan._id}')">Appraise & Print</button>`;
+            let btns = `
+                <button class="action-btn" style="background:#1a2b5e;" onclick="appraise('${loan._id}')">Appraise & Print</button>
+            `;
             if (loan.status === 'Pending') {
                 btns += `
                     <button class="action-btn btn-approve" onclick="updateLoanStatus('${loan._id}', 'Approved')">Approve</button>
@@ -28,6 +33,26 @@ function fetchLoans() {
                 <td>KES ${loan.amountRequested?.toLocaleString() || '0'}</td>
                 <td class="${statusClass}">${loan.status}</td>
                 <td style="display: flex; gap: 5px; flex-wrap: wrap;">${btns}</td>
+            </tr>`;
+        });
+    });
+}
+
+// --- FETCH FOSA APPLICATIONS ---
+function fetchFosa() {
+    const tableBody = document.getElementById('fosaTableBody');
+    if (!tableBody) return;
+
+    fetch('/api/fosa').then(res => res.json()).then(fosa => {
+        tableBody.innerHTML = fosa.length === 0 ? '<tr><td colspan="5" style="text-align:center;">No FOSA applications yet.</td></tr>' : '';
+        fosa.forEach(item => {
+            const statusClass = `status-${item.status.toLowerCase()}`;
+            tableBody.innerHTML += `<tr>
+                <td>${new Date(item.date).toLocaleDateString()}</td>
+                <td>${item.fullName}<br><small>${item.mobileNo}</small></td>
+                <td>${item.facilityType}</td>
+                <td>KES ${item.amount.toLocaleString()}</td>
+                <td class="${statusClass}">${item.status}</td>
             </tr>`;
         });
     });
@@ -59,7 +84,6 @@ async function appraise(loanId) {
     const data = await res.json();
     
     if (res.ok) {
-        // 1. Fill Member's Form (Top)
         document.getElementById('replicaPartA').innerHTML = `
             <div class="replica-item"><strong>Full Name:</strong> ${loan.fullName || 'N/A'}</div>
             <div class="replica-item"><strong>Account No:</strong> ${loan.accountNo || 'N/A'}</div>
@@ -81,7 +105,6 @@ async function appraise(loanId) {
             <div class="replica-item"><strong>Purpose:</strong> ${loan.purpose || 'N/A'}</div>
         `;
 
-        // Populate all 10 Guarantors
         let guarantorHTML = '';
         for (let i = 1; i <= 10; i++) {
             if (loan[`guarantor${i}Name`]) {
@@ -97,12 +120,10 @@ async function appraise(loanId) {
         document.getElementById('replicaSignature').innerText = loan.applicantSignature;
         document.getElementById('replicaDate').innerText = loan.dateSigned;
 
-        // 2. Pre-fill the Financial Inputs (Bottom)
         document.getElementById('editBasic').value = data.basicSalary || 0;
         document.getElementById('editShares').value = data.shares || 0;
         document.getElementById('recoverableMonths').value = loan.periodMonths || 48;
         
-        // 3. Run the calculation
         recalculate();
         document.getElementById('appraisalModal').style.display = 'flex';
     } else { 
