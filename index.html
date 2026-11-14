@@ -33,7 +33,6 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Products & Services</a></li>
-                <li><a href="loan.html">Apply Loan</a></li>
                 <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#contact">Contact Us</a></li>
                 <li id="navLoginBtn"><a href="login.html" style="color: #F58220;">Login</a></li>
@@ -55,7 +54,7 @@
             <div class="subtitle">Welcome to SmartLife SACCO</div>
             <h1>Strong Heritage.<br><span class="highlight">Smart Future.</span></h1>
             <p>We transform our member's lives through provision of affordable innovative and accessible Financial Services.</p>
-            <a href="loan.html" class="apply-btn">Apply Loan Now <i class="fas fa-arrow-right"></i></a>
+            <!-- Apply button removed as requested -->
         </div>
 
         <!-- Right Side (Image) -->
@@ -66,15 +65,24 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- REST OF THE WEBSITE REMAINS THE SAME       -->
-    <!-- ========================================== -->
+    <!-- 4. VIDEO SHOWCASE SECTION -->
+    <section class="video-section animate-on-scroll" style="padding: 60px 5%; background: white; text-align: center;">
+        <h2 style="color: #1a2b5e; font-size: 2rem; margin-bottom: 10px;">Why Choose SmartLife SACCO?</h2>
+        <p style="color: #555; margin-bottom: 30px; font-size: 1.1rem;">Watch how we are transforming our members' lives.</p>
+        
+        <div style="max-width: 800px; margin: 0 auto; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+            <video width="100%" height="auto" controls poster="logo.png" style="display: block; outline: none;">
+                <source src="intro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
 
     <!-- DOWNLOAD BLANK FORM SECTION -->
     <section style="text-align: center; padding: 40px 5%; background: #e6f7ff; border-bottom: 2px solid #00AEEF;" class="animate-on-scroll">
         <h2 style="color: #1a2b5e; margin-bottom: 10px;">Prefer to Apply Offline?</h2>
         <p style="margin-bottom: 20px; color: #555; font-size: 1.1rem;">Download the official blank BOSA Loan Application form, fill it out by hand, and drop it at our offices.</p>
-        <a href="blank_form.html" target="_blank" class="btn-primary" style="background-color: #1a2b5e; text-decoration: none; display: inline-block; padding: 15px 30px; font-size: 1.1rem;">
+        <a href="blank_form.html" target="_blank" class="btn-primary" style="background-color: #1a2b5e; text-decoration: none; display: inline-block; padding: 15px 30px; font-size: 1.1rem; color: white;">
             📄 Download Blank BOSA Form
         </a>
     </section>
@@ -83,18 +91,18 @@
     <section id="services" class="services animate-on-scroll" style="padding: 60px 5%; text-align: center;">
         <h2 style="color: #1a2b5e; font-size: 2rem; margin-bottom: 40px;">Our Loan Products</h2>
         <div class="service-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-            <a href="loan.html" class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF; transition: transform 0.3s ease;">
+            <div class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF;">
                 <h3 style="color: #1a2b5e; margin-bottom: 15px;">Super Smart Loan</h3>
                 <p>Our flagship loan product designed for maximum financial flexibility and quick disbursement.</p>
-            </a>
-            <a href="loan.html" class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF; transition: transform 0.3s ease;">
+            </div>
+            <div class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF;">
                 <h3 style="color: #1a2b5e; margin-bottom: 15px;">Institutional Staff Loan</h3>
                 <p>Tailored specifically for employees of partner institutions with flexible repayment plans.</p>
-            </a>
-            <a href="loan.html" class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF; transition: transform 0.3s ease;">
+            </div>
+            <div class="card" style="display: block; text-decoration: none; color: #333; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #00AEEF;">
                 <h3 style="color: #1a2b5e; margin-bottom: 15px;">School Fees Loan</h3>
                 <p>Quick and accessible financing to cover primary and secondary school fees on time.</p>
-            </a>
+            </div>
         </div>
     </section>
 
@@ -127,7 +135,7 @@
     </section>
 
     <!-- Footer -->
-    <footer style="background-color: #0d1b3e; color: white; text-align: center; padding: 20px; font-size: 0.9rem;">
+    <footer id="contact" style="background-color: #0d1b3e; color: white; text-align: center; padding: 20px; font-size: 0.9rem;">
         <p>&copy; 2024 SmartLife SACCO. All rights reserved.</p>
         <p style="margin: 5px 0;">P.O. Box 118-30705, Kapsowar | Email: kipztito11@gmail.com | Phone: +254 727 111 633</p>
         <p style="color: #00AEEF; font-weight: bold; margin-top: 10px;">"Together We Prosper"</p>
