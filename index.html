@@ -144,6 +144,8 @@
         .footer-col .contact-item i { color: #00AEEF; margin-top: 5px; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #a0aec0; }
         .footer-social a { color: #a0aec0; margin-left: 15px; font-size: 1.1rem; }
+        .footer-music { padding: 6px 14px; margin-right: 15px; border: 1px solid rgba(0,174,239,0.6); border-radius: 20px; background: transparent; color: #00AEEF; font: inherit; font-size: 0.8rem; letter-spacing: 1px; cursor: pointer; }
+        .footer-music:hover { background: rgba(0,174,239,0.15); }
         .footer-social a:hover { color: #00AEEF; }
 
         /* WhatsApp Float */
@@ -400,7 +402,7 @@
             <p class="credits-tagline">TOGETHER WE PROSPER.</p>
         </div>
 
-        <button class="credits-sound" id="credits-sound" type="button" aria-pressed="false">Play music</button>
+        <button class="credits-sound" id="credits-sound" type="button" data-music-toggle aria-pressed="false">Play music</button>
         <a class="credits-skip" href="#contact">Skip credits</a>
     </section>
 
@@ -713,6 +715,7 @@
         <div class="footer-bottom">
             <p>Copyright © 2026 Smartlife Savings and Credit All rights reserved.</p>
             <div class="footer-social">
+                <button class="footer-music" type="button" data-music-toggle aria-pressed="false">Play music</button>
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-youtube"></i></a>
@@ -952,7 +955,7 @@
         }, { threshold: 0.4 });
         creditsObserver.observe(creditsSection);
 
-        const creditsSound = document.getElementById('credits-sound');
+        const musicToggles = document.querySelectorAll('[data-music-toggle]');
         const creditsTrack = new Audio('https://cdn.builder.io/o/assets%2F26554b2135c843e3bb89d528fbe1e0fe%2F6a37b0dbf51a41e997edaee46789bd9e?alt=media&token=9dd1bb40-b6c5-4058-b65d-0aa91201e689&apiKey=26554b2135c843e3bb89d528fbe1e0fe');
         creditsTrack.loop = true;
         creditsTrack.volume = 0.6;
@@ -960,8 +963,10 @@
 
         const setMusicState = (on) => {
             musicOn = on;
-            creditsSound.textContent = on ? 'Pause music' : 'Play music';
-            creditsSound.setAttribute('aria-pressed', String(on));
+            musicToggles.forEach(button => {
+                button.textContent = on ? 'Pause music' : 'Play music';
+                button.setAttribute('aria-pressed', String(on));
+            });
         };
 
         const startMusic = () => creditsTrack.play().then(() => setMusicState(true)).catch(() => setMusicState(false));
@@ -971,11 +976,7 @@
             setMusicState(false);
         };
 
-        creditsSound.addEventListener('click', () => (musicOn ? stopMusic() : startMusic()));
-
-        new IntersectionObserver(([entry]) => {
-            if (!entry.isIntersecting && musicOn) stopMusic();
-        }).observe(creditsSection);
+        musicToggles.forEach(button => button.addEventListener('click', () => (musicOn ? stopMusic() : startMusic())));
     </script>
 </body>
 </html>
