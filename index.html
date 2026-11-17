@@ -141,6 +141,34 @@
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; }
         .whatsapp-float img { width: 35px; }
 
+        .info-section { padding: 80px 5%; background: white; }
+        .info-section.alt { background: #f4f7f6; }
+        .section-heading { text-align: center; margin-bottom: 50px; }
+        .section-heading h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+        .section-heading h2 { color: #0d1b3e; font-size: 2.5rem; }
+        .calc-box { max-width: 600px; margin: 0 auto; background: white; border-radius: 10px; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .calc-box label { display: block; color: #0d1b3e; font-weight: 600; margin-bottom: 8px; }
+        .calc-box input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; margin-bottom: 20px; }
+        .calc-box button { width: 100%; background: #F58220; color: white; border: none; padding: 14px; font-weight: bold; font-size: 1rem; border-radius: 5px; cursor: pointer; transition: background 0.3s; }
+        .calc-box button:hover { background: #d96e15; }
+        .calc-result { display: none; margin-top: 25px; padding: 20px; background: #f4f7f6; border-left: 4px solid #00AEEF; color: #0d1b3e; text-align: center; font-weight: 600; line-height: 1.6; }
+        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .step-card { text-align: center; padding: 30px 20px; background: #f4f7f6; border-radius: 10px; }
+        .step-number { width: 50px; height: 50px; margin: 0 auto 15px; border-radius: 50%; background: #00AEEF; color: white; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+        .step-card h3 { color: #0d1b3e; font-size: 1.1rem; margin-bottom: 10px; }
+        .step-card p { color: #666; line-height: 1.6; font-size: 0.95rem; }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: white; border-radius: 8px; padding: 25px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .faq-item h3 { color: #0d1b3e; font-size: 1.1rem; margin-bottom: 10px; }
+        .faq-item p { color: #555; line-height: 1.7; }
+        .faq-item a { color: #00AEEF; font-weight: 600; }
+        .location-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .location-card { background: #f4f7f6; border-radius: 10px; padding: 30px; }
+        .location-card h3 { color: #0d1b3e; margin-bottom: 15px; }
+        .location-card p { color: #555; line-height: 1.7; margin-bottom: 10px; }
+        .location-card i { color: #00AEEF; margin-right: 6px; }
+        .map-link { display: inline-block; margin-top: 10px; background: #00AEEF; color: white; padding: 10px 18px; border-radius: 5px; font-weight: bold; }
+
         /* Mobile Responsiveness */
         @media (max-width: 900px) {
             .top-bar { display: none; }
@@ -162,6 +190,7 @@
             .loan-grid { grid-template-columns: 1fr; }
             .testimonial-grid { grid-template-columns: 1fr; }
             .news-grid { grid-template-columns: 1fr; }
+            .steps-grid, .location-grid { grid-template-columns: 1fr; }
             .news-header { flex-direction: column; align-items: flex-start; gap: 15px; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
@@ -192,11 +221,10 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#products">Products & Services</a></li>
-                <li><a href="#">Resources</a></li>
+                <li><a href="blank_form.html">Resources</a></li>
                 <li><a href="loan.html">Apply Loan</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact Us</a></li>
-                <li><a href="#" style="font-size: 1.1rem;"><i class="fas fa-search"></i></a></li>
             </ul>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -252,7 +280,7 @@
                 </div>
             </a>
             <!-- BOSA CARD -->
-            <a href="bosa.html" class="product-card" style="text-decoration: none;">
+            <a href="loan.html" class="product-card" style="text-decoration: none;">
                 <img src="https://images.unsplash.com/photo-1565514020179-026b92b84bb6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="BOSA">
                 <div class="product-card-content">
                     <div class="product-icon"><i class="fas fa-money-bill-wave"></i></div>
@@ -319,6 +347,99 @@
                 <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Emergency Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Emergency Loan</h3></div>
             </a>
+        </div>
+    </section>
+
+    <section class="info-section alt" id="calculator">
+        <div class="section-heading">
+            <h4>Plan Your Borrowing</h4>
+            <h2>Loan Calculator</h2>
+        </div>
+        <div class="calc-box">
+            <label for="loanAmount">Loan amount (KES)</label>
+            <input type="number" id="loanAmount" min="1" placeholder="e.g. 100000">
+            <label for="loanTerm">Repayment period (months)</label>
+            <input type="number" id="loanTerm" min="1" placeholder="e.g. 12">
+            <button type="button" onclick="calculateLoan()">Calculate Repayment</button>
+            <div class="calc-result" id="result"></div>
+        </div>
+    </section>
+
+    <section class="info-section" id="membership">
+        <div class="section-heading">
+            <h4>Become a Member</h4>
+            <h2>How To Join SmartLife SACCO</h2>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Visit or Call Us</h3>
+                <p>Visit our head office in Kapsowar or our Kapcherop branch, or call us to get started.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Get the Form</h3>
+                <p>Download the membership form from our <a href="blank_form.html">Downloads page</a>.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Submit Your Details</h3>
+                <p>Complete the form and submit it with your identification and other required documents.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Start Saving</h3>
+                <p>Once approved, begin saving and access our loan and FOSA products.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section alt" id="faq">
+        <div class="section-heading">
+            <h4>Questions &amp; Answers</h4>
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>What loans do you offer?</h3>
+                <p>We offer school fees, college/university, farm input, salary, development and emergency loans. <a href="loan.html">Apply here</a>.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How is loan interest calculated?</h3>
+                <p>Loans carry 1% interest per month. Use the <a href="#calculator">loan calculator</a> to estimate your monthly repayment.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I apply online?</h3>
+                <p>Yes. Complete the <a href="loan.html">loan application</a> on this website.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I bank from my phone?</h3>
+                <p>Yes. Our <a href="mobile.html">mobile banking</a> service lets FOSA members transact from their phones.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I reach you?</h3>
+                <p>Call <a href="tel:+254207606429">020 7606429</a> or <a href="tel:+254207606432">020 760 6432</a>, email <a href="mailto:info@smartlifesacco.co.ke">info@smartlifesacco.co.ke</a>, or chat with us on <a href="https://wa.me/254727111633" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="locations">
+        <div class="section-heading">
+            <h4>Visit Us</h4>
+            <h2>Our Branches</h2>
+        </div>
+        <div class="location-grid">
+            <div class="location-card">
+                <h3>Head Office, Kapsowar</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Marakwet Teachers Plaza, Kapsowar</p>
+                <p>P.O. Box 118-30705, Kapsowar</p>
+                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Marakwet+Teachers+Plaza+Kapsowar" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </div>
+            <div class="location-card">
+                <h3>Kapcherop Branch</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Serving the Kapcherop Division and its environs</p>
+                <p>Call <a href="tel:+254207606432">020 760 6432</a> for directions.</p>
+            </div>
         </div>
     </section>
 
@@ -393,6 +514,7 @@
             <div class="footer-col">
                 <img src="logo.png" alt="Logo" style="height: 80px; margin-bottom: 20px;">
                 <p style="color: #00AEEF; font-weight: bold;">Together We Prosper</p>
+                <p>Incorporated and licensed to transact business since 1995.</p>
             </div>
             <div class="footer-col">
                 <h3>Get In Touch</h3>
@@ -402,10 +524,10 @@
             </div>
             <div class="footer-col">
                 <h3>Useful Links</h3>
-                <a href="bosa.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> BOSA</a>
+                <a href="loan.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> BOSA</a>
                 <a href="fosa.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FOSA</a>
                 <a href="mobile.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Mobile Banking</a>
-                <a href="#"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FAQ</a>
+                <a href="#faq"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FAQ</a>
                 <a href="blank_form.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Downloads</a>
             </div>
             <div class="footer-col">
@@ -433,6 +555,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
+    <script src="script.js"></script>
     <!-- JAVASCRIPT FOR HERO SLIDER -->
     <script>
         const slides = [
