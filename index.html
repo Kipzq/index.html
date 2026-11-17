@@ -37,6 +37,12 @@
         .hero-text h1 { font-size: 3.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
         .hero-text h1 .highlight { color: #00AEEF; }
         .hero-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; color: #d1d5db; }
+        .hero-text.animate > * { animation: heroFadeIn 0.8s ease both; }
+        .hero-text.animate > :nth-child(2) { animation-delay: 0.15s; }
+        .hero-text.animate > :nth-child(3) { animation-delay: 0.3s; }
+        .hero-text.animate > :nth-child(4) { animation-delay: 0.45s; }
+        @keyframes heroFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) { .hero-text.animate > * { animation: none; } }
         
         .hero-buttons { display: flex; gap: 15px; }
         .btn-outline { border: 2px solid white; color: white; padding: 12px 30px; font-weight: bold; transition: 0.3s; }
@@ -238,7 +244,7 @@
 
     <!-- 3. HERO SLIDER -->
     <section class="hero-split" id="home">
-        <div class="hero-text">
+        <div class="hero-text animate">
             <div class="subtitle">Welcome to SmartLife SACCO</div>
             <h1 id="heroTitle">Strong Heritage.<br><span class="highlight">Smart Future.</span></h1>
             <p id="heroDesc">We transform our member's lives through provision of affordable innovative and accessible Financial Services.</p>
@@ -600,6 +606,10 @@
             document.getElementById('heroImage').style.backgroundImage = `url('${slides[currentSlide].image}')`;
             document.getElementById('heroTitle').innerHTML = slides[currentSlide].title;
             document.getElementById('heroDesc').innerText = slides[currentSlide].desc;
+            const heroText = document.querySelector('.hero-text');
+            heroText.classList.remove('animate');
+            void heroText.offsetWidth;
+            heroText.classList.add('animate');
         }
 
         function nextSlide() {
