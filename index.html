@@ -57,31 +57,13 @@
         .arrow-right { right: 0; }
 
         /* 4. About Section */
-        .about-section { display: flex; flex-wrap: wrap; padding: 80px 5%; background: #1a2b5e; align-items: center; gap: 50px; }
+        .about-section { display: flex; padding: 80px 5%; background: #1a2b5e; align-items: center; gap: 50px; }
         .about-image { width: 50%; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .about-image img, .about-image video { width: 100%; height: auto; display: block; }
         .about-text { width: 50%; }
         .about-text h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
         .about-text h2 { color: white; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
         .about-text p { color: white; line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; }
-
-        .about-credits { flex-basis: 100%; width: 100%; background: #0d1b3e; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); overflow: hidden; }
-        .credits-viewport { height: 480px; overflow: hidden; position: relative; -webkit-mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent); }
-        .credits-roll { position: absolute; top: 0; left: 0; width: 100%; padding: 40px 6%; text-align: center; color: white; animation: creditsRoll 90s linear infinite; }
-        .credits-viewport:hover .credits-roll { animation-play-state: paused; }
-        @keyframes creditsRoll { from { transform: translateY(100vh); } to { transform: translateY(-100%); } }
-        .credits-title { color: #00AEEF; font-size: 2rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 40px; }
-        .credits-end { color: #F58220; font-size: 1.6rem; font-weight: bold; letter-spacing: 1px; margin-top: 40px; }
-        .credit-block { margin-bottom: 40px; }
-        .credit-heading { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 1.1rem; margin-bottom: 14px; }
-        .credit-subhead { color: white; font-weight: bold; font-size: 1.05rem; margin: 18px 0 8px; }
-        .credit-text { color: #e5e7eb; line-height: 1.7; max-width: 640px; margin: 0 auto 10px; font-size: 1.05rem; }
-        .credit-list { list-style: none; color: #e5e7eb; line-height: 1.9; max-width: 640px; margin: 0 auto; font-size: 1.05rem; }
-        .credit-row { display: flex; justify-content: space-between; gap: 20px; max-width: 520px; margin: 0 auto; padding: 4px 0; color: #e5e7eb; border-bottom: 1px dashed rgba(255,255,255,0.15); }
-        .credit-row span:last-child { color: #F58220; font-weight: bold; white-space: nowrap; }
-        .credit-note { color: #F58220; font-style: italic; font-size: 0.95rem; margin-top: 10px; }
-        .credit-contact a { color: #00AEEF; }
-        @media (prefers-reduced-motion: reduce) { .credits-viewport { height: auto; max-height: 480px; overflow-y: auto; -webkit-mask-image: none; mask-image: none; } .credits-roll { position: relative; animation: none; } }
 
         /* 5. Products Section */
         .products-section { padding: 80px 5%; background: #87CEEB; text-align: center; }
@@ -229,9 +211,6 @@
             .slider-arrow { display: none; }
             .about-section { flex-direction: column; }
             .about-image, .about-text { width: 100%; }
-            .credits-viewport { height: 380px; }
-            .credits-title { font-size: 1.5rem; }
-            .credit-heading { font-size: 1rem; }
             .commitment-section { flex-direction: column; }
             .commitment-text, .commitment-image { width: 100%; }
             .loan-grid { grid-template-columns: 1fr; }
@@ -309,142 +288,6 @@
             <h2>Building, Managing And Preserving Your Wealth</h2>
             <p>Smartlife Sacco Society Ltd (formerly Marakwet Teachers SACCO) was incorporated and licensed to transact business in 1995 with one branch in Kapsowar which also acts as headquarters. From a humble beginning, the SACCO has grown from strength to strength and has established the first branch in Kapcherop to serve members in the Kapcherop Division and its environs.</p>
             <p>The Sacco will expand its operation to including opening of new branches. This growth has as a result of clear vision by the founders and management of the SACCO who are committed to bringing efficient financial services closer to the members especially within the county and beyond.</p>
-        </div>
-        <div class="about-credits">
-            <div class="credits-viewport">
-                <div class="credits-roll">
-                    <h2 class="credits-title">Customer Service Charter</h2>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">Our Commitment</h3>
-                        <p class="credit-text">This Customer Service Charter marks an important milestone in Smartlife Sacco Society's commitment to excellence in service delivery. It is a commitment by the Sacco to offer excellent service to all its customers and stakeholders.</p>
-                    </div>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">Mission</h3>
-                        <p class="credit-text">To mobilize funds from members with a view to providing innovative and quality financial services to improve their standards of living.</p>
-                    </div>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">Vision</h3>
-                        <p class="credit-text">To be the ultimate choice in offering first class financial services to our customers.</p>
-                    </div>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">Core Values</h3>
-                        <ul class="credit-list">
-                            <li>Integrity</li>
-                            <li>Transparency and accountability</li>
-                            <li>Honesty</li>
-                            <li>Timeliness</li>
-                            <li>Efficiency and effectiveness</li>
-                            <li>Customer satisfaction</li>
-                        </ul>
-                    </div>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">Our Obligations</h3>
-                        <p class="credit-text">We shall endeavour to provide you with highest level of customer service by:</p>
-                        <ul class="credit-list">
-                            <li>Treating you with courtesy and consideration</li>
-                            <li>Resolving complaints fairly, consistently and promptly</li>
-                            <li>Providing accurate, complete and up to date information</li>
-                            <li>Serving you efficiently, diligently and with professionalism</li>
-                            <li>Informing you in good time of any changes and interruptions in service delivery</li>
-                            <li>Actively seeking your thoughts and suggestions on how we can serve you better</li>
-                        </ul>
-                    </div>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">Service Charter Delivery Commitments</h3>
-                        <p class="credit-text">Below are the time frames within which you can expect us to deliver the respective services</p>
-
-                        <h4 class="credit-subhead">Loan Processing</h4>
-                        <div class="credit-row"><span>Emergency loan</span><span>24 hours</span></div>
-                        <div class="credit-row"><span>School fees loan</span><span>24 hours</span></div>
-                        <div class="credit-row"><span>College/university fees</span><span>24 hours</span></div>
-                        <div class="credit-row"><span>Development loan</span><span>1 month</span></div>
-                        <div class="credit-row"><span>Super smart loan</span><span>1 month</span></div>
-                        <div class="credit-row"><span>Farm input loan</span><span>24 hours</span></div>
-                        <div class="credit-row"><span>Smart loan</span><span>3 days</span></div>
-                        <div class="credit-row"><span>Salary advances</span><span>24 hours</span></div>
-                        <div class="credit-row"><span>Micro loans</span><span>14 days</span></div>
-                        <p class="credit-note">*Closure of payroll usually affects the above timelines!</p>
-
-                        <h4 class="credit-subhead">Members Registration</h4>
-                        <div class="credit-row"><span>New member</span><span>24 hours</span></div>
-                        <div class="credit-row"><span>Rejoining registration</span><span>48 hours</span></div>
-                        <div class="credit-row"><span>Member card</span><span>24 hours</span></div>
-
-                        <h4 class="credit-subhead">Account Opening</h4>
-                        <div class="credit-row"><span>Savings account</span><span>10 minutes</span></div>
-                        <div class="credit-row"><span>Junior account</span><span>10 minutes</span></div>
-                        <div class="credit-row"><span>Fixed deposit account</span><span>10 minutes</span></div>
-                        <div class="credit-row"><span>Group/corporate account</span><span>24 hours</span></div>
-
-                        <h4 class="credit-subhead">ATM Processing</h4>
-                        <div class="credit-row"><span>ATM card</span><span>14 days</span></div>
-                        <div class="credit-row"><span>ATM PIN</span><span>14 days</span></div>
-
-                        <h4 class="credit-subhead">M-Banking Registration</h4>
-                        <div class="credit-row"><span>New registration</span><span>10 minutes</span></div>
-                        <div class="credit-row"><span>M-Banking PIN</span><span>10 minutes</span></div>
-
-                        <h4 class="credit-subhead">Counter Transactions</h4>
-                        <div class="credit-row"><span>Deposit</span><span>5 minutes</span></div>
-                        <div class="credit-row"><span>Withdrawal</span><span>5 minutes</span></div>
-
-                        <h4 class="credit-subhead">Statement Request</h4>
-                        <div class="credit-row"><span>Account statement</span><span>10 minutes</span></div>
-                        <div class="credit-row"><span>Loan statement</span><span>20 minutes</span></div>
-
-                        <h4 class="credit-subhead">Other Requests</h4>
-                        <div class="credit-row"><span>Internal account transfer</span><span>20 minutes</span></div>
-                        <div class="credit-row"><span>Standing order processing</span><span>30 minutes</span></div>
-                        <div class="credit-row"><span>Salary processing request</span><span>1 month</span></div>
-                        <div class="credit-row"><span>Share variation</span><span>1 month</span></div>
-                        <div class="credit-row"><span>Banker cheque</span><span>10 minutes</span></div>
-                        <div class="credit-row"><span>Cheque clearance</span><span>4 days</span></div>
-                        <div class="credit-row"><span>Erroneous deductions refund</span><span>24 hours</span></div>
-
-                        <h4 class="credit-subhead">Next of Kin Application</h4>
-                        <div class="credit-row"><span>Updating nominees form</span><span>24 hours</span></div>
-                        <div class="credit-row"><span>Claim processing and payment</span><span>48 hours</span></div>
-
-                        <h4 class="credit-subhead">SRF Application</h4>
-                        <div class="credit-row"><span>Updating spouse and children details</span><span>24 hours</span></div>
-                        <div class="credit-row"><span>Claim processing and payments</span><span>48 hours</span></div>
-                        <div class="credit-row"><span>Withdrawal application</span><span>60 days</span></div>
-                    </div>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">Background</h3>
-                        <p class="credit-text">The society's membership is spread across Elgeyo Marakwet County and beyond.</p>
-                    </div>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">1.0 Background Information</h3>
-                        <p class="credit-text">Marakwet Teachers SACCO Society Limited was incorporated and licensed in 1995 after a split of Keiyo/Marakwet Teachers SACCO Society with the main objective of mobilizing savings for onward lending to the Members. The SACCO Members are drawn from the employees of Teachers Service Commission (TSC) and related institutions such as the Ministry of Education and Kenya Union of Teachers (KNUT) within the larger Marakwet District.</p>
-                        <p class="credit-text">The SACCO started with 873 Members at the beginning and has grown to a current Membership of 3,104 at the back office (BOSA). In the year 2004 the SACCO started FOSA business and was licensed by the Commissioner of Cooperatives in the year 2007. FOSA membership is 4,951, and total membership stands at 8,055. The SACCO has since opened its common bond to incorporate all stakeholders.</p>
-                    </div>
-
-                    <div class="credit-block">
-                        <h3 class="credit-heading">2.0 Physical Location</h3>
-                        <p class="credit-text">Marakwet District is one of the districts forming Rift Valley Province. It was carved out of Keiyo Marakwet District in 1994. It is bordered by West Pokot to the North, Trans-Nzoia to the West, Uasin Gishu to the Southwest, Keiyo to the South and Baringo to the East.</p>
-                        <p class="credit-text">The SACCO's registered office is in Kapsowar trading centre (Marakwet District headquarters) and its postal address is P.O Box 118-30705, Kapsowar. The office serves as the headquarters of the SACCO. In addition, the SACCO has a FOSA outlet in Kapcherop trading centre.</p>
-                    </div>
-
-                    <div class="credit-block credit-contact">
-                        <h3 class="credit-heading">Get In Touch</h3>
-                        <p class="credit-text">Head office: Kapsowar, Marakwet Teachers Plaza, P.O Box 118-30705</p>
-                        <p class="credit-text">Email: <a href="mailto:info@smartlifesacco.co.ke">info@smartlifesacco.co.ke</a></p>
-                        <p class="credit-text">Phone: 020 7606429</p>
-                        <p class="credit-text">Support: 020 760 6432</p>
-                    </div>
-
-                    <p class="credits-end">Together we prosper</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -658,53 +501,6 @@
         </div>
     </section>
 
-    <!-- 10. FOOTER -->
-    <footer class="main-footer" id="contact">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <img src="logo.png" alt="Logo" style="height: 80px; margin-bottom: 20px;">
-                <p style="color: #00AEEF; font-weight: bold;">Together We Prosper</p>
-                <p>Incorporated and licensed to transact business since 1995.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Get In Touch</h3>
-                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <span>Head office-Kapsowar,<br>Marakwet Teachers Plaza,<br>P.O BOX 118-30705.</span></div>
-                <div class="contact-item"><i class="fas fa-envelope"></i> <span>info@smartlifesacco.co.ke</span></div>
-                <div class="contact-item"><i class="fas fa-phone"></i> <span>Phone: 020 7606429<br>Support: 020 760 6432</span></div>
-            </div>
-            <div class="footer-col">
-                <h3>Useful Links</h3>
-                <a href="loan.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> BOSA</a>
-                <a href="fosa.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FOSA</a>
-                <a href="mobile.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Mobile Banking</a>
-                <a href="#faq"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FAQ</a>
-                <a href="blank_form.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Downloads</a>
-            </div>
-            <div class="footer-col">
-                <h3>Recent Posts</h3>
-                <a href="tenders.html" style="margin-bottom: 10px; display: block;">Tenders advert for 2027</a>
-                <div style="display: flex; gap: 10px; margin-top: 10px;">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
-                    <a href="news1.html" style="font-size: 0.85rem; line-height: 1.4;">Opportunities why Sacco's should further be digitized</a>
-                </div>
-                <div style="display: flex; gap: 10px; margin-top: 10px;">
-                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
-                    <a href="news2.html" style="font-size: 0.85rem; line-height: 1.4;">Economic impact of covid-19 pandemic to Sacco's</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>Copyright © 2026 Smartlife Savings and Credit All rights reserved.</p>
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </footer>
-
-
     <!-- 8. TESTIMONIAL SECTION -->
     <section class="testimonial-section">
         <h4>Testimonial</h4>
@@ -769,6 +565,48 @@
             </div>
         </div>
     </section>
+
+    <!-- 10. FOOTER -->
+    <footer class="main-footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="logo.png" alt="Logo" style="height: 80px; margin-bottom: 20px;">
+                <p style="color: #00AEEF; font-weight: bold;">Together We Prosper</p>
+                <p>Incorporated and licensed to transact business since 1995.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Get In Touch</h3>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <span>Head office-Kapsowar,<br>Marakwet Teachers Plaza,<br>P.O BOX 118-30705.</span></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i> <span>info@smartlifesacco.co.ke</span></div>
+                <div class="contact-item"><i class="fas fa-phone"></i> <span>Phone: 020 7606429<br>Support: 020 760 6432</span></div>
+            </div>
+            <div class="footer-col">
+                <h3>Useful Links</h3>
+                <a href="loan.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> BOSA</a>
+                <a href="fosa.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FOSA</a>
+                <a href="mobile.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Mobile Banking</a>
+                <a href="#faq"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> FAQ</a>
+                <a href="blank_form.html"><i class="fas fa-check" style="color: #00AEEF; margin-right: 5px;"></i> Downloads</a>
+            </div>
+            <div class="footer-col">
+                <h3>Recent Posts</h3>
+                <a href="tenders.html" style="margin-bottom: 10px; display: block;">Tenders advert for 2027</a>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
+                    <a href="news1.html" style="font-size: 0.85rem; line-height: 1.4;">Opportunities why Sacco's should further be digitized</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 Smartlife Savings and Credit All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
 
     <!-- WhatsApp Float -->
     <a href="https://wa.me/254727111633" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
