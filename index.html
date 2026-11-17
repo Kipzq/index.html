@@ -960,6 +960,7 @@
         creditsTrack.loop = true;
         creditsTrack.volume = 0.6;
         let musicOn = false;
+        let shouldPlay = false;
 
         const setMusicState = (on) => {
             musicOn = on;
@@ -976,7 +977,29 @@
             setMusicState(false);
         };
 
-        musicToggles.forEach(button => button.addEventListener('click', () => (musicOn ? stopMusic() : startMusic())));
+        musicToggles.forEach(button => button.addEventListener('click', () => {
+            if (musicOn) {
+                shouldPlay = false;
+                stopMusic();
+            } else {
+                shouldPlay = true;
+                startMusic();
+            }
+        }));
+
+        const playWhenAllowed = () => {
+            if (shouldPlay && !musicOn) startMusic();
+        };
+
+        ['pointerdown', 'keydown'].forEach(type => document.addEventListener(type, (event) => {
+            if (!event.target.closest('[data-music-toggle]')) playWhenAllowed();
+        }, { passive: true }));
+
+        new IntersectionObserver(([entry]) => {
+            shouldPlay = entry.isIntersecting;
+            if (shouldPlay) playWhenAllowed();
+            else stopMusic();
+        }).observe(creditsSection);
     </script>
 </body>
 </html>
