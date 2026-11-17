@@ -176,6 +176,23 @@
         .location-card i { color: #00AEEF; margin-right: 6px; }
         .map-link { display: inline-block; margin-top: 10px; background: #00AEEF; color: white; padding: 10px 18px; border-radius: 5px; font-weight: bold; }
 
+        /* Product Details Modal */
+        .product-card { cursor: pointer; }
+        .product-modal { position: fixed; inset: 0; background: rgba(13,27,62,0.75); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
+        .product-modal[hidden] { display: none; }
+        .product-modal-dialog { background: white; border-radius: 10px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 36px 28px; position: relative; }
+        .product-modal-close { position: absolute; top: 10px; right: 16px; background: none; border: none; font-size: 2rem; color: #0d1b3e; cursor: pointer; line-height: 1; }
+        .pm-title { display: inline-block; background: #F58220; color: white; padding: 8px 16px; font-size: 1.2rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+        .pm-intro { color: #555; line-height: 1.7; margin-bottom: 20px; }
+        .pm-section { margin-bottom: 22px; }
+        .pm-section h3 { color: #0d1b3e; font-size: 1.05rem; margin-bottom: 8px; }
+        .pm-section h3::before { content: "\2022  "; color: #00AEEF; }
+        .pm-section li { list-style: none; color: #555; line-height: 1.6; padding-left: 22px; position: relative; margin-bottom: 6px; }
+        .pm-section li::before { content: "\2713"; position: absolute; left: 0; color: #00AEEF; font-weight: bold; }
+        .pm-note { font-size: 0.85rem; font-style: italic; color: #0d1b3e; font-weight: bold; margin-bottom: 20px; }
+        .pm-cta { display: inline-block; background: #F58220; color: white; padding: 12px 30px; font-weight: bold; border-radius: 3px; transition: background 0.3s; }
+        .pm-cta:hover { background: #d96e15; }
+
         /* Mobile Responsiveness */
         @media (max-width: 900px) {
             .top-bar { display: none; }
@@ -278,32 +295,32 @@
         <h2>Our Products & Services</h2>
         <div class="product-grid">
             <!-- FOSA CARD (UPDATED LINK) -->
-            <a href="fosa_form.html" class="product-card" style="text-decoration: none;">
+            <div class="product-card" data-product="fosa" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="FOSA">
                 <div class="product-card-content">
                     <div class="product-icon"><i class="fas fa-database"></i></div>
                     <h3>FOSA Products</h3>
                     <p>FOSA is our banking arm that provides basic and affordable banking services to meet members' needs.</p>
                 </div>
-            </a>
+            </div>
             <!-- BOSA CARD -->
-            <a href="loan.html" class="product-card" style="text-decoration: none;">
+            <div class="product-card" data-product="bosa" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1565514020179-026b92b84bb6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="BOSA">
                 <div class="product-card-content">
                     <div class="product-icon"><i class="fas fa-money-bill-wave"></i></div>
                     <h3>BOSA Products</h3>
                     <p>We have a wide range of BOSA products. Check on our BOSA products page for various loan products.</p>
                 </div>
-            </a>
+            </div>
             <!-- MOBILE BANKING CARD -->
-            <a href="mobile.html" class="product-card" style="text-decoration: none;">
+            <div class="product-card" data-product="mobile" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Mobile Banking">
                 <div class="product-card-content">
                     <div class="product-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Mobile Banking</h3>
                     <p>Enables our FOSA members to transact through their mobile phones at the comfort of their work places/homes.</p>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
@@ -585,6 +602,13 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
+    <div class="product-modal" id="productModal" hidden>
+        <div class="product-modal-dialog" role="dialog" aria-modal="true">
+            <button type="button" class="product-modal-close" data-close aria-label="Close">&times;</button>
+            <div id="productModalBody"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <!-- JAVASCRIPT FOR HERO SLIDER -->
     <script>
@@ -624,6 +648,88 @@
 
         // Auto-rotate every 5 seconds
         setInterval(nextSlide, 5000);
+    </script>
+    <script>
+        const productDetails = {
+            fosa: {
+                title: "FOSA Products",
+                intro: "FOSA is our front office service activity, a one-stop shop for members' banking needs with savings, salary processing and short and long term credit at competitive rates.",
+                sections: [
+                    { heading: "Services", points: ["Savings facility for members", "Processing of salaries and dividend payments", "ATM access through the Sacco Link Card", "Cheque encashment and sale of bankers cheques", "Standing orders and Sacco payments to your FOSA account"] },
+                    { heading: "Loan Products", points: ["<strong>Smart Loan:</strong> 3 times your deposit, 2% p.m. on reducing balance, up to 24 months", "<strong>Diamond Advance:</strong> up to 3 months", "<strong>Salary Advance:</strong> up to 1 month, half your net salary, available after the 15th, 10% repayable on salary", "<strong>Salary in Advance:</strong> up to 1 month, half your net salary, available from the 6th to the 15th", "<strong>Cheque Advance:</strong> payment on cheque deposits before maturity"] },
+                    { heading: "Requirements for Account Opening", points: ["FOSA account application form", "Passport size photo", "Copy of National ID or passport"] }
+                ],
+                note: "Most FOSA loans require your salary to be channelled through FOSA.",
+                cta: { label: "Go to FOSA Form", href: "fosa_form.html" }
+            },
+            bosa: {
+                title: "BOSA Loan Products",
+                sections: [
+                    { heading: "Normal / Development", points: ["Available at 1% p.m on reducing balance, repayable within 48 months"] },
+                    { heading: "Super Smart Loans", points: ["Available at 1% p.m on reducing balance, repayable within 60 months"] },
+                    { heading: "Smart Vision Loans", points: ["Available at 1% p.m on reducing balance, repayable for 72 months"] },
+                    { heading: "Emergency", points: ["Issued for emergency cases only, duly accompanied with supporting documents"] },
+                    { heading: "Farm Input", points: ["Issued between February and April every year"] },
+                    { heading: "College / University Fees", points: ["Treated as a development loan", "Paid through cheque on a trimester or semester basis"] },
+                    { heading: "Micro Credit", points: ["1.5% p.m on straight line basis, payable in 12 months, on graduation model"] },
+                    { heading: "Women Enterprise", points: ["Targets unemployed women, as per Govt. regulations and the society's credit policy"] },
+                    { heading: "Karibu Loan", points: ["For newly recruited members who have not yet accumulated enough shares, to meet development and emergency needs"] }
+                ],
+                note: "All BOSA product interest is subject to upfront interest and other terms and conditions apply.",
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            mobile: {
+                title: "Mobile Banking",
+                intro: "Mobile banking lets FOSA members transact from their phones, at work or at home.",
+                sections: [
+                    { heading: "How to Get Started", points: ["Fill and submit the Mobile Banking Application Form at any SACCO office", "Dial *645# or install the Smartlife Sacco App from the Play Store (Android)", "Verify your membership with the phone number on your form, then log in with the PIN sent to your phone"] },
+                    { heading: "Mobile Banking Loan Products", points: ["<strong>Salary in Advance:</strong> open to members who process their salary through FOSA, 1 month repayment, 10% interest, recoverable from FOSA account"] }
+                ],
+                cta: { label: "Visit Mobile Banking Page", href: "mobile.html" }
+            }
+        };
+
+        const productModal = document.getElementById('productModal');
+        const productModalBody = document.getElementById('productModalBody');
+
+        function renderSections(sections) {
+            return sections.map(s => `<div class="pm-section"><h3>${s.heading}</h3><ul>${s.points.map(pt => `<li>${pt}</li>`).join('')}</ul></div>`).join('');
+        }
+
+        function openProduct(key) {
+            const p = productDetails[key];
+            productModalBody.innerHTML = `
+                <div class="pm-title">${p.title}</div>
+                ${p.intro ? `<p class="pm-intro">${p.intro}</p>` : ''}
+                ${renderSections(p.sections)}
+                ${p.note ? `<p class="pm-note">${p.note}</p>` : ''}
+                <a class="pm-cta" href="${p.cta.href}">${p.cta.label}</a>
+            `;
+            productModal.hidden = false;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProduct() {
+            productModal.hidden = true;
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.product-card[data-product]').forEach(card => {
+            card.addEventListener('click', () => openProduct(card.dataset.product));
+            card.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openProduct(card.dataset.product);
+                }
+            });
+        });
+
+        productModal.addEventListener('click', e => {
+            if (e.target === productModal || e.target.closest('[data-close]')) closeProduct();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !productModal.hidden) closeProduct();
+        });
     </script>
 </body>
 </html>
