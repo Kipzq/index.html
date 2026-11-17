@@ -216,8 +216,10 @@
         .credits-end { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 0 20px; opacity: 0; animation: creditsEnd 3s ease 106s both; }
         .credits-end img { width: min(220px, 55vw); height: auto; }
         .credits-end p { margin: 0; color: #f5f1e6; font-size: clamp(0.95rem, 2vw, 1.4rem); letter-spacing: 3px; }
-        .credits-skip { position: absolute; right: 24px; bottom: calc(8% + 12px); z-index: 4; padding: 8px 14px; border: 1px solid rgba(212,175,55,0.6); border-radius: 20px; color: #d4af37; font-size: 0.8rem; letter-spacing: 2px; text-decoration: none; text-transform: uppercase; }
-        .credits-skip:hover { background: rgba(212,175,55,0.15); }
+        .credits-skip, .credits-sound { position: absolute; bottom: calc(8% + 12px); z-index: 4; padding: 8px 14px; border: 1px solid rgba(212,175,55,0.6); border-radius: 20px; background: transparent; color: #d4af37; font: inherit; font-size: 0.8rem; letter-spacing: 2px; text-decoration: none; text-transform: uppercase; cursor: pointer; }
+        .credits-skip { right: 24px; }
+        .credits-sound { left: 24px; }
+        .credits-skip:hover, .credits-sound:hover { background: rgba(212,175,55,0.15); }
         .credits-section:not(.is-visible) .credits-anim { animation-play-state: paused; }
         .credits-section.is-visible:hover .credits-anim { animation-play-state: paused; }
         @keyframes creditsRoll { from { transform: translate3d(0, 100vh, 0); } to { transform: translate3d(0, -100%, 0); } }
@@ -227,7 +229,7 @@
         @keyframes creditsParticles { from { background-position: 0 0, 0 0; } to { background-position: 0 -2200px, 0 -3400px; } }
         @media (prefers-reduced-motion: reduce) {
             .credits-section { height: auto; min-height: 0; padding: 80px 5% 40px; overflow: visible; }
-            .credits-section::before, .credits-section::after, .credits-light, .credits-stars, .credits-opening, .credits-skip { display: none; }
+            .credits-section::before, .credits-section::after, .credits-light, .credits-stars, .credits-opening, .credits-skip, .credits-sound { display: none; }
             .credits-viewport { position: static; overflow: visible; }
             .credits-track { position: static; padding: 0; animation: none; transform: none; }
             .credits-end { position: static; opacity: 1; animation: none; padding: 60px 0 0; }
@@ -398,6 +400,7 @@
             <p class="credits-tagline">TOGETHER WE PROSPER.</p>
         </div>
 
+        <button class="credits-sound" id="credits-sound" type="button" aria-pressed="false">Play music</button>
         <a class="credits-skip" href="#contact">Skip credits</a>
     </section>
 
@@ -948,6 +951,69 @@
             }
         }, { threshold: 0.4 });
         creditsObserver.observe(creditsSection);
+
+        const creditsSound = document.getElementById('credits-sound');
+        const chords = [
+            [110, 130.81, 164.81, 196],
+            [87.31, 110, 130.81, 174.61],
+            [130.81, 164.81, 196, 246.94],
+            [98, 123.47, 146.83, 196]
+        ];
+        let audioCtx = null, masterGain = null, voices = [], chordTimer = null, chordStep = 0, musicOn = false;
+
+        const setChord = () => {
+            const chord = chords[chordStep++ % chords.length];
+            voices.forEach(v => v.osc.frequency.setTargetAtTime(chord[v.index] * v.mult, audioCtx.currentTime, 1.5));
+        };
+
+        const buildAmbience = () => {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            masterGain = audioCtx.createGain();
+            masterGain.gain.value = 0;
+            masterGain.connect(audioCtx.destination);
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 900;
+            filter.connect(masterGain);
+            for (let index = 0; index < 4; index++) {
+                [[1, 0.12], [2, 0.03]].forEach(([mult, level]) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.value = chords[0][index] * mult;
+                    gain.gain.value = level;
+                    osc.connect(gain);
+                    gain.connect(filter);
+                    osc.start();
+                    voices.push({ osc, index, mult });
+                });
+            }
+        };
+
+        const startMusic = () => {
+            if (!audioCtx) buildAmbience();
+            audioCtx.resume();
+            setChord();
+            chordTimer = setInterval(setChord, 8000);
+            masterGain.gain.setTargetAtTime(0.35, audioCtx.currentTime, 1.5);
+            musicOn = true;
+            creditsSound.textContent = 'Pause music';
+            creditsSound.setAttribute('aria-pressed', 'true');
+        };
+
+        const stopMusic = () => {
+            clearInterval(chordTimer);
+            masterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.6);
+            musicOn = false;
+            creditsSound.textContent = 'Play music';
+            creditsSound.setAttribute('aria-pressed', 'false');
+        };
+
+        creditsSound.addEventListener('click', () => (musicOn ? stopMusic() : startMusic()));
+
+        new IntersectionObserver(([entry]) => {
+            if (!entry.isIntersecting && musicOn) stopMusic();
+        }).observe(creditsSection);
     </script>
 </body>
 </html>
