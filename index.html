@@ -973,13 +973,13 @@
             masterGain.connect(audioCtx.destination);
             const filter = audioCtx.createBiquadFilter();
             filter.type = 'lowpass';
-            filter.frequency.value = 900;
+            filter.frequency.value = 2200;
             filter.connect(masterGain);
             for (let index = 0; index < 4; index++) {
-                [[1, 0.12], [2, 0.03]].forEach(([mult, level]) => {
+                [[1, 0.2], [2, 0.12], [3, 0.05]].forEach(([mult, level]) => {
                     const osc = audioCtx.createOscillator();
                     const gain = audioCtx.createGain();
-                    osc.type = 'sine';
+                    osc.type = 'triangle';
                     osc.frequency.value = chords[0][index] * mult;
                     gain.gain.value = level;
                     osc.connect(gain);
@@ -995,7 +995,7 @@
             audioCtx.resume();
             setChord();
             chordTimer = setInterval(setChord, 8000);
-            masterGain.gain.setTargetAtTime(0.35, audioCtx.currentTime, 1.5);
+            masterGain.gain.setTargetAtTime(0.5, audioCtx.currentTime, 1.5);
             musicOn = true;
             creditsSound.textContent = 'Pause music';
             creditsSound.setAttribute('aria-pressed', 'true');
