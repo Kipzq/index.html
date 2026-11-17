@@ -348,10 +348,10 @@
         <h4>Our process is simple &amp; transparent</h4>
         <h2>Our Loan Services</h2>
         <div class="loan-grid">
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            <div class="loan-item" data-product="school-fees-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="School Fees Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>School Fees Loan</h3></div>
-            </a>
+            </div>
             <div class="loan-item" data-product="college-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="College Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>College/University Loan</h3></div>
@@ -741,6 +741,13 @@
                     { heading: "Terms", points: ["1.5% p.m on straight line basis, payable in 12 months, on graduation model"] }
                 ],
                 note: bosaNote,
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "school-fees-loan": {
+                title: "School Fees Loan",
+                sections: [
+                    { heading: "Terms", points: ["Repayable within 36 months"] }
+                ],
                 cta: { label: "Apply for a Loan", href: "loan.html" }
             }
         };
