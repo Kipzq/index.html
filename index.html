@@ -57,17 +57,17 @@
         .arrow-right { right: 0; }
 
         /* 4. About Section */
-        .about-section { display: flex; padding: 80px 5%; background: white; align-items: center; gap: 50px; }
+        .about-section { display: flex; padding: 80px 5%; background: #1a2b5e; align-items: center; gap: 50px; }
         .about-image { width: 50%; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .about-image img { width: 100%; height: auto; display: block; }
+        .about-image img, .about-image video { width: 100%; height: auto; display: block; }
         .about-text { width: 50%; }
         .about-text h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
-        .about-text h2 { color: #0d1b3e; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
-        .about-text p { color: #555; line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; }
+        .about-text h2 { color: white; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
+        .about-text p { color: white; line-height: 1.8; margin-bottom: 15px; font-size: 1.05rem; }
 
         /* 5. Products Section */
-        .products-section { padding: 80px 5%; background: #f4f7f6; text-align: center; }
-        .products-section h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+        .products-section { padding: 80px 5%; background: #87CEEB; text-align: center; }
+        .products-section h4 { color: #1a2b5e; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
         .products-section h2 { color: #0d1b3e; font-size: 2.5rem; margin-bottom: 50px; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .product-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left; transition: transform 0.3s; }
@@ -97,9 +97,11 @@
         .loan-item { position: relative; border-radius: 8px; overflow: hidden; height: 250px; cursor: pointer; }
         .loan-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .loan-item:hover img { transform: scale(1.1); }
-        .loan-item-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 27, 62, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; }
+        .loan-item-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 27, 62, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .loan-item:hover .loan-item-overlay, .loan-item:focus-visible .loan-item-overlay { opacity: 1; }
         .loan-item-overlay i { font-size: 1.5rem; margin-bottom: 10px; }
-        .loan-item-overlay h3 { font-size: 1.2rem; }
+        .loan-item-overlay h3 { font-size: 1.2rem; transform: scale(0.6); transition: transform 0.3s ease; }
+        .loan-item:hover .loan-item-overlay h3, .loan-item:focus-visible .loan-item-overlay h3 { transform: scale(1); }
 
         /* 8. Testimonial Section */
         .testimonial-section { padding: 80px 5%; background: #00AEEF; text-align: center; color: white; }
@@ -279,7 +281,7 @@
     <!-- 4. ABOUT SECTION -->
     <section class="about-section" id="about">
         <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="About SmartLife">
+            <video src="intro.mp4" autoplay muted loop playsinline controls></video>
         </div>
         <div class="about-text">
             <h4>About Us</h4>
