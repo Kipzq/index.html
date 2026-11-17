@@ -221,7 +221,7 @@
         }
     </style>
 </head>
-<body>
+<body class="has-news-ticker">
 
     <!-- 1. TOP ORANGE BAR -->
     <div class="top-bar">
@@ -606,6 +606,14 @@
         <div class="product-modal-dialog" role="dialog" aria-modal="true">
             <button type="button" class="product-modal-close" data-close aria-label="Close">&times;</button>
             <div id="productModalBody"></div>
+        </div>
+    </div>
+
+    <!-- NEWS TICKER (announcements are edited in script.js) -->
+    <div class="news-ticker" id="newsTicker" role="region" aria-label="SmartLife SACCO announcements">
+        <div class="news-ticker-label">BREAKING NEWS</div>
+        <div class="news-ticker-viewport">
+            <div class="news-ticker-track"></div>
         </div>
     </div>
 

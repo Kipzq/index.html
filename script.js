@@ -77,3 +77,45 @@ function selectLoan(loanName) {
         dropdown.value = loanName;
     }
 }
+
+const newsAnnouncements = [
+    "Welcome to SmartLife SACCO.",
+    "Explore our loan products.",
+    "Discover our mobile banking services.",
+    "Visit our branches in Kapsowar, Kapcherop, Kapyego and Tot.",
+    "Contact us for membership information."
+];
+
+const NEWS_TICKER_PIXELS_PER_SECOND = 70;
+
+function buildNewsTicker() {
+    const ticker = document.getElementById('newsTicker');
+    const track = ticker.querySelector('.news-ticker-track');
+    const viewportWidth = ticker.querySelector('.news-ticker-viewport').clientWidth;
+
+    track.innerHTML = '';
+    const group = document.createElement('div');
+    group.className = 'news-ticker-group';
+    track.appendChild(group);
+
+    do {
+        newsAnnouncements.forEach(text => {
+            const item = document.createElement('span');
+            item.className = 'news-ticker-item';
+            item.textContent = text;
+            group.appendChild(item);
+        });
+    } while (group.offsetWidth < viewportWidth);
+
+    const copy = group.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    track.appendChild(copy);
+
+    ticker.style.setProperty('--news-ticker-duration', `${group.offsetWidth / NEWS_TICKER_PIXELS_PER_SECOND}s`);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (!document.getElementById('newsTicker') || newsAnnouncements.length === 0) return;
+    buildNewsTicker();
+    window.addEventListener('resize', buildNewsTicker);
+});
