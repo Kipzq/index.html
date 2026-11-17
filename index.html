@@ -360,10 +360,10 @@
                 <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Farm Input">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Farm Input Loan</h3></div>
             </div>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            <div class="loan-item" data-product="salary-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Salary Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Salary Loan</h3></div>
-            </a>
+            </div>
             <div class="loan-item" data-product="development-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Development Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Development Loan</h3></div>
@@ -749,6 +749,14 @@
                     { heading: "Terms", points: ["1% interest per month", "Repayable within 36 months"] }
                 ],
                 cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "salary-loan": {
+                title: "Salary Loan",
+                sections: [
+                    { heading: "Salary Advance", points: ["10% on amount taken, repayable once on salary receivable", "Members must channel salary through FOSA", "Only qualify for half of your net salary", "Available after the 15th of every month"] },
+                    { heading: "Salary in Advance", points: ["Available from the 6th to the 15th of every month", "You can still qualify for a salary advance if your pay slip allows"] }
+                ],
+                cta: { label: "Go to FOSA Form", href: "fosa_form.html" }
             }
         };
 
