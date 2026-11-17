@@ -59,7 +59,7 @@
         /* 4. About Section */
         .about-section { display: flex; padding: 80px 5%; background: #1a2b5e; align-items: center; gap: 50px; }
         .about-image { width: 50%; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .about-image img { width: 100%; height: auto; display: block; }
+        .about-image img, .about-image video { width: 100%; height: auto; display: block; }
         .about-text { width: 50%; }
         .about-text h4 { color: #00AEEF; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
         .about-text h2 { color: white; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
@@ -281,7 +281,7 @@
     <!-- 4. ABOUT SECTION -->
     <section class="about-section" id="about">
         <div class="about-image">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2F26554b2135c843e3bb89d528fbe1e0fe%2F1ba901cc5db24dcc8f1bf30428d0ee14?format=webp&width=800&height=1200" alt="About SmartLife">
+            <video src="intro.mp4" autoplay muted loop playsinline controls></video>
         </div>
         <div class="about-text">
             <h4>About Us</h4>
