@@ -221,7 +221,7 @@
         }
     </style>
 </head>
-<body>
+<body class="has-news-ticker">
 
     <!-- 1. TOP ORANGE BAR -->
     <div class="top-bar">
@@ -348,42 +348,42 @@
         <h4>Our process is simple &amp; transparent</h4>
         <h2>Our Loan Services</h2>
         <div class="loan-grid">
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            <div class="loan-item" data-product="school-fees-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="School Fees Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>School Fees Loan</h3></div>
-            </a>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            </div>
+            <div class="loan-item" data-product="college-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="College Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>College/University Loan</h3></div>
-            </a>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            </div>
+            <div class="loan-item" data-product="farm-input-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Farm Input">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Farm Input Loan</h3></div>
-            </a>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            </div>
+            <div class="loan-item" data-product="salary-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Salary Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Salary Loan</h3></div>
-            </a>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            </div>
+            <div class="loan-item" data-product="development-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Development Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Development Loan</h3></div>
-            </a>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            </div>
+            <div class="loan-item" data-product="emergency-loan" role="button" tabindex="0">
                 <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Emergency Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Emergency Loan</h3></div>
-            </a>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            </div>
+            <div class="loan-item" data-product="super-smart-loan" role="button" tabindex="0">
                 <img src="images/super-smart-loan.svg" alt="Super Smart Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Super Smart Loan</h3></div>
-            </a>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            </div>
+            <div class="loan-item" data-product="smart-loan" role="button" tabindex="0">
                 <img src="images/smart-loan.svg" alt="Smart Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Smart Loan</h3></div>
-            </a>
-            <a href="loan.html" class="loan-item" style="text-decoration: none;">
+            </div>
+            <div class="loan-item" data-product="micro-finance-loan" role="button" tabindex="0">
                 <img src="images/micro-finance-loan.svg" alt="Micro-Finance Loan">
                 <div class="loan-item-overlay"><i class="fas fa-search"></i><h3>Micro-Finance Loan</h3></div>
-            </a>
+            </div>
         </div>
     </section>
 
@@ -443,7 +443,7 @@
             </div>
             <div class="faq-item">
                 <h3>How is loan interest calculated?</h3>
-                <p>Loans carry 1% interest per month. Use the <a href="#calculator">loan calculator</a> to estimate your monthly repayment.</p>
+                <p>Loans carry 1% interest per month, and the total interest depends on the number of months you take to repay. Use the <a href="#calculator">loan calculator</a> to estimate your monthly repayment.</p>
             </div>
             <div class="faq-item">
                 <h3>Can I apply online?</h3>
@@ -609,6 +609,14 @@
         </div>
     </div>
 
+    <!-- NEWS TICKER (announcements are edited in script.js) -->
+    <div class="news-ticker" id="newsTicker" role="region" aria-label="SmartLife SACCO announcements">
+        <div class="news-ticker-label">SmartLife</div>
+        <div class="news-ticker-viewport">
+            <div class="news-ticker-track"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <!-- JAVASCRIPT FOR HERO SLIDER -->
     <script>
@@ -650,6 +658,7 @@
         setInterval(nextSlide, 5000);
     </script>
     <script>
+        const bosaNote = "All BOSA product interest is subject to upfront interest and other terms and conditions apply.";
         const productDetails = {
             fosa: {
                 title: "FOSA Products",
@@ -675,7 +684,7 @@
                     { heading: "Women Enterprise", points: ["Targets unemployed women, as per Govt. regulations and the society's credit policy"] },
                     { heading: "Karibu Loan", points: ["For newly recruited members who have not yet accumulated enough shares, to meet development and emergency needs"] }
                 ],
-                note: "All BOSA product interest is subject to upfront interest and other terms and conditions apply.",
+                note: bosaNote,
                 cta: { label: "Apply for a Loan", href: "loan.html" }
             },
             mobile: {
@@ -686,6 +695,76 @@
                     { heading: "Mobile Banking Loan Products", points: ["<strong>Salary in Advance:</strong> open to members who process their salary through FOSA, 1 month repayment, 10% interest, recoverable from FOSA account"] }
                 ],
                 cta: { label: "Visit Mobile Banking Page", href: "mobile.html" }
+            },
+            "smart-loan": {
+                title: "Smart Loan",
+                sections: [
+                    { heading: "Terms", points: ["3 times your deposit", "2% p.m. on reducing balance", "Maximum repayment period of 24 months", "Salary must be channelled through FOSA"] }
+                ],
+                cta: { label: "Go to FOSA Form", href: "fosa_form.html" }
+            },
+            "super-smart-loan": {
+                title: "Super Smart Loan",
+                sections: [
+                    { heading: "Terms", points: ["Available at 1% p.m on reducing balance, repayable within 60 months"] }
+                ],
+                note: bosaNote,
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "development-loan": {
+                title: "Development Loan",
+                sections: [
+                    { heading: "Terms", points: ["Available at 1% p.m on reducing balance, repayable within 48 months"] }
+                ],
+                note: bosaNote,
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "emergency-loan": {
+                title: "Emergency Loan",
+                sections: [
+                    { heading: "Terms", points: ["Issued for emergency cases only, duly accompanied with supporting documents"] }
+                ],
+                note: bosaNote,
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "farm-input-loan": {
+                title: "Farm Input Loan",
+                sections: [
+                    { heading: "Terms", points: ["Issued between February and April every year"] }
+                ],
+                note: bosaNote,
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "college-loan": {
+                title: "College/University Loan",
+                sections: [
+                    { heading: "Terms", points: ["Treated as a development loan", "Paid through cheque on a trimester or semester basis"] }
+                ],
+                note: bosaNote,
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "micro-finance-loan": {
+                title: "Micro-Finance Loan",
+                sections: [
+                    { heading: "Terms", points: ["1.5% p.m on straight line basis, payable in 12 months, on graduation model"] }
+                ],
+                note: bosaNote,
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "school-fees-loan": {
+                title: "School Fees Loan",
+                sections: [
+                    { heading: "Terms", points: ["1% interest per month", "Total interest depends on the number of months you take to repay", "Repayable within 36 months"] }
+                ],
+                cta: { label: "Apply for a Loan", href: "loan.html" }
+            },
+            "salary-loan": {
+                title: "Salary Loan",
+                sections: [
+                    { heading: "Salary Advance", points: ["10% on amount taken, repayable once on salary receivable", "Members must channel salary through FOSA", "Only qualify for half of your net salary", "Available after the 15th of every month"] },
+                    { heading: "Salary in Advance", points: ["Available from the 6th to the 15th of every month", "You can still qualify for a salary advance if your pay slip allows"] }
+                ],
+                cta: { label: "Go to FOSA Form", href: "fosa_form.html" }
             }
         };
 
@@ -714,7 +793,7 @@
             document.body.style.overflow = '';
         }
 
-        document.querySelectorAll('.product-card[data-product]').forEach(card => {
+        document.querySelectorAll('[data-product]').forEach(card => {
             card.addEventListener('click', () => openProduct(card.dataset.product));
             card.addEventListener('keydown', e => {
                 if (e.key === 'Enter' || e.key === ' ') {
