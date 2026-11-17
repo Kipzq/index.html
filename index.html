@@ -953,60 +953,22 @@
         creditsObserver.observe(creditsSection);
 
         const creditsSound = document.getElementById('credits-sound');
-        const chords = [
-            [110, 130.81, 164.81, 196],
-            [87.31, 110, 130.81, 174.61],
-            [130.81, 164.81, 196, 246.94],
-            [98, 123.47, 146.83, 196]
-        ];
-        let audioCtx = null, masterGain = null, voices = [], chordTimer = null, chordStep = 0, musicOn = false;
+        const creditsTrack = new Audio('https://cdn.builder.io/o/assets%2F26554b2135c843e3bb89d528fbe1e0fe%2F6a37b0dbf51a41e997edaee46789bd9e?alt=media&token=9dd1bb40-b6c5-4058-b65d-0aa91201e689&apiKey=26554b2135c843e3bb89d528fbe1e0fe');
+        creditsTrack.loop = true;
+        creditsTrack.volume = 0.6;
+        let musicOn = false;
 
-        const setChord = () => {
-            const chord = chords[chordStep++ % chords.length];
-            voices.forEach(v => v.osc.frequency.setTargetAtTime(chord[v.index] * v.mult, audioCtx.currentTime, 1.5));
+        const setMusicState = (on) => {
+            musicOn = on;
+            creditsSound.textContent = on ? 'Pause music' : 'Play music';
+            creditsSound.setAttribute('aria-pressed', String(on));
         };
 
-        const buildAmbience = () => {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            masterGain = audioCtx.createGain();
-            masterGain.gain.value = 0;
-            masterGain.connect(audioCtx.destination);
-            const filter = audioCtx.createBiquadFilter();
-            filter.type = 'lowpass';
-            filter.frequency.value = 2200;
-            filter.connect(masterGain);
-            for (let index = 0; index < 4; index++) {
-                [[1, 0.2], [2, 0.12], [3, 0.05]].forEach(([mult, level]) => {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'triangle';
-                    osc.frequency.value = chords[0][index] * mult;
-                    gain.gain.value = level;
-                    osc.connect(gain);
-                    gain.connect(filter);
-                    osc.start();
-                    voices.push({ osc, index, mult });
-                });
-            }
-        };
-
-        const startMusic = () => {
-            if (!audioCtx) buildAmbience();
-            audioCtx.resume();
-            setChord();
-            chordTimer = setInterval(setChord, 8000);
-            masterGain.gain.setTargetAtTime(0.5, audioCtx.currentTime, 1.5);
-            musicOn = true;
-            creditsSound.textContent = 'Pause music';
-            creditsSound.setAttribute('aria-pressed', 'true');
-        };
+        const startMusic = () => creditsTrack.play().then(() => setMusicState(true)).catch(() => setMusicState(false));
 
         const stopMusic = () => {
-            clearInterval(chordTimer);
-            masterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.6);
-            musicOn = false;
-            creditsSound.textContent = 'Play music';
-            creditsSound.setAttribute('aria-pressed', 'false');
+            creditsTrack.pause();
+            setMusicState(false);
         };
 
         creditsSound.addEventListener('click', () => (musicOn ? stopMusic() : startMusic()));
