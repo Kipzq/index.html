@@ -195,6 +195,44 @@
         .pm-cta { display: inline-block; background: #F58220; color: white; padding: 12px 30px; font-weight: bold; border-radius: 3px; transition: background 0.3s; }
         .pm-cta:hover { background: #d96e15; }
 
+        /* 4b. Closing Credits */
+        .credits-section { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: radial-gradient(ellipse at 50% 30%, #17264f 0%, #0a1230 45%, #03050d 100%); color: #f5f1e6; text-align: center; }
+        .credits-section::before, .credits-section::after { content: ""; position: absolute; left: 0; right: 0; height: 8%; background: #000; z-index: 3; pointer-events: none; }
+        .credits-section::before { top: 0; }
+        .credits-section::after { bottom: 0; }
+        .credits-light { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, rgba(212,175,55,0.18), transparent 60%); animation: creditsGlow 9s ease-in-out infinite; }
+        .credits-stars { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(212,175,55,0.9) 1px, transparent 2px), radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1.5px); background-size: 220px 220px, 340px 340px; opacity: 0.55; animation: creditsParticles 80s linear infinite; }
+        .credits-opening { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 0 20px; animation: creditsOpening 6s ease both; }
+        .credits-opening img { width: min(260px, 60vw); height: auto; }
+        .credits-viewport { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+        .credits-track { position: absolute; top: 0; left: 0; right: 0; padding: 0 24px; animation: creditsRoll 100s linear 6s both; }
+        .credits-track .credits-title { margin: 0 0 14px; color: #d4af37; font-size: clamp(1.6rem, 3.6vw, 2.6rem); letter-spacing: 4px; font-weight: 700; text-shadow: 0 0 18px rgba(212,175,55,0.45); }
+        .credits-track .credits-heading { margin: 64px 0 14px; color: #d4af37; font-size: clamp(1rem, 2vw, 1.35rem); letter-spacing: 4px; font-weight: 600; text-shadow: 0 0 12px rgba(212,175,55,0.3); }
+        .credits-track .credits-sub { margin: 26px 0 8px; color: #d4af37; font-size: clamp(0.85rem, 1.4vw, 1rem); letter-spacing: 3px; font-weight: 600; }
+        .credits-track .credits-tagline, .credits-opening .credits-tagline, .credits-end .credits-tagline { margin: 0; color: #d4af37; font-size: clamp(1.1rem, 2.6vw, 1.8rem); letter-spacing: 6px; font-weight: 700; text-shadow: 0 0 16px rgba(212,175,55,0.45); }
+        .credits-track p, .credits-track li { max-width: 640px; margin: 0 auto 8px; font-size: clamp(0.95rem, 1.6vw, 1.2rem); line-height: 1.8; color: #f5f1e6; }
+        .credits-track ul { list-style: none; padding: 0; margin: 0; }
+        .credits-track .credits-closing { margin-top: 10px; color: #d4af37; letter-spacing: 3px; font-weight: 600; }
+        .credits-end { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 0 20px; opacity: 0; animation: creditsEnd 3s ease 106s both; }
+        .credits-end img { width: min(220px, 55vw); height: auto; }
+        .credits-end p { margin: 0; color: #f5f1e6; font-size: clamp(0.95rem, 2vw, 1.4rem); letter-spacing: 3px; }
+        .credits-skip { position: absolute; right: 24px; bottom: calc(8% + 12px); z-index: 4; padding: 8px 14px; border: 1px solid rgba(212,175,55,0.6); border-radius: 20px; color: #d4af37; font-size: 0.8rem; letter-spacing: 2px; text-decoration: none; text-transform: uppercase; }
+        .credits-skip:hover { background: rgba(212,175,55,0.15); }
+        .credits-section:not(.is-visible) .credits-anim { animation-play-state: paused; }
+        .credits-section.is-visible:hover .credits-anim { animation-play-state: paused; }
+        @keyframes creditsRoll { from { transform: translate3d(0, 100vh, 0); } to { transform: translate3d(0, -100%, 0); } }
+        @keyframes creditsOpening { 0% { opacity: 0; } 20% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
+        @keyframes creditsEnd { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes creditsGlow { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+        @keyframes creditsParticles { from { background-position: 0 0, 0 0; } to { background-position: 0 -2200px, 0 -3400px; } }
+        @media (prefers-reduced-motion: reduce) {
+            .credits-section { height: auto; min-height: 0; padding: 80px 5% 40px; overflow: visible; }
+            .credits-section::before, .credits-section::after, .credits-light, .credits-stars, .credits-opening, .credits-skip { display: none; }
+            .credits-viewport { position: static; overflow: visible; }
+            .credits-track { position: static; padding: 0; animation: none; transform: none; }
+            .credits-end { position: static; opacity: 1; animation: none; padding: 60px 0 0; }
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 900px) {
             .top-bar { display: none; }
@@ -289,6 +327,78 @@
             <p>Smartlife Sacco Society Ltd (formerly Marakwet Teachers SACCO) was incorporated and licensed to transact business in 1995 with one branch in Kapsowar which also acts as headquarters. From a humble beginning, the SACCO has grown from strength to strength and has established the first branch in Kapcherop to serve members in the Kapcherop Division and its environs.</p>
             <p>The Sacco will expand its operation to including opening of new branches. This growth has as a result of clear vision by the founders and management of the SACCO who are committed to bringing efficient financial services closer to the members especially within the county and beyond.</p>
         </div>
+    </section>
+
+    <!-- 4b. CLOSING CREDITS -->
+    <section class="credits-section" id="credits" aria-label="SmartLife SACCO closing credits">
+        <div class="credits-light credits-anim" aria-hidden="true"></div>
+        <div class="credits-stars credits-anim" aria-hidden="true"></div>
+
+        <div class="credits-opening credits-anim">
+            <img src="logo.png" alt="SmartLife SACCO Logo">
+            <p class="credits-tagline">TOGETHER WE PROSPER</p>
+        </div>
+
+        <div class="credits-viewport">
+            <div class="credits-track credits-anim">
+                <h3 class="credits-title">SMARTLIFE SACCO SOCIETY LTD</h3>
+                <p class="credits-tagline">TOGETHER WE PROSPER</p>
+                <p>Incorporated and licensed to transact business since 1995.</p>
+
+                <h3 class="credits-heading">OUR COMMITMENT</h3>
+                <h4 class="credits-sub">MISSION</h4>
+                <p>To mobilize funds from members with a view to providing innovative and quality financial services to improve their standards of living.</p>
+                <h4 class="credits-sub">VISION</h4>
+                <p>To be the ultimate choice in offering first-class financial services to our customers.</p>
+
+                <h3 class="credits-heading">OUR CORE VALUES</h3>
+                <ul>
+                    <li>Integrity</li>
+                    <li>Transparency and Accountability</li>
+                    <li>Honesty</li>
+                    <li>Timeliness</li>
+                    <li>Efficiency and Effectiveness</li>
+                    <li>Customer Satisfaction</li>
+                </ul>
+
+                <h3 class="credits-heading">OUR HISTORY</h3>
+                <p>Formerly Marakwet Teachers SACCO, established in 1995, with headquarters in Kapsowar and a branch in Kapcherop.</p>
+
+                <h3 class="credits-heading">OUR MEMBERS</h3>
+                <p>Serving members across Elgeyo Marakwet County and beyond.</p>
+
+                <h3 class="credits-heading">GET IN TOUCH</h3>
+                <p>Head Office – Kapsowar<br>Marakwet Teachers Plaza<br>P.O. BOX 118-30705, Kapsowar</p>
+                <p>Email: info@smartlifesacco.co.ke<br>Phone: 020 760 6429<br>Support: 020 760 6432</p>
+
+                <h3 class="credits-heading">USEFUL LINKS</h3>
+                <ul>
+                    <li>BOSA</li>
+                    <li>FOSA</li>
+                    <li>Mobile Banking</li>
+                    <li>FAQ</li>
+                    <li>Downloads</li>
+                </ul>
+
+                <h3 class="credits-heading">RECENT POSTS</h3>
+                <p>Tenders Advert for 2027</p>
+                <p>Opportunities: Why SACCOs Should Further Be Digitized</p>
+
+                <h3 class="credits-heading">COPYRIGHT</h3>
+                <p>© 2026 Smartlife Savings and Credit. All Rights Reserved.</p>
+
+                <p class="credits-closing">THANK YOU FOR BEING PART OF OUR JOURNEY.</p>
+                <p class="credits-tagline">TOGETHER WE PROSPER.</p>
+            </div>
+        </div>
+
+        <div class="credits-end credits-anim">
+            <img src="logo.png" alt="SmartLife SACCO Logo">
+            <p>THANK YOU FOR BEING PART OF OUR JOURNEY.</p>
+            <p class="credits-tagline">TOGETHER WE PROSPER.</p>
+        </div>
+
+        <a class="credits-skip" href="#contact">Skip credits</a>
     </section>
 
     <!-- 5. PRODUCTS SECTION -->
@@ -828,6 +938,16 @@
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape' && !productModal.hidden) closeProduct();
         });
+    </script>
+    <script>
+        const creditsSection = document.getElementById('credits');
+        const creditsObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                creditsSection.classList.add('is-visible');
+                creditsObserver.disconnect();
+            }
+        }, { threshold: 0.4 });
+        creditsObserver.observe(creditsSection);
     </script>
 </body>
 </html>
