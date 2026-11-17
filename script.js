@@ -58,7 +58,7 @@ function calculateLoan() {
         alert("Please enter valid numbers.");
         return;
     }
-    const monthlyRate = 0.16; 
+    const monthlyRate = 0.01; 
     const totalInterest = amount * monthlyRate * months;
     const totalRepayment = parseFloat(amount) + totalInterest;
     const monthlyPayment = totalRepayment / months;
@@ -67,7 +67,7 @@ function calculateLoan() {
     resultDiv.innerHTML = `
         Monthly Repayment: <br><span style="font-size: 1.5rem;">${formatKES(monthlyPayment)}</span><br><br>
         Total Repayment: ${formatKES(totalRepayment)}<br>
-        <span style="font-size: 0.9rem; color: #666; font-weight: normal;">(Includes 16% monthly interest)</span>
+        <span style="font-size: 0.9rem; color: #666; font-weight: normal;">(Includes 1% monthly interest)</span>
     `;
 }
 
