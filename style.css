@@ -187,11 +187,16 @@ nav ul li a:hover {
 .about {
     padding: 60px 5%;
     text-align: center;
-    background-color: #e6f7ff;
+    background-color: #1a2b5e;
+    color: white;
+}
+
+.about h4 {
+    color: #00AEEF;
 }
 
 .about h2 {
-    color: #1a2b5e;
+    color: white;
     margin-bottom: 20px;
 }
 
@@ -199,6 +204,7 @@ nav ul li a:hover {
     max-width: 800px;
     margin: 0 auto;
     font-size: 1.1rem;
+    color: white;
 }
 
 /* Location Info & Map */
